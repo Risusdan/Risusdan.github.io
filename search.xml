@@ -3,7 +3,7 @@
   <entry>
     <title>My First Blog</title>
     <url>/2024/08/12/My-First-Blog/</url>
-    <content><![CDATA[<p>Just finished my resume yesterday, and I’m ready to start my journey into the world of blogging.<br>Hope I will have made great progress when I review this article next year.</p>
+    <content><![CDATA[<p>Just finished my resume yesterday, and I’m ready to start my journey into the world of blogging.</p>
 <span id="more"></span>
 
 <h2 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h2><h3 id="Firmware-Engineer-Nov-2021-–-Present"><a href="#Firmware-Engineer-Nov-2021-–-Present" class="headerlink" title="Firmware Engineer (Nov. 2021 – Present)"></a>Firmware Engineer (Nov. 2021 – Present)</h3><ul>
@@ -32,8 +32,30 @@
 <li>Standards: ASPICE, MISRA-C, ISO26262</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>AboutMe</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Prompt Engineering</title>
+    <url>/2024/08/18/Prompt-Engineering/</url>
+    <content><![CDATA[<p>Try to explore a structured approach to writing well-crafted prompts and share practices for generating high-quality content using AI.</p>
+<span id="more"></span>
+
+<h2 id="5-Steps-to-write-a-well-structured-prompt"><a href="#5-Steps-to-write-a-well-structured-prompt" class="headerlink" title="5-Steps to write a well-structured prompt"></a>5-Steps to write a well-structured prompt</h2><ol>
+<li>Describe the role of the AI assistant.</li>
+<li>Explain the background of your mission.</li>
+<li>Provide the task.</li>
+<li>Provide some examples of what you want.</li>
+<li>Constrain the output format.</li>
+</ol>
+<h2 id="Promt-for-code-generation"><a href="#Promt-for-code-generation" class="headerlink" title="Promt for code generation"></a>Promt for code generation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">- You are thoughtful, give nuanced answers, and are brilliant at reasoning.</span><br><span class="line">- You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step, describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line">- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
       <tags>
-        <tag>ideas</tag>
+        <tag>PromptEngineering</tag>
       </tags>
   </entry>
 </search>
