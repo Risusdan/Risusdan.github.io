@@ -40,6 +40,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Prompt Engineering</title>
+    <url>/2024/08/18/Prompt-Engineering/</url>
+    <content><![CDATA[<p>Try to explore a structured approach to writing well-crafted prompts and share practices for generating high-quality content using AI.</p>
+<span id="more"></span>
+
+<h2 id="5-Steps-to-write-a-well-structured-prompt"><a href="#5-Steps-to-write-a-well-structured-prompt" class="headerlink" title="5-Steps to write a well-structured prompt"></a>5-Steps to write a well-structured prompt</h2><ol>
+<li>Describe the role of the AI assistant.</li>
+<li>Explain the background of your mission.</li>
+<li>Provide the task.</li>
+<li>Provide some examples of what you want.</li>
+<li>Constrain the output format.</li>
+</ol>
+<h2 id="Promt-for-code-generation"><a href="#Promt-for-code-generation" class="headerlink" title="Promt for code generation"></a>Promt for code generation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">- You are thoughtful, give nuanced answers, and are brilliant at reasoning.</span><br><span class="line">- You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step, describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line">- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>PromptEngineering</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>My First Blog</title>
     <url>/2024/08/12/My-First-Blog/</url>
     <content><![CDATA[<p>Just finished my resume yesterday, and I’m ready to start my journey into the world of blogging.</p>
@@ -76,25 +98,52 @@
       </categories>
   </entry>
   <entry>
-    <title>Prompt Engineering</title>
-    <url>/2024/08/18/Prompt-Engineering/</url>
-    <content><![CDATA[<p>Try to explore a structured approach to writing well-crafted prompts and share practices for generating high-quality content using AI.</p>
+    <title>Reading Notes - The Elements of Style</title>
+    <url>/2024/08/22/The-Elements-of-Style/</url>
+    <content><![CDATA[<p>This book provides clear, concise rules and principles for effective writing in English.</p>
 <span id="more"></span>
 
-<h2 id="5-Steps-to-write-a-well-structured-prompt"><a href="#5-Steps-to-write-a-well-structured-prompt" class="headerlink" title="5-Steps to write a well-structured prompt"></a>5-Steps to write a well-structured prompt</h2><ol>
-<li>Describe the role of the AI assistant.</li>
-<li>Explain the background of your mission.</li>
-<li>Provide the task.</li>
-<li>Provide some examples of what you want.</li>
-<li>Constrain the output format.</li>
-</ol>
-<h2 id="Promt-for-code-generation"><a href="#Promt-for-code-generation" class="headerlink" title="Promt for code generation"></a>Promt for code generation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">- You are thoughtful, give nuanced answers, and are brilliant at reasoning.</span><br><span class="line">- You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step, describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line">- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="About-the-book"><a href="#About-the-book" class="headerlink" title="About the book"></a>About the book</h2><ul>
+<li>Author: William Strunk Jr.</li>
+<li>Publication Date: 2018&#x2F;09&#x2F;27</li>
+<li>Number of Pages: 239</li>
+</ul>
+<h2 id="Chapter-1-Introductory"><a href="#Chapter-1-Introductory" class="headerlink" title="Chapter 1 - Introductory"></a>Chapter 1 - Introductory</h2><p>This book aims to give in brief space the principle requirements of plain English style.</p>
+<h2 id="Chapter-2-Elementary-Rules-of-Usage"><a href="#Chapter-2-Elementary-Rules-of-Usage" class="headerlink" title="Chapter 2 - Elementary Rules of Usage"></a>Chapter 2 - Elementary Rules of Usage</h2><h4 id="Rule-1-Form-the-possessive-singular-of-nouns-by-adding-’s"><a href="#Rule-1-Form-the-possessive-singular-of-nouns-by-adding-’s" class="headerlink" title="Rule 1. Form the possessive singular of nouns by adding ’s."></a>Rule 1. Form the possessive singular of nouns by adding ’s.</h4><blockquote>
+<p>For example, <em>Charles’s friend</em>, <em>John’s poems</em>, <em>the king’s malice</em>.</p>
+</blockquote>
+<ul>
+<li>Exceptions are the possessive of ancent proper names in <em>-es</em> and <em>-is</em>, the possessive <em>Jesus’</em> and such forms <em>for sinscience’ sake</em>, <em>for righteousness’ sake</em>.</li>
+</ul>
+<h4 id="Rule-2-In-a-series-of-three-or-more-terms-with-a-single-conjunction-use-a-comma-after-each-term-except-the-last"><a href="#Rule-2-In-a-series-of-three-or-more-terms-with-a-single-conjunction-use-a-comma-after-each-term-except-the-last" class="headerlink" title="Rule 2. In a series of three or more terms with a single conjunction, use a comma after each term except the last."></a>Rule 2. In a series of three or more terms with a single conjunction, use a comma after each term except the last.</h4><blockquote>
+<p>For example, <em>I have visited the museums of Cairo, Alexandria, and Thebes</em>.</p>
+</blockquote>
+<ul>
+<li>In the names of business firms the last comma is omitted as <em>Smith, Jones and Company</em>.</li>
+</ul>
+<h4 id="Rule-3-Enclose-parenthetic-expressions-between-commas"><a href="#Rule-3-Enclose-parenthetic-expressions-between-commas" class="headerlink" title="Rule 3. Enclose parenthetic expressions between commas."></a>Rule 3. Enclose parenthetic expressions between commas.</h4><blockquote>
+<p>For example, <em>My siser, you will be please to hear, is going to be married</em>.</p>
+</blockquote>
+<ul>
+<li>Always to be reguared as parenthetic and to be enclosed between commas (or, at the end of the sentence, between comma and period) are the following:<ul>
+<li>the year, when forming part of the date</li>
+<li>the day of the month, when following the day of the week</li>
+<li>the abbreviations <em>etc.</em> and <em>jr.</em> [1]</li>
+<li>non-restrictive relative clauses, and similar clauses introduced by conjunctions indicating time or place. [2]</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>[1]: For example, <em>Hank tries not to eat apples, pears, etc., even though he likes them</em>.<br>[2]: For example, <em>The students, which had at first been rather noisy, soon settled down to work</em>.</p>
+</blockquote>
+<p>Rule 4. Place a comma before a conjunction introducing a co-ordinate clause.<br>Rule 5. Do not join independent clauses by a comma.<br>Rule 6. Do not break sentences in two.<br>Rule 7. A participial phrase at the beginning of a sentence must refer to the grammatical subject.</p>
+<h2 id="Chapter-3-Elementary-Principles-of-Composition"><a href="#Chapter-3-Elementary-Principles-of-Composition" class="headerlink" title="Chapter 3 - Elementary Principles of Composition"></a>Chapter 3 - Elementary Principles of Composition</h2><p>Rule 1. Make the paragraph the unit of composition: one paragraph to each topic.<br>Rule 2. As a rule, begin each paragraph with a topic sentence; end it in conformity with the beginning.<br>Rule 3. Use the active voice.<br>Rule 4. Put statements in positive form.<br>Rule 5. Use definite, specific, concrete language.<br>Rule 6. Omit needless words.<br>Rule 7. Avoid a succession of loose sentences.<br>Rule 8. Express co-ordinate ideas in similar form.<br>Rule 9. Keep related words together.<br>Rule 10. In summaries, keep to one tense.<br>Rule 11. Place the emphatic words of a sentence at the end.</p>
+<h2 id="Chapter-4-A-Few-Matters-of-Form"><a href="#Chapter-4-A-Few-Matters-of-Form" class="headerlink" title="Chapter 4 - A Few Matters of Form"></a>Chapter 4 - A Few Matters of Form</h2><h2 id="Chapter-5-Words-and-Expressions-Commonly-Misused"><a href="#Chapter-5-Words-and-Expressions-Commonly-Misused" class="headerlink" title="Chapter 5 - Words and Expressions Commonly Misused"></a>Chapter 5 - Words and Expressions Commonly Misused</h2><h2 id="Chapter-6-Spelling"><a href="#Chapter-6-Spelling" class="headerlink" title="Chapter 6 - Spelling"></a>Chapter 6 - Spelling</h2>]]></content>
       <categories>
-        <category>AI</category>
+        <category>ReadingNotes</category>
       </categories>
       <tags>
-        <tag>PromptEngineering</tag>
+        <tag>EnglishWriting</tag>
       </tags>
   </entry>
 </search>
