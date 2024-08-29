@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GoogleTest on Windows</title>
+    <url>/2024/08/29/GoogleTest-Framework/</url>
+    <content><![CDATA[<p>GoogleTest is a popular open-source unit testing framework for C++ developed by Google. It provides a rich set of assertions, test fixtures, and test discovery features that make it easier for developers to write and run tests for their C++ code.</p>
+<span id="more"></span>
+
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ol>
+<li>Go to <a href="https://www.msys2.org/">MSYS2 Website</a> and download the installer.</li>
+<li>Run the installer and follow the instructions.</li>
+<li>Open MSYS2 application.</li>
+<li>Install g++ using the command <code>pacman -S mingw-w64-i686-toolchain</code>.</li>
+<li>Install GoogleTest using the command <code>pacman -S mingw-w64-i686-gtest</code>.</li>
+<li>Download the GoogleTest prebuild version from <a href="https://drive.google.com/file/d/1x-SK-bSzKzWXamI_FodryykiEtWbCC1J/view?usp=drive_link">here</a>.</li>
+<li>Extract the <code>libgtest.a</code> and <code>libgtest_main.a</code> files to your project directory.</li>
+</ol>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>Create new files named <code>Example/add.cpp</code>, <code>Example/add.h</code>, <code>Example/add_test.cpp</code>, you should have a directory structure similar to this:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">your_project/</span><br><span class="line">├── src/</span><br><span class="line">│   └── Example/</span><br><span class="line">│       ├── add.cpp</span><br><span class="line">│       ├── add.h</span><br><span class="line">│       └── add_test.cpp</span><br><span class="line">└── lib/</span><br><span class="line">    ├── libgtest.a</span><br><span class="line">    └── libgtest_main.a</span><br></pre></td></tr></table></figure>
+
+<p>Add the following code to <code>add.cpp</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Add the following code to <code>add.h</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> ADD_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD_H</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Add the following code to <code>add_test.cpp</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;gtest/gtest.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, PositiveNumbers)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">1</span>, <span class="number">4</span>), <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">5</span>, <span class="number">0</span>), <span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, NegativeNumbers)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-2</span>, <span class="number">-3</span>), <span class="number">-5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-1</span>, <span class="number">-4</span>), <span class="number">-5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-5</span>, <span class="number">0</span>), <span class="number">-5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, PositiveAndNegativeNumber)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">-3</span>), <span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-2</span>, <span class="number">3</span>), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">-2</span>), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Run the following command to compile the project:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">g++ ./Example/add.cpp ./Example/add_test.cpp -o TestResult -I/mingw32/include -L/mingw32/lib -lgtest -lgtest_main -pthread</span><br></pre></td></tr></table></figure>
+
+<p>Run the following command to run the tests:</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">.\TestResult.exe</span><br></pre></td></tr></table></figure>
+
+<p>You should see the following output:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Running main() from C:/M/B/src/googletest-1.15.2/googletest/src/gtest_main.cc</span><br><span class="line">[==========] Running 3 tests from 1 test suite.</span><br><span class="line">[----------] Global test environment set-up.</span><br><span class="line">[----------] 3 tests from AddTest</span><br><span class="line">[ RUN      ] AddTest.PositiveNumbers</span><br><span class="line">[       OK ] AddTest.PositiveNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.NegativeNumbers</span><br><span class="line">[       OK ] AddTest.NegativeNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.PositiveAndNegativeNumber</span><br><span class="line">[       OK ] AddTest.PositiveAndNegativeNumber (0 ms)</span><br><span class="line">[----------] 3 tests from AddTest (9 ms total)</span><br><span class="line"></span><br><span class="line">[----------] Global test environment tear-down</span><br><span class="line">[==========] 3 tests from 1 test suite ran. (16 ms total)</span><br><span class="line">[  PASSED  ] 3 tests.</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>UnitTest</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ClangFormat</title>
     <url>/2024/08/19/ClangFormat/</url>
     <content><![CDATA[<p>I use ClangFormat to format my code, it helps me to keep the code style consistent.</p>
@@ -113,54 +156,110 @@
 <li>Exceptions are the possessive of ancent proper names in <em>-es</em> and <em>-is</em>, the possessive <em>Jesus’</em> and such forms <em>for sinscience’ sake</em>, <em>for righteousness’ sake</em>.</li>
 </ul>
 <blockquote>
-<p><em>Charles’s friend</em><br><em>John’s poems</em><br><em>the king’s malice</em></p>
+<p>“Charles’s friend”<br>“John’s poems”<br>“the king’s malice”</p>
 </blockquote>
 <h4 id="Rule-2-In-a-series-of-three-or-more-terms-with-a-single-conjunction-use-a-comma-after-each-term-except-the-last"><a href="#Rule-2-In-a-series-of-three-or-more-terms-with-a-single-conjunction-use-a-comma-after-each-term-except-the-last" class="headerlink" title="Rule 2. In a series of three or more terms with a single conjunction, use a comma after each term except the last."></a>Rule 2. In a series of three or more terms with a single conjunction, use a comma after each term except the last.</h4><ul>
 <li>In the names of business firms the last comma is omitted as <em>Smith, Jones and Company</em>.</li>
 </ul>
 <blockquote>
-<p><em>I have visited the museums of Cairo, Alexandria, and Thebes.</em>.</p>
+<p>“I have visited the museums of Cairo, Alexandria, and Thebes.”</p>
 </blockquote>
 <h4 id="Rule-3-Enclose-parenthetic-expressions-between-commas"><a href="#Rule-3-Enclose-parenthetic-expressions-between-commas" class="headerlink" title="Rule 3. Enclose parenthetic expressions between commas."></a>Rule 3. Enclose parenthetic expressions between commas.</h4><ul>
 <li>Always to be reguared as parenthetic and to be enclosed between commas (or, at the end of the sentence, between comma and period) are the following:<ul>
 <li>the year, when forming part of the date</li>
 <li>the day of the month, when following the day of the week</li>
-<li>the abbreviations <em>etc.</em> and <em>jr.</em> ^1</li>
-<li>non-restrictive relative clauses, and similar clauses introduced by conjunctions indicating time or place. ^2</li>
+<li>the abbreviations <em>etc.</em> and <em>jr.</em>[^1]</li>
+<li>non-restrictive relative clauses, and similar clauses introduced by conjunctions indicating time or place. [^2]</li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<p><em>My siser you will be please to hear, is going to be married.</em> should be <em>My siser, you will be please to hear, is going to be married.</em><br>^1: <em>Hank tries not to eat apples, pears, etc., even though he likes them.</em><br>^2: <em>The students, which had at first been rather noisy, soon settled down to work.</em></p>
+<p>“My siser you will be please to hear, is going to be married.” should be “My siser, you will be please to hear, is going to be married.”<br>[^1]: “Hank tries not to eat apples, pears, etc., even though he likes them.”<br>[^2]: “The students, which had at first been rather noisy, soon settled down to work.”</p>
 </blockquote>
 <h4 id="Rule-4-Place-a-comma-before-a-conjunction-introducing-a-co-ordinate-clause"><a href="#Rule-4-Place-a-comma-before-a-conjunction-introducing-a-co-ordinate-clause" class="headerlink" title="Rule 4. Place a comma before a conjunction introducing a co-ordinate clause."></a>Rule 4. Place a comma before a conjunction introducing a co-ordinate clause.</h4><ul>
 <li>Two-part sentences of which the second member is introduced by <em>as</em> (in the sense of <em>because</em>), <em>for</em>, <em>or</em>, <em>nor</em>, and <em>while</em> (in the sense of <em>and at the same time</em>) likewise require a comma before the conjunction.</li>
 <li>If the second member is introduced by an adverb, a semicolon, not a comma, is required.</li>
-<li>The uses of <em>so</em> (equivalent to <em>accordingly</em> or to <em>so that</em>) are somewhat colloquial and <strong>should be avoided in writing</strong>. A simple correction is to omit the word <em>so</em> and begin the first clause with <em>as</em> or <em>since</em>.^3</li>
-<li>When the subject is the same for both clauses and is expressed only once, a comma is required if the connective is <em>but</em>.^4</li>
+<li>The uses of <em>so</em> (equivalent to <em>accordingly</em> or to <em>so that</em>) are somewhat colloquial and <strong>should be avoided in writing</strong>. A simple correction is to omit the word <em>so</em> and begin the first clause with <em>as</em> or <em>since</em>.[^3]</li>
+<li>When the subject is the same for both clauses and is expressed only once, a comma is required if the connective is <em>but</em>.[^4]</li>
 </ul>
 <blockquote>
-<p>^3: <em>I had never been in the place before; so I had difficulty in finding my way about.</em> should be <em>As I had never been in the place before, I had difficulty in finding my way about.</em><br>^4: <em>I have heard her sing, but am still undecided about her voice.</em></p>
+<p>[^3]: “I had never been in the place before; so I had difficulty in finding my way about.” should be “As I had never been in the place before, I had difficulty in finding my way about.”<br>[^4]: “I have heard her sing, but am still undecided about her voice.”</p>
 </blockquote>
 <h4 id="Rule-5-Do-not-join-independent-clauses-by-a-comma"><a href="#Rule-5-Do-not-join-independent-clauses-by-a-comma" class="headerlink" title="Rule 5. Do not join independent clauses by a comma."></a>Rule 5. Do not join independent clauses by a comma.</h4><ul>
-<li>If two or more clauses, grammatically complete and not joined by a conjunction, are to form a single compound sentence, the proper mark of punctuation is a <strong>semicolon</strong>.^5</li>
-<li>It is of course equally correct to write the above as two sentences each, replacing the semicolon by periods.^6</li>
-<li>If a conjunction is inserted the proper mark is a comma.^7</li>
-<li>Note that if the second clause is preceded by an adverb, such as <em>accordingly</em>, <em>besides</em>, <em>then</em>, <em>therefore</em>, <em>thus</em>, and not by a conjunction, the semicolon is still required.^8</li>
+<li>If two or more clauses, grammatically complete and not joined by a conjunction, are to form a single compound sentence, the proper mark of punctuation is a <strong>semicolon</strong>.[^5]</li>
+<li>It is of course equally correct to write the above as two sentences each, replacing the semicolon by periods.[^6]</li>
+<li>If a conjunction is inserted the proper mark is a comma.[^7]</li>
+<li>Note that if the second clause is preceded by an adverb, such as <em>accordingly</em>, <em>besides</em>, <em>then</em>, <em>therefore</em>, <em>thus</em>, and not by a conjunction, the semicolon is still required.[^8]</li>
 </ul>
 <blockquote>
-<p>^5: <em>I have a dog; he is black and white.</em><br>^6: <em>I have a dog. He is black and white.</em><br>^7: <em>I have a dog, and he is black and white.</em><br>^8: <em>The weather was cold; therefore, we decided to stay indoors.</em></p>
+<p>[^5]: “I have a dog; he is black and white.”<br>[^6]: “I have a dog. He is black and white.”<br>[^7]: “I have a dog, and he is black and white.”<br>[^8]: “The weather was cold; therefore, we decided to stay indoors.”</p>
 </blockquote>
 <h4 id="Rule-6-Do-not-break-sentences-in-two"><a href="#Rule-6-Do-not-break-sentences-in-two" class="headerlink" title="Rule 6. Do not break sentences in two."></a>Rule 6. Do not break sentences in two.</h4><ul>
 <li>In other words, do not use periods for commas.</li>
 </ul>
 <blockquote>
-<p><em>I met them on a liner several years ago. Coming home from London to New York.</em> should not be <em>I met them on a liner several years ago, coming home from London to New York.</em></p>
+<p>“I met them on a liner several years ago. Coming home from London to New York.” should not be “I met them on a liner several years ago, coming home from London to New York.”</p>
 </blockquote>
 <h4 id="Rule-7-A-participial-phrase-at-the-beginning-of-a-sentence-must-refer-to-the-grammatical-subject"><a href="#Rule-7-A-participial-phrase-at-the-beginning-of-a-sentence-must-refer-to-the-grammatical-subject" class="headerlink" title="Rule 7. A participial phrase at the beginning of a sentence must refer to the grammatical subject."></a>Rule 7. A participial phrase at the beginning of a sentence must refer to the grammatical subject.</h4><blockquote>
-<p><em>On arriving in New York, our friends led us to the hotel.</em> should be <em>When we arrived in New York, our friends led us to the hotel.</em><br><em>Young and inexperienced, the task seemed easy to me.</em> should be <em>Young and inexperienced, I thought the task easy.</em></p>
+<p>“On arriving in New York, our friends led us to the hotel.” should be “When we arrived in New York, our friends led us to the hotel.”<br>“Young and inexperienced, the task seemed easy to me.” should be “Young and inexperienced, I thought the task easy.”</p>
 </blockquote>
-<h2 id="Chapter-3-Elementary-Principles-of-Composition"><a href="#Chapter-3-Elementary-Principles-of-Composition" class="headerlink" title="Chapter 3 - Elementary Principles of Composition"></a>Chapter 3 - Elementary Principles of Composition</h2><h4 id="Rule-1-Make-the-paragraph-the-unit-of-composition-one-paragraph-to-each-topic"><a href="#Rule-1-Make-the-paragraph-the-unit-of-composition-one-paragraph-to-each-topic" class="headerlink" title="Rule 1. Make the paragraph the unit of composition: one paragraph to each topic."></a>Rule 1. Make the paragraph the unit of composition: one paragraph to each topic.</h4><h4 id="Rule-2-As-a-rule-begin-each-paragraph-with-a-topic-sentence-end-it-in-conformity-with-the-beginning"><a href="#Rule-2-As-a-rule-begin-each-paragraph-with-a-topic-sentence-end-it-in-conformity-with-the-beginning" class="headerlink" title="Rule 2. As a rule, begin each paragraph with a topic sentence; end it in conformity with the beginning."></a>Rule 2. As a rule, begin each paragraph with a topic sentence; end it in conformity with the beginning.</h4><h4 id="Rule-3-Use-the-active-voice"><a href="#Rule-3-Use-the-active-voice" class="headerlink" title="Rule 3. Use the active voice."></a>Rule 3. Use the active voice.</h4><h4 id="Rule-4-Put-statements-in-positive-form"><a href="#Rule-4-Put-statements-in-positive-form" class="headerlink" title="Rule 4. Put statements in positive form."></a>Rule 4. Put statements in positive form.</h4><h4 id="Rule-5-Use-definite-specific-concrete-language"><a href="#Rule-5-Use-definite-specific-concrete-language" class="headerlink" title="Rule 5. Use definite, specific, concrete language."></a>Rule 5. Use definite, specific, concrete language.</h4><h4 id="Rule-6-Omit-needless-words"><a href="#Rule-6-Omit-needless-words" class="headerlink" title="Rule 6. Omit needless words."></a>Rule 6. Omit needless words.</h4><h4 id="Rule-7-Avoid-a-succession-of-loose-sentences"><a href="#Rule-7-Avoid-a-succession-of-loose-sentences" class="headerlink" title="Rule 7. Avoid a succession of loose sentences."></a>Rule 7. Avoid a succession of loose sentences.</h4><h4 id="Rule-8-Express-co-ordinate-ideas-in-similar-form"><a href="#Rule-8-Express-co-ordinate-ideas-in-similar-form" class="headerlink" title="Rule 8. Express co-ordinate ideas in similar form."></a>Rule 8. Express co-ordinate ideas in similar form.</h4><h4 id="Rule-9-Keep-related-words-together"><a href="#Rule-9-Keep-related-words-together" class="headerlink" title="Rule 9. Keep related words together."></a>Rule 9. Keep related words together.</h4><h4 id="Rule-10-In-summaries-keep-to-one-tense"><a href="#Rule-10-In-summaries-keep-to-one-tense" class="headerlink" title="Rule 10. In summaries, keep to one tense."></a>Rule 10. In summaries, keep to one tense.</h4><h4 id="Rule-11-Place-the-emphatic-words-of-a-sentence-at-the-end"><a href="#Rule-11-Place-the-emphatic-words-of-a-sentence-at-the-end" class="headerlink" title="Rule 11. Place the emphatic words of a sentence at the end."></a>Rule 11. Place the emphatic words of a sentence at the end.</h4>]]></content>
+<h2 id="Chapter-3-Elementary-Principles-of-Composition"><a href="#Chapter-3-Elementary-Principles-of-Composition" class="headerlink" title="Chapter 3 - Elementary Principles of Composition"></a>Chapter 3 - Elementary Principles of Composition</h2><h4 id="Rule-1-Make-the-paragraph-the-unit-of-composition-one-paragraph-to-each-topic"><a href="#Rule-1-Make-the-paragraph-the-unit-of-composition-one-paragraph-to-each-topic" class="headerlink" title="Rule 1. Make the paragraph the unit of composition: one paragraph to each topic."></a>Rule 1. Make the paragraph the unit of composition: one paragraph to each topic.</h4><ul>
+<li>A subject requires subdivision into topics, each of which should be made the subject of a paragraph.</li>
+</ul>
+<h4 id="Rule-2-As-a-rule-begin-each-paragraph-with-a-topic-sentence-end-it-in-conformity-with-the-beginning"><a href="#Rule-2-As-a-rule-begin-each-paragraph-with-a-topic-sentence-end-it-in-conformity-with-the-beginning" class="headerlink" title="Rule 2. As a rule, begin each paragraph with a topic sentence; end it in conformity with the beginning."></a>Rule 2. As a rule, begin each paragraph with a topic sentence; end it in conformity with the beginning.</h4><ul>
+<li>The practice here recommended enables the reader to discover the purpose of each paragraph as he begins to read it, and to retain this purpose in mind as he ends it.</li>
+<li>The most generally useful kind of paragraph, particularly in exposition and argument, is that in which<ul>
+<li>the topic sentence comes at or near the beginning;</li>
+<li>the succeeding sentences explain or establish or develop the statement made in the topic sentence;</li>
+<li>the final sentence either emphasizes the thought of the topic sentence or states some important consequence.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Rule-3-Use-the-active-voice"><a href="#Rule-3-Use-the-active-voice" class="headerlink" title="Rule 3. Use the active voice."></a>Rule 3. Use the active voice.</h4><ul>
+<li>The active voice is usually more direct and vigorous than the passive.[^9]</li>
+<li>Avoid making one passive depend diectly upon another.[^10]</li>
+<li>A common fault is to use as the subject of a passive construction a noun which expresses the entire action, leaving to the verb no function beyond that of completing the sentence.[^11]</li>
+</ul>
+<blockquote>
+<p>[^9]: “My first visit to India will always be remembered by me.” should be “I will always remember my first visit to India.”<br>[^10]: “Gold was not allowed to be exported.” should be “It was not allowed to export gold.”<br>[^11]: “The survey of this region was made in 1900.” should be “This region was surveyed in 1900.”</p>
+</blockquote>
+<h4 id="Rule-4-Put-statements-in-positive-form"><a href="#Rule-4-Put-statements-in-positive-form" class="headerlink" title="Rule 4. Put statements in positive form."></a>Rule 4. Put statements in positive form.</h4><ul>
+<li>Make difinite assertions. Avoid tame, colorless, hesitating, non-committal language.</li>
+<li>Use the word <em>not</em> as a means of denial or in antithesis, never as a means of evasion.[^12]</li>
+<li>The reader is dissatisfied with being told only what is not; he wishes to be told what is.</li>
+</ul>
+<blockquote>
+<p>[^12]: “She didn’t think that studying Chinese was much use.” should be “She thought the study of Chinese useless.”</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Do</th>
+<th>Don’t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The house is very old.</td>
+<td>The house is rather old.</td>
+</tr>
+<tr>
+<td>The house is very old.</td>
+<td>The house is old.</td>
+</tr>
+<tr>
+<td>The house is very old.</td>
+<td>The house is old.</td>
+</tr>
+<tr>
+<td>The house is very old.</td>
+<td>The house is old.</td>
+</tr>
+<tr>
+<td>The house is very old.</td>
+<td>The house is old.</td>
+</tr>
+</tbody></table>
+<h4 id="Rule-5-Use-definite-specific-concrete-language"><a href="#Rule-5-Use-definite-specific-concrete-language" class="headerlink" title="Rule 5. Use definite, specific, concrete language."></a>Rule 5. Use definite, specific, concrete language.</h4><h4 id="Rule-6-Omit-needless-words"><a href="#Rule-6-Omit-needless-words" class="headerlink" title="Rule 6. Omit needless words."></a>Rule 6. Omit needless words.</h4><h4 id="Rule-7-Avoid-a-succession-of-loose-sentences"><a href="#Rule-7-Avoid-a-succession-of-loose-sentences" class="headerlink" title="Rule 7. Avoid a succession of loose sentences."></a>Rule 7. Avoid a succession of loose sentences.</h4><h4 id="Rule-8-Express-co-ordinate-ideas-in-similar-form"><a href="#Rule-8-Express-co-ordinate-ideas-in-similar-form" class="headerlink" title="Rule 8. Express co-ordinate ideas in similar form."></a>Rule 8. Express co-ordinate ideas in similar form.</h4><h4 id="Rule-9-Keep-related-words-together"><a href="#Rule-9-Keep-related-words-together" class="headerlink" title="Rule 9. Keep related words together."></a>Rule 9. Keep related words together.</h4><h4 id="Rule-10-In-summaries-keep-to-one-tense"><a href="#Rule-10-In-summaries-keep-to-one-tense" class="headerlink" title="Rule 10. In summaries, keep to one tense."></a>Rule 10. In summaries, keep to one tense.</h4><h4 id="Rule-11-Place-the-emphatic-words-of-a-sentence-at-the-end"><a href="#Rule-11-Place-the-emphatic-words-of-a-sentence-at-the-end" class="headerlink" title="Rule 11. Place the emphatic words of a sentence at the end."></a>Rule 11. Place the emphatic words of a sentence at the end.</h4>]]></content>
       <categories>
         <category>ReadingNotes</category>
       </categories>
