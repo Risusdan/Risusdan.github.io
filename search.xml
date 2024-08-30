@@ -43,56 +43,6 @@
       </tags>
   </entry>
   <entry>
-    <title>GoogleTest Concepts</title>
-    <url>/2024/08/30/GoogleTest-Concepts/</url>
-    <content><![CDATA[<p>GoogleTest is a popular open-source unit testing framework for C++ developed by Google. It provides a rich set of assertions, test fixtures, and test discovery features that make it easier for developers to write and run tests for their C++ code.</p>
-<span id="more"></span>
-
-<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
-<li>When using GoogleTest, you start by writing <em>assertions</em>, which are statements that check whether a condition is true. An assertion’s result can be <em>success</em>, <em>nonfatal failure</em>, or <em>fatal failure</em>. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.</li>
-<li><em>Tests</em> use assertions to verify the tested code’s behavior. If a test crashes or has a failed assertion, then it <em>fails</em>; otherwise it <em>succeeds</em>.</li>
-<li>A <em>test suite</em> contains one or many tests. You should group your tests into test suites that reflect the structure of the tested code. When multiple tests in a test suite need to share common objects and subroutines, you can put them into a <em>test fixture</em> class.</li>
-<li>A <em>test program</em> can contain multiple test suites.</li>
-</ul>
-<h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><ul>
-<li>GoogleTest assertions are macros that resemble function calls. You test a class or function by making assertions about its behavior. </li>
-<li>GoogleTest provides a collection of assertions for verifying the behavior of your code in various ways. See <a href="GoogleTest-Assertions.md">GoogleTest Assertions</a> for more details.</li>
-</ul>
-<h2 id="Test-Suite"><a href="#Test-Suite" class="headerlink" title="Test Suite"></a>Test Suite</h2><ul>
-<li>Use the <code>TEST()</code> macro to define and name a test function. These are ordinary C++ functions that don’t return a value.</li>
-<li>In this function, along with any valid C++ statements you want to include, use the various GoogleTest assertions to check values.</li>
-<li>The test’s result is determined by the assertions; if any assertion in the test fails (either fatally or non-fatally), or if the test crashes, the entire test fails. Otherwise, it succeeds.</li>
-<li>GoogleTest groups the test results by test suites, so logically related tests should be in the same test suite.</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// As an example, we can define a test suite for the factorial function as follows :</span></span><br><span class="line"><span class="comment">// Note that the first argument to the TEST macro is the test suite name,</span></span><br><span class="line"><span class="comment">// and the second argument is the test name within the test suite.</span></span><br><span class="line"><span class="built_in">TEST</span>(FactorialTest, HandlesZeroInput)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">0</span>), <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(FactorialTest, HandlesPositiveInput)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">2</span>), <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">8</span>), <span class="number">40320</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Test-Fixture"><a href="#Test-Fixture" class="headerlink" title="Test Fixture"></a>Test Fixture</h2><ul>
-<li>If you find yourself writing two or more tests that operate on similar data, you can use a <em>test fixture</em>. This allows you to reuse the same configuration of objects for several different tests.</li>
-<li>To create a fixture :<ol>
-<li>Derive a class from <code>testing::Test</code>. Start its body with <code>protected:</code>, as we’ll want to access fixture members from sub-classes.</li>
-<li>Inside the class, declare any objects you plan to use.</li>
-<li>If necessary, write a default constructor or <code>SetUp()</code> function to prepare the objects for each test. A common mistake is to spell <code>SetUp()</code> as <code>Setup()</code> with a small <code>u</code>.</li>
-<li>If necessary, write a destructor or <code>TearDown()</code> function to release any resources you allocated in <code>SetUp()</code>. To learn when you should use the constructor&#x2F;destructor and when you should use <code>SetUp()</code>&#x2F;<code>TearDown()</code>, read the <a href="https://google.github.io/googletest/faq.html#CtorVsSetUp">FAQ</a>.</li>
-<li>If needed, define subroutines for your tests to share.</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// As a example, suppose we want to test the `Queue` class.</span></span><br><span class="line"><span class="comment">// We can create a test fixture for it as follows :</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Then we can use the fixture in our tests.</span></span><br><span class="line"><span class="comment">// Unlike `TEST()`, in `TEST_F()` the first argument must be the name of the test fixture class.</span></span><br><span class="line"><span class="comment">// No test suite name is specified for this macro.</span></span><br><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Run-Tests"><a href="#Run-Tests" class="headerlink" title="Run Tests"></a>Run Tests</h2><ul>
-<li><code>TEST()</code> and <code>TEST_F()</code> implicitly register their tests with GoogleTest. So, unlike with many other C++ testing frameworks, you don’t have to re-list all your defined tests in order to run them.</li>
-<li>Most users should not need to write their own <code>main</code> function and instead link with <code>gtest_main</code>, which defines a suitable entry point.</li>
-</ul>
-]]></content>
-      <categories>
-        <category>UnitTest</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GoogleTest Assertions</title>
     <url>/2024/08/29/GoogleTest-Assertions/</url>
     <content><![CDATA[<p>Here is a list of assertions that GoogleTest provides.</p>
@@ -129,6 +79,56 @@
 <h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><p>The following assertions verify that a piece of code throws, or does not throw, an exception. Usage requires exceptions to be enabled in the build environment.</p>
 <p>Note that the piece of code under test can be a compound statement, for example: <code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>UnitTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest Concepts</title>
+    <url>/2024/08/30/GoogleTest-Concepts/</url>
+    <content><![CDATA[<p>GoogleTest is a popular open-source unit testing framework for C++ developed by Google. It provides a rich set of assertions, test fixtures, and test discovery features that make it easier for developers to write and run tests for their C++ code.</p>
+<span id="more"></span>
+
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
+<li>When using GoogleTest, you start by writing <em>assertions</em>, which are statements that check whether a condition is true. An assertion’s result can be <em>success</em>, <em>nonfatal failure</em>, or <em>fatal failure</em>. If a fatal failure occurs, it aborts the current function; otherwise the program continues normally.</li>
+<li><em>Tests</em> use assertions to verify the tested code’s behavior. If a test crashes or has a failed assertion, then it <em>fails</em>; otherwise it <em>succeeds</em>.</li>
+<li>A <em>test suite</em> contains one or many tests. You should group your tests into test suites that reflect the structure of the tested code. When multiple tests in a test suite need to share common objects and subroutines, you can put them into a <em>test fixture</em> class.</li>
+<li>A <em>test program</em> can contain multiple test suites.</li>
+</ul>
+<h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><ul>
+<li>GoogleTest assertions are macros that resemble function calls. You test a class or function by making assertions about its behavior. </li>
+<li>GoogleTest provides a collection of assertions for verifying the behavior of your code in various ways. See <a href="/2024/08/29/GoogleTest-Assertions/" title="GoogleTest Assertions">GoogleTest Assertions</a> for more details.</li>
+</ul>
+<h2 id="Test-Suite"><a href="#Test-Suite" class="headerlink" title="Test Suite"></a>Test Suite</h2><ul>
+<li>Use the <code>TEST()</code> macro to define and name a test function. These are ordinary C++ functions that don’t return a value.</li>
+<li>In this function, along with any valid C++ statements you want to include, use the various GoogleTest assertions to check values.</li>
+<li>The test’s result is determined by the assertions; if any assertion in the test fails (either fatally or non-fatally), or if the test crashes, the entire test fails. Otherwise, it succeeds.</li>
+<li>GoogleTest groups the test results by test suites, so logically related tests should be in the same test suite.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// As an example, we can define a test suite for the factorial function as follows :</span></span><br><span class="line"><span class="comment">// Note that the first argument to the TEST macro is the test suite name,</span></span><br><span class="line"><span class="comment">// and the second argument is the test name within the test suite.</span></span><br><span class="line"><span class="built_in">TEST</span>(FactorialTest, HandlesZeroInput)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">0</span>), <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(FactorialTest, HandlesPositiveInput)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">2</span>), <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">3</span>), <span class="number">6</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Factorial</span>(<span class="number">8</span>), <span class="number">40320</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Test-Fixture"><a href="#Test-Fixture" class="headerlink" title="Test Fixture"></a>Test Fixture</h2><ul>
+<li>If you find yourself writing two or more tests that operate on similar data, you can use a <em>test fixture</em>. This allows you to reuse the same configuration of objects for several different tests.</li>
+<li>To create a fixture :<ol>
+<li>Derive a class from <code>testing::Test</code>. Start its body with <code>protected:</code>, as we’ll want to access fixture members from sub-classes.</li>
+<li>Inside the class, declare any objects you plan to use.</li>
+<li>If necessary, write a default constructor or <code>SetUp()</code> function to prepare the objects for each test. A common mistake is to spell <code>SetUp()</code> as <code>Setup()</code> with a small <code>u</code>.</li>
+<li>If necessary, write a destructor or <code>TearDown()</code> function to release any resources you allocated in <code>SetUp()</code>. To learn when you should use the constructor&#x2F;destructor and when you should use <code>SetUp()</code>&#x2F;<code>TearDown()</code>, read the <a href="https://google.github.io/googletest/faq.html#CtorVsSetUp">FAQ</a>.</li>
+<li>If needed, define subroutines for your tests to share.</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// As a example, suppose we want to test the `Queue` class.</span></span><br><span class="line"><span class="comment">// We can create a test fixture for it as follows :</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Then we can use the fixture in our tests.</span></span><br><span class="line"><span class="comment">// Unlike `TEST()`, in `TEST_F()` the first argument must be the name of the test fixture class.</span></span><br><span class="line"><span class="comment">// No test suite name is specified for this macro.</span></span><br><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-Tests"><a href="#Run-Tests" class="headerlink" title="Run Tests"></a>Run Tests</h2><ul>
+<li><code>TEST()</code> and <code>TEST_F()</code> implicitly register their tests with GoogleTest. So, unlike with many other C++ testing frameworks, you don’t have to re-list all your defined tests in order to run them.</li>
+<li>Most users should not need to write their own <code>main</code> function and instead link with <code>gtest_main</code>, which defines a suitable entry point.</li>
+</ul>
 ]]></content>
       <categories>
         <category>UnitTest</category>
@@ -183,28 +183,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Prompt Engineering</title>
-    <url>/2024/08/18/Prompt-Engineering/</url>
-    <content><![CDATA[<p>Try to explore a structured approach to writing well-crafted prompts and share practices for generating high-quality content using AI.</p>
-<span id="more"></span>
-
-<h2 id="5-Steps-to-write-a-well-structured-prompt"><a href="#5-Steps-to-write-a-well-structured-prompt" class="headerlink" title="5-Steps to write a well-structured prompt"></a>5-Steps to write a well-structured prompt</h2><ol>
-<li>Describe the role of the AI assistant.</li>
-<li>Explain the background of your mission.</li>
-<li>Provide the task.</li>
-<li>Provide some examples of what you want.</li>
-<li>Constrain the output format.</li>
-</ol>
-<h2 id="Promt-for-code-generation"><a href="#Promt-for-code-generation" class="headerlink" title="Promt for code generation"></a>Promt for code generation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">- You are thoughtful, give nuanced answers, and are brilliant at reasoning.</span><br><span class="line">- You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step, describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line">- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>PromptEngineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>My First Blog</title>
     <url>/2024/08/12/My-First-Blog/</url>
     <content><![CDATA[<p>Just finished my resume yesterday, and I’m ready to start my journey into the world of blogging.</p>
@@ -239,6 +217,28 @@
       <categories>
         <category>AboutMe</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Prompt Engineering</title>
+    <url>/2024/08/18/Prompt-Engineering/</url>
+    <content><![CDATA[<p>Try to explore a structured approach to writing well-crafted prompts and share practices for generating high-quality content using AI.</p>
+<span id="more"></span>
+
+<h2 id="5-Steps-to-write-a-well-structured-prompt"><a href="#5-Steps-to-write-a-well-structured-prompt" class="headerlink" title="5-Steps to write a well-structured prompt"></a>5-Steps to write a well-structured prompt</h2><ol>
+<li>Describe the role of the AI assistant.</li>
+<li>Explain the background of your mission.</li>
+<li>Provide the task.</li>
+<li>Provide some examples of what you want.</li>
+<li>Constrain the output format.</li>
+</ol>
+<h2 id="Promt-for-code-generation"><a href="#Promt-for-code-generation" class="headerlink" title="Promt for code generation"></a>Promt for code generation</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">- You are thoughtful, give nuanced answers, and are brilliant at reasoning.</span><br><span class="line">- You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step, describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line">- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>PromptEngineering</tag>
+      </tags>
   </entry>
   <entry>
     <title>Reading Notes - The Elements of Style</title>
