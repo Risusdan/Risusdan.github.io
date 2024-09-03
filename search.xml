@@ -1,49 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ClangFormat</title>
-    <url>/2024/08/19/ClangFormat/</url>
-    <content><![CDATA[<p>I use ClangFormat to format my code, it helps me to keep the code style consistent.</p>
-<span id="more"></span>
-
-<h2 id="What-is-ClangFormat"><a href="#What-is-ClangFormat" class="headerlink" title="What is ClangFormat?"></a>What is ClangFormat?</h2><ul>
-<li>A code formatting tool that is part of the LLVM project.</li>
-<li>Automatically formats C, C++, JavaScript, Java, Objective-C, Protobuf, and other languages.</li>
-<li>Ensures consistent code style across large codebases and teams.</li>
-</ul>
-<h2 id="Benefits-of-Using-ClangFormat"><a href="#Benefits-of-Using-ClangFormat" class="headerlink" title="Benefits of Using ClangFormat?"></a>Benefits of Using ClangFormat?</h2><ul>
-<li>Improves code readability by enforcing a consistent style.</li>
-<li>Saves time and effort by automating the formatting process.</li>
-<li>Reduces code review overhead by minimizing style-related discussions.</li>
-<li>Supports configuration via <code>.clang-format</code> files, which can be versioned alongside code.</li>
-</ul>
-<h2 id="How-to-use-ClangFormat"><a href="#How-to-use-ClangFormat" class="headerlink" title="How to use ClangFormat?"></a>How to use ClangFormat?</h2><h3 id="1-Install-ClangFormat"><a href="#1-Install-ClangFormat" class="headerlink" title="1. Install ClangFormat"></a>1. Install ClangFormat</h3><ul>
-<li>On macOS, you can install it via Homebrew : <code>brew install clang-format</code></li>
-<li>On Windows, you can install it via Scoop : <code>scoop install llvm</code></li>
-</ul>
-<h3 id="2-Configure-ClangFormat"><a href="#2-Configure-ClangFormat" class="headerlink" title="2. Configure ClangFormat"></a>2. Configure ClangFormat</h3><ul>
-<li>Create a <code>.clang-format</code> file in the root directory of your project.</li>
-<li>You can use <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> to get the default configuration file from the LLVM project, or you can create your own configuration file.</li>
-<li>All the options are listed in the <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a>.</li>
-</ul>
-<h3 id="3-Format-your-code-using-ClangFormat"><a href="#3-Format-your-code-using-ClangFormat" class="headerlink" title="3. Format your code using ClangFormat"></a>3. Format your code using ClangFormat</h3><ul>
-<li>You can use <code>clang-format -i &lt;file&gt;</code> to format your code.</li>
-<li>In VSCode, you can install the <code>Clang-Format</code> extension and use <code>Ctrl+Alt+F</code> to format your code.</li>
-</ul>
-<h2 id="My-clang-format-for-C-C"><a href="#My-clang-format-for-C-C" class="headerlink" title="My .clang-format for C&#x2F;C++"></a>My .clang-format for C&#x2F;C++</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This format style should be used for C, C++</span><br><span class="line">Language: Cpp</span><br><span class="line"># The style used for all options not specifically set in the configuration</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"># Align array column and right justify the columns</span><br><span class="line">AlignArrayOfStructures: Right</span><br><span class="line"># Style of aligning consecutive assignments</span><br><span class="line">AlignConsecutiveAssignments:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line">  AlignCompound: false</span><br><span class="line">  PadOperators: false</span><br><span class="line"># Style of aligning consecutive bit fields</span><br><span class="line">AlignConsecutiveBitFields:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Style of aligning consecutive macro definitions</span><br><span class="line">AlignConsecutiveMacros:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Align escaped newlines as far left as possible</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line"># If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line</span><br><span class="line">AllowAllArgumentsOnNextLine: false</span><br><span class="line"># If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line"># If true, short case labels will be contracted to a single line</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"># Allow short enums on a single line</span><br><span class="line">AllowShortEnumsOnASingleLine: false</span><br><span class="line"># Never merge functions into a single line</span><br><span class="line">AllowShortFunctionsOnASingleLine: None</span><br><span class="line"># Never put short ifs on the same line</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never</span><br><span class="line"># If false, a function call’s arguments will either be all on the same line or will have one line each</span><br><span class="line">BinPackArguments: false</span><br><span class="line"># If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each</span><br><span class="line">BinPackParameters: false</span><br><span class="line"># Add space after the `:` only</span><br><span class="line">BitFieldColonSpacing: After</span><br><span class="line"># Always break before braces</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line"># Break before operators that aren’t assignments</span><br><span class="line">BreakBeforeBinaryOperators: NonAssignment</span><br><span class="line"># The column limit</span><br><span class="line">ColumnLimit: 80</span><br><span class="line"># Includes are never sorted</span><br><span class="line">SortIncludes: Never</span><br><span class="line"># Indent case labels one level from the switch statement</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"># Does not indent any directives</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line"># The number of columns to use for indentation</span><br><span class="line">IndentWidth: 4</span><br><span class="line"># Align pointer to the left</span><br><span class="line">PointerAlignment: Left</span><br><span class="line"># If false, spaces will be removed before assignment operator</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"># Never use tab</span><br><span class="line">UseTab: Never</span><br></pre></td></tr></table></figure>
-
-<h2 id="Jserv’s-clang-format-for-C-C"><a href="#Jserv’s-clang-format-for-C-C" class="headerlink" title="Jserv’s .clang-format for C&#x2F;C++"></a>Jserv’s .clang-format for C&#x2F;C++</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># reference: https://github.com/sysprog21/rv32emu/blob/master/.clang-format</span><br><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Formatter</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GoogleTest Assertions</title>
+    <title>GoogleTest - Assertions</title>
     <url>/2024/08/29/GoogleTest-Assertions/</url>
     <content><![CDATA[<p>Here is a list of assertions that GoogleTest provides.</p>
 <span id="more"></span>
@@ -81,15 +39,59 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>UnitTest</category>
+        <category>GoogleTest</category>
       </categories>
       <tags>
         <tag>C</tag>
         <tag>C++</tag>
+        <tag>UnitTest</tag>
       </tags>
   </entry>
   <entry>
-    <title>GoogleTest Concepts</title>
+    <title>ClangFormat</title>
+    <url>/2024/08/19/ClangFormat/</url>
+    <content><![CDATA[<p>I use ClangFormat to format my code, it helps me to keep the code style consistent.</p>
+<span id="more"></span>
+
+<h2 id="What-is-ClangFormat"><a href="#What-is-ClangFormat" class="headerlink" title="What is ClangFormat?"></a>What is ClangFormat?</h2><ul>
+<li>A code formatting tool that is part of the LLVM project.</li>
+<li>Automatically formats C, C++, JavaScript, Java, Objective-C, Protobuf, and other languages.</li>
+<li>Ensures consistent code style across large codebases and teams.</li>
+</ul>
+<h2 id="Benefits-of-Using-ClangFormat"><a href="#Benefits-of-Using-ClangFormat" class="headerlink" title="Benefits of Using ClangFormat?"></a>Benefits of Using ClangFormat?</h2><ul>
+<li>Improves code readability by enforcing a consistent style.</li>
+<li>Saves time and effort by automating the formatting process.</li>
+<li>Reduces code review overhead by minimizing style-related discussions.</li>
+<li>Supports configuration via <code>.clang-format</code> files, which can be versioned alongside code.</li>
+</ul>
+<h2 id="How-to-use-ClangFormat"><a href="#How-to-use-ClangFormat" class="headerlink" title="How to use ClangFormat?"></a>How to use ClangFormat?</h2><h3 id="1-Install-ClangFormat"><a href="#1-Install-ClangFormat" class="headerlink" title="1. Install ClangFormat"></a>1. Install ClangFormat</h3><ul>
+<li>On macOS, you can install it via Homebrew : <code>brew install clang-format</code></li>
+<li>On Windows, you can install it via Scoop : <code>scoop install llvm</code></li>
+</ul>
+<h3 id="2-Configure-ClangFormat"><a href="#2-Configure-ClangFormat" class="headerlink" title="2. Configure ClangFormat"></a>2. Configure ClangFormat</h3><ul>
+<li>Create a <code>.clang-format</code> file in the root directory of your project.</li>
+<li>You can use <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> to get the default configuration file from the LLVM project, or you can create your own configuration file.</li>
+<li>All the options are listed in the <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a>.</li>
+</ul>
+<h3 id="3-Format-your-code-using-ClangFormat"><a href="#3-Format-your-code-using-ClangFormat" class="headerlink" title="3. Format your code using ClangFormat"></a>3. Format your code using ClangFormat</h3><ul>
+<li>You can use <code>clang-format -i &lt;file&gt;</code> to format your code.</li>
+<li>In VSCode, you can install the <code>Clang-Format</code> extension and use <code>Ctrl+Alt+F</code> to format your code.</li>
+</ul>
+<h2 id="My-clang-format-for-C-C"><a href="#My-clang-format-for-C-C" class="headerlink" title="My .clang-format for C&#x2F;C++"></a>My .clang-format for C&#x2F;C++</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This format style should be used for C, C++</span><br><span class="line">Language: Cpp</span><br><span class="line"># The style used for all options not specifically set in the configuration</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"># Align array column and right justify the columns</span><br><span class="line">AlignArrayOfStructures: Right</span><br><span class="line"># Style of aligning consecutive assignments</span><br><span class="line">AlignConsecutiveAssignments:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line">  AlignCompound: false</span><br><span class="line">  PadOperators: false</span><br><span class="line"># Style of aligning consecutive bit fields</span><br><span class="line">AlignConsecutiveBitFields:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Style of aligning consecutive macro definitions</span><br><span class="line">AlignConsecutiveMacros:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Align escaped newlines as far left as possible</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line"># If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line</span><br><span class="line">AllowAllArgumentsOnNextLine: false</span><br><span class="line"># If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line"># If true, short case labels will be contracted to a single line</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"># Allow short enums on a single line</span><br><span class="line">AllowShortEnumsOnASingleLine: false</span><br><span class="line"># Never merge functions into a single line</span><br><span class="line">AllowShortFunctionsOnASingleLine: None</span><br><span class="line"># Never put short ifs on the same line</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never</span><br><span class="line"># If false, a function call’s arguments will either be all on the same line or will have one line each</span><br><span class="line">BinPackArguments: false</span><br><span class="line"># If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each</span><br><span class="line">BinPackParameters: false</span><br><span class="line"># Add space after the `:` only</span><br><span class="line">BitFieldColonSpacing: After</span><br><span class="line"># Always break before braces</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line"># Break before operators that aren’t assignments</span><br><span class="line">BreakBeforeBinaryOperators: NonAssignment</span><br><span class="line"># The column limit</span><br><span class="line">ColumnLimit: 80</span><br><span class="line"># Includes are never sorted</span><br><span class="line">SortIncludes: Never</span><br><span class="line"># Indent case labels one level from the switch statement</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"># Does not indent any directives</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line"># The number of columns to use for indentation</span><br><span class="line">IndentWidth: 4</span><br><span class="line"># Align pointer to the left</span><br><span class="line">PointerAlignment: Left</span><br><span class="line"># If false, spaces will be removed before assignment operator</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"># Never use tab</span><br><span class="line">UseTab: Never</span><br><span class="line"># Specify whether access modifiers should have their own indentation level</span><br><span class="line">IndentAccessModifiers: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jserv’s-clang-format-for-C-C"><a href="#Jserv’s-clang-format-for-C-C" class="headerlink" title="Jserv’s .clang-format for C&#x2F;C++"></a>Jserv’s .clang-format for C&#x2F;C++</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># reference: https://github.com/sysprog21/rv32emu/blob/master/.clang-format</span><br><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ClangFormat</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>Formatter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest - Concepts</title>
     <url>/2024/08/30/GoogleTest-Concepts/</url>
     <content><![CDATA[<p>GoogleTest is a popular open-source unit testing framework for C++ developed by Google. It provides a rich set of assertions, test fixtures, and test discovery features that make it easier for developers to write and run tests for their C++ code.</p>
 <span id="more"></span>
@@ -102,7 +104,7 @@
 </ul>
 <h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><ul>
 <li>GoogleTest assertions are macros that resemble function calls. You test a class or function by making assertions about its behavior. </li>
-<li>GoogleTest provides a collection of assertions for verifying the behavior of your code in various ways. See <a href="/2024/08/29/GoogleTest-Assertions/" title="GoogleTest Assertions">GoogleTest Assertions</a> for more details.</li>
+<li>GoogleTest provides a collection of assertions for verifying the behavior of your code in various ways. See <a href="/2024/08/29/GoogleTest-Assertions/" title="GoogleTest - Assertions">GoogleTest Assertions</a> for more details.</li>
 </ul>
 <h2 id="Test-Suite"><a href="#Test-Suite" class="headerlink" title="Test Suite"></a>Test Suite</h2><ul>
 <li>Use the <code>TEST()</code> macro to define and name a test function. These are ordinary C++ functions that don’t return a value.</li>
@@ -131,15 +133,16 @@
 </ul>
 ]]></content>
       <categories>
-        <category>UnitTest</category>
+        <category>GoogleTest</category>
       </categories>
       <tags>
         <tag>C</tag>
         <tag>C++</tag>
+        <tag>UnitTest</tag>
       </tags>
   </entry>
   <entry>
-    <title>GoogleTest on Windows</title>
+    <title>GoogleTest - Run on Windows</title>
     <url>/2024/08/29/GoogleTest-Framework/</url>
     <content><![CDATA[<p>Follow the steps below to install and use GoogleTest on Windows.</p>
 <span id="more"></span>
@@ -175,11 +178,12 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Running main() from C:/M/B/src/googletest-1.15.2/googletest/src/gtest_main.cc</span><br><span class="line">[==========] Running 3 tests from 1 test suite.</span><br><span class="line">[----------] Global test environment set-up.</span><br><span class="line">[----------] 3 tests from AddTest</span><br><span class="line">[ RUN      ] AddTest.PositiveNumbers</span><br><span class="line">[       OK ] AddTest.PositiveNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.NegativeNumbers</span><br><span class="line">[       OK ] AddTest.NegativeNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.PositiveAndNegativeNumber</span><br><span class="line">[       OK ] AddTest.PositiveAndNegativeNumber (0 ms)</span><br><span class="line">[----------] 3 tests from AddTest (9 ms total)</span><br><span class="line"></span><br><span class="line">[----------] Global test environment tear-down</span><br><span class="line">[==========] 3 tests from 1 test suite ran. (16 ms total)</span><br><span class="line">[  PASSED  ] 3 tests.</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>UnitTest</category>
+        <category>GoogleTest</category>
       </categories>
       <tags>
         <tag>C</tag>
         <tag>C++</tag>
+        <tag>UnitTest</tag>
       </tags>
   </entry>
   <entry>
@@ -238,6 +242,119 @@
       </categories>
       <tags>
         <tag>PromptEngineering</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SonarQube - Quick Start</title>
+    <url>/2024/09/03/SonarQube/</url>
+    <content><![CDATA[<p>SonarQube is a static analysis tool developed by SonarSource, designed for continuous inspection of code quality.<br>The Community Edition of SonarQube is free to use.</p>
+<span id="more"></span>
+
+<h2 id="What-can-SonarQube-do"><a href="#What-can-SonarQube-do" class="headerlink" title="What can SonarQube do?"></a>What can SonarQube do?</h2><ul>
+<li>Comprehensive Code Analysis: Analyzes code for bugs, vulnerabilities, and code smells, providing insights into code quality.</li>
+<li>Multi-Language Support: Supports languages including Java, C#, JavaScript, TypeScript, CloudFormation, Terraform, Docker, Kubernetes, Helm Charts, Kotlin, Ruby, Go, Scala, Flex, Python, PHP, HTML, CSS, XML, VB.NET.</li>
+<li>Integration with CI&#x2F;CD: Easily integrates with popular CI&#x2F;CD tools like Jenkins, GitLab, and Maven, ensuring code quality checks are part of the development pipeline.</li>
+<li>Customizable Quality Gates: Allows teams to set specific quality thresholds that code must meet before being merged.</li>
+<li>Rich Reporting: Generates detailed reports and visualizations to track code quality metrics over time.</li>
+</ul>
+<h2 id="How-to-start"><a href="#How-to-start" class="headerlink" title="How to start?"></a>How to start?</h2><p>This is just a quick start guide to install SonarQube on a local machine. Once you’re ready to set up on a production environment, please refer to the <a href="https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/introduction/?_gl=1*gbpous*_up*MQ..&gclid=CjwKCAjwodC2BhAHEiwAE67hJIS_jE1OJwwvk09-d3r80yb7WgqprI-EBXb2G4VQ59WWn8tsmJqWPBoCpuMQAvD_BwE">official documentation</a>.</p>
+<ol>
+<li>Install local instance of SonarQube from Docker image</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=<span class="literal">true</span> -p 9000:9000 sonarqube:latest</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Access SonarQube from browser</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:9000</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Login with the default credentials:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Username: admin</span><br><span class="line">Password: admin</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>Change the password</p>
+</li>
+<li><p>Select “Create a local project”.</p>
+</li>
+</ol>
+<p><img src="/images/SonarQube-HowDoYouWantToCreateYourProject.png" alt="SonarQube-HowDoYouWantToCreateYourProject"></p>
+<ol start="6">
+<li>Give your project a “Project display name”, “Project key” and click “Next”.</li>
+</ol>
+<blockquote>
+<p>The “Project key” is a unique identifier for the project. It is used to distinguish between projects.</p>
+</blockquote>
+<p><img src="/images/SonarQube-CreateALocalProject.png" alt="SonarQube-CreateALocalProject"></p>
+<ol start="7">
+<li>Choose the baseline for new code for this project. Select “Use the global setting” and click “Create project”.</li>
+</ol>
+<blockquote>
+<p>The baseline is a reference point to decide which parts of the code are new and is going to be analyzed.</p>
+</blockquote>
+<p><img src="/images/SonarQube-SetUpProjectForCleanAsYouCode.png" alt="SonarQube-SetUpProjectForCleanAsYouCode"></p>
+<ol start="8">
+<li>In “Analysis Method”, click “Locally”.</li>
+</ol>
+<p><img src="/images/SonarQube-AnalysisMethod.png" alt="SonarQube-AnalysisMethod"></p>
+<ol start="9">
+<li>Generate a token and keep it in a secure location.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Analyze &quot;Flask-20240903&quot;: sqp_a3b366f97b0689b5ab9a6fba94aef928ff26157d</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The token is used to identify you when an analysis is performed.</p>
+</blockquote>
+<p><img src="/images/SonarQube-AnalyzeYourProject.png" alt="SonarQube-AnalyzeYourProject"></p>
+<p><img src="/images/SonarQube-ProvideAToken.png" alt="SonarQube-ProvideAToken"></p>
+<ol start="10">
+<li>Choose the type of your project. Here we will use Flask which is a Python web framework as an example, so select “Other”.</li>
+</ol>
+<p><img src="/images/SonarQube-RunAnalysisOnYourProject.png" alt="SonarQube-RunAnalysisOnYourProject"></p>
+<ol start="11">
+<li>Choose the OS as “Windows” and follow the instructions to download the SonarQube Scanner.</li>
+</ol>
+<blockquote>
+<p>SonarQube Scanner is a tool that is used to perform the analysis.</p>
+</blockquote>
+<ol start="12">
+<li><p>Add Sonarqube Scanner’s bin directory to the %PATH% environment variable in Windows.</p>
+</li>
+<li><p>Clone the latest version of Flask.</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pallets/flask.git</span><br></pre></td></tr></table></figure>
+
+<ol start="14">
+<li>Use the terminal to navigate to the Flask directory and run the following command to perform the analysis.</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sonar-scanner.bat -D<span class="string">&quot;sonar.projectKey=Flask-20240903&quot;</span> -D<span class="string">&quot;sonar.sources=.&quot;</span> -D<span class="string">&quot;sonar.host.url=http://localhost:9000&quot;</span> -D<span class="string">&quot;sonar.token=sqp_a3b366f97b0689b5ab9a6fba94aef928ff26157d&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/SonarQube-TerminalWhileRunningAnalysis.png" alt="SonarQube-TerminalWhileRunningAnalysis"></p>
+<ol start="15">
+<li>Once the analysis is complete, go back to the SonarQube dashboard and you should see the analysis results.</li>
+</ol>
+<p><img src="/images/SonarQube-FinishAnalysis.png" alt="SonarQube-FinishAnalysis"></p>
+<h2 id="What-are-the-measures-in-SonarQube"><a href="#What-are-the-measures-in-SonarQube" class="headerlink" title="What are the measures in SonarQube?"></a>What are the measures in SonarQube?</h2><ul>
+<li>Security: Issues in this domain mark potential weaknesses to hackers.</li>
+<li>Reliability: Issues in this domain mark code where you will get behavior other than what was expected.</li>
+<li>Maintainability: Issues in this domain mark code that will be more difficult to update competently than it should.</li>
+<li>Security Review: This domain represents potential security risks in the form of hotspots and their review status.</li>
+<li>Complexity: How simple or complicated the control flow of the application is. Cyclomatic Complexity measures the minimum number of test cases required for full test coverage. Cognitive Complexity is a measure of how difficult the application is to understand.</li>
+</ul>
+<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h1><p>Here are some things you can do after evaluating the usage of SonarQube.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Set up an external SonarQube database instead of using the default embedded one.</li>
+<li><input disabled="" type="checkbox"> Integrate SonarQube into your CI&#x2F;CD Pipeline</li>
+<li><input disabled="" type="checkbox"> Explore SonarQube Plugins</li>
+</ul>
+]]></content>
+      <categories>
+        <category>SonarQube</category>
+      </categories>
+      <tags>
+        <tag>StaticAnalysis</tag>
       </tags>
   </entry>
   <entry>
