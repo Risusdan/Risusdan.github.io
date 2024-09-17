@@ -7,8 +7,8 @@
 <span id="more"></span>
 
 <h2 id="編輯器"><a href="#編輯器" class="headerlink" title="編輯器"></a>編輯器</h2><ul>
-<li><input disabled="" type="checkbox"> Visual Studio Code</li>
-<li><input disabled="" type="checkbox"> Visual Studio</li>
+<li><input checked="" disabled="" type="checkbox"> Visual Studio Code</li>
+<li><input checked="" disabled="" type="checkbox"> Visual Studio</li>
 </ul>
 <h2 id="腳本語言"><a href="#腳本語言" class="headerlink" title="腳本語言"></a>腳本語言</h2><ul>
 <li><input disabled="" type="checkbox"> Batch(Windows)</li>
@@ -371,9 +371,9 @@
       </tags>
   </entry>
   <entry>
-    <title>VSCodePlugin</title>
+    <title>Visual Studio Code 擴充套件</title>
     <url>/2024/09/17/VSCodePlugin/</url>
-    <content><![CDATA[<p>整理目前會用到的 VSCode 插件。</p>
+    <content><![CDATA[<p>整理目前會用到的 Visual Studio Code 擴充套件。</p>
 <span id="more"></span>
 
 <h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
@@ -399,6 +399,26 @@
       </categories>
       <tags>
         <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSPlugin</title>
+    <url>/2024/09/17/VSPlugin/</url>
+    <content><![CDATA[<p>整理目前會用到的 Visual Studio 擴充套件。</p>
+<span id="more"></span>
+
+<h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
+<li>CodeMaid VS2022</li>
+<li>Csharpier</li>
+<li>IndentRainbow</li>
+<li>One Monokai VS Theme</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Editor</category>
+      </categories>
+      <tags>
+        <tag>VS</tag>
       </tags>
   </entry>
 </search>
