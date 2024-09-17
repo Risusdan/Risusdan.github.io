@@ -29,7 +29,7 @@
 <li><input disabled="" type="checkbox"> SonarQube(C#&#x2F;Python)</li>
 </ul>
 <h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
-<li><input disabled="" type="checkbox"> Clang-Format(C&#x2F;C++)</li>
+<li><input checked="" disabled="" type="checkbox"> Clang-Format(C&#x2F;C++)</li>
 <li><input disabled="" type="checkbox"> PEP8(Python)</li>
 </ul>
 <h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><ul>
@@ -89,6 +89,87 @@
       </categories>
   </entry>
   <entry>
+    <title>程式碼格式化工具：ClangFormat</title>
+    <url>/2024/09/17/ClangForamt/</url>
+    <content><![CDATA[<p>厭倦了每次都要手動調整程式碼排版嗎？ ClangFormat 是一種程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-ClangFormat"><a href="#什麼是-ClangFormat" class="headerlink" title="什麼是 ClangFormat?"></a>什麼是 ClangFormat?</h2><ul>
+<li>屬於 LLVM 專案的一部分。</li>
+<li>可以格式化 C、C++、JavaScript、Java、Objective-C 等語言。</li>
+<li>可以透過名為 <code>.clang-format</code> 的配置文件，客製格式化規則。</li>
+</ul>
+<h2 id="為什麼需要-ClangFormat"><a href="#為什麼需要-ClangFormat" class="headerlink" title="為什麼需要 ClangFormat?"></a>為什麼需要 ClangFormat?</h2><ul>
+<li>強制統一專案的程式碼風格，提高程式碼的可讀性</li>
+<li>透過自動化流程節省人工調整排版的時間和精力</li>
+<li>程式碼審查時不用花費時間在討論程式碼風格上</li>
+<li>透過特定格式的檔案配置規則，這些配置檔還可以與程式碼一起進行版本控制</li>
+</ul>
+<h2 id="如何使用-ClangFormat"><a href="#如何使用-ClangFormat" class="headerlink" title="如何使用 ClangFormat?"></a>如何使用 ClangFormat?</h2><h4 id="1-安裝-ClangFormat"><a href="#1-安裝-ClangFormat" class="headerlink" title="1. 安裝 ClangFormat"></a>1. 安裝 ClangFormat</h4><ul>
+<li>在 Windows 上，可以透過 Scoop 安裝：<code>scoop install llvm</code></li>
+<li>在 Linux 上，可以透過套件管理工具安裝：<code>sudo apt-get install clang-format</code></li>
+<li>在 macOS 上，可以透過 Homebrew 安裝：<code>brew install clang-format</code></li>
+</ul>
+<h4 id="2-配置-ClangFormat"><a href="#2-配置-ClangFormat" class="headerlink" title="2. 配置 ClangFormat"></a>2. 配置 ClangFormat</h4><ul>
+<li>ClangFormat 在執行時會自動尋找專案根目錄下的 <code>.clang-format</code> 文件來進行格式化，所以第一步是建立 <code>.clang-format</code> 文件。</li>
+<li>使用者可以自行在專案根目錄下建立一個 <code>.clang-format</code> 文件，也可以使用命令 <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> 將 LLVM 公版規則匯出成 <code>.clang-format</code> 文件並移到專案根目錄下。</li>
+<li>所有可用的配置選項都列在 <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a> 文件中。</li>
+</ul>
+<h4 id="3-格式化程式碼"><a href="#3-格式化程式碼" class="headerlink" title="3. 格式化程式碼"></a>3. 格式化程式碼</h4><ul>
+<li>每當想要格式化單個文件時，可以使用命令 <code>clang-format -i &lt;file&gt;</code> 來格式化單個文件。</li>
+<li>在 Visual Studio Code 中，可以安裝 <code>Clang-Format</code> 擴充套件，使用 <code>Ctrl+Alt+F</code> 或是點擊右鍵選單中的 <code>Format Document</code> 來格式化文件。</li>
+</ul>
+<h2 id="使用範例"><a href="#使用範例" class="headerlink" title="使用範例"></a>使用範例</h2><p>格式化前：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> arr[MAX];</span><br><span class="line"><span class="type">int</span> n,i,j,temp;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>,n);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;arr[i]);&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n-i<span class="number">-1</span>;j++)&#123;</span><br><span class="line"><span class="keyword">if</span>(arr[j]&gt;arr[j<span class="number">+1</span>])&#123;</span><br><span class="line">temp=arr[j];</span><br><span class="line">arr[j]=arr[j<span class="number">+1</span>];</span><br><span class="line">arr[j<span class="number">+1</span>]=temp;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,arr[i]);&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式化後：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX];</span><br><span class="line">    <span class="type">int</span> n, i, j, temp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                temp       = arr[j];</span><br><span class="line">                arr[j]     = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="我的-clang-format-配置"><a href="#我的-clang-format-配置" class="headerlink" title="我的 .clang-format 配置"></a>我的 .clang-format 配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This format style should be used for C, C++</span><br><span class="line">Language: Cpp</span><br><span class="line"># The style used for all options not specifically set in the configuration</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"># Align array column and right justify the columns</span><br><span class="line">AlignArrayOfStructures: Right</span><br><span class="line"># Style of aligning consecutive assignments</span><br><span class="line">AlignConsecutiveAssignments:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line">  AlignCompound: false</span><br><span class="line">  PadOperators: false</span><br><span class="line"># Style of aligning consecutive bit fields</span><br><span class="line">AlignConsecutiveBitFields:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Style of aligning consecutive macro definitions</span><br><span class="line">AlignConsecutiveMacros:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Align escaped newlines as far left as possible</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line"># If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line</span><br><span class="line">AllowAllArgumentsOnNextLine: false</span><br><span class="line"># If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line"># If true, short case labels will be contracted to a single line</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"># Allow short enums on a single line</span><br><span class="line">AllowShortEnumsOnASingleLine: false</span><br><span class="line"># Never merge functions into a single line</span><br><span class="line">AllowShortFunctionsOnASingleLine: None</span><br><span class="line"># Never put short ifs on the same line</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never</span><br><span class="line"># If false, a function call’s arguments will either be all on the same line or will have one line each</span><br><span class="line">BinPackArguments: false</span><br><span class="line"># If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each</span><br><span class="line">BinPackParameters: false</span><br><span class="line"># Add space after the `:` only</span><br><span class="line">BitFieldColonSpacing: After</span><br><span class="line"># Always break before braces</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line"># Break before operators that aren’t assignments</span><br><span class="line">BreakBeforeBinaryOperators: NonAssignment</span><br><span class="line"># The column limit</span><br><span class="line">ColumnLimit: 80</span><br><span class="line"># Includes are never sorted</span><br><span class="line">SortIncludes: Never</span><br><span class="line"># Indent case labels one level from the switch statement</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"># Does not indent any directives</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line"># The number of columns to use for indentation</span><br><span class="line">IndentWidth: 4</span><br><span class="line"># Align pointer to the left</span><br><span class="line">PointerAlignment: Left</span><br><span class="line"># If false, spaces will be removed before assignment operator</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"># Never use tab</span><br><span class="line">UseTab: Never</span><br><span class="line"># Specify whether access modifiers should have their own indentation level</span><br><span class="line">IndentAccessModifiers: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jserv-的-clang-format-配置文件"><a href="#Jserv-的-clang-format-配置文件" class="headerlink" title="Jserv 的 .clang-format 配置文件"></a>Jserv 的 .clang-format 配置文件</h2><p>參考來源：<a href="https://github.com/sysprog21/rv32emu/blob/master/.clang-format">https://github.com/sysprog21/rv32emu/blob/master/.clang-format</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Formatter</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio Code 擴充套件</title>
+    <url>/2024/09/17/VSCodePlugin/</url>
+    <content><![CDATA[<p>整理目前會用到的 Visual Studio Code 擴充套件。</p>
+<span id="more"></span>
+
+<h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
+<li>Bookmarks</li>
+<li>C&#x2F;C++</li>
+<li>Clang-Format</li>
+<li>Code Runner</li>
+<li>CodeSnap</li>
+<li>indent-rainbow</li>
+<li>Material Icon Theme</li>
+<li>One Monokai Theme</li>
+<li>Peacock</li>
+<li>Pylance</li>
+<li>Python</li>
+<li>Python Debugger</li>
+</ul>
+<h2 id="設定值"><a href="#設定值" class="headerlink" title="設定值"></a>設定值</h2><h4 id="CodeSnap"><a href="#CodeSnap" class="headerlink" title="CodeSnap"></a>CodeSnap</h4><p><img src="/./2024/09/17/VSCodePlugin/Settings-CodeSnap.png"></p>
+<h4 id="Peacock"><a href="#Peacock" class="headerlink" title="Peacock"></a>Peacock</h4><p>在專案根目錄新增 <code>./vscode/settings.json</code> 設定檔，複製貼上下面的設定。<br>之後可以透過 <code>Peacock: Change to a Favorite Color</code> 切換顏色。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;peacock.favoriteColors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Blue&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#375669&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Green&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#456525&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Red&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#82231c&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Yellow&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#9e7e38&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Purple&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#511536&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Editor</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>提示工程</title>
     <url>/2024/09/16/PromptEngineering/</url>
     <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
@@ -114,19 +195,19 @@
 <h2 id="來自-Mckay-Wrigley-的-Prompt"><a href="#來自-Mckay-Wrigley-的-Prompt" class="headerlink" title="來自 Mckay Wrigley 的 Prompt"></a>來自 Mckay Wrigley 的 Prompt</h2><p>資料來源：<a href="https://x.com/mckaywrigley/status/1833941986711396645">https://x.com/mckaywrigley/status/1833941986711396645</a></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI coding instructor designed to assist and guide me as I learn to code. Your primary goal is to help me learn programming concepts, best practices, and problem-solving skills while writing code. Always assume I&#x27;m a beginner with limited programming knowledge.</span><br><span class="line"></span><br><span class="line">Follow these guidelines in all interactions:</span><br><span class="line">1. Explain concepts thoroughly but in simple terms, avoiding jargon when possible.</span><br><span class="line">2. When introducing new terms, provide clear definitions and examples.</span><br><span class="line">3. Break down complex problems into smaller, manageable steps.</span><br><span class="line">4. Encourage good coding practices and explain why they are important.</span><br><span class="line">5. Provide examples and analogies to illustrate programming concepts.</span><br><span class="line">6. Be patient and supportive, understanding that learning to code can be challenging.</span><br><span class="line">7. Offer praise for correct implementations and gentle corrections for mistakes.</span><br><span class="line">8. When correcting errors, explain why the error occurred and how to fix it.</span><br><span class="line">9. Suggest resources for further learning when appropriate.</span><br><span class="line">10. Encourage me to ask questions and seek clarification.</span><br><span class="line">11. Foster problem-solving skills by guiding me to find solutions rather than always providing direct answers.</span><br><span class="line">12. Adapt your teaching style to my pace and learning preferences.</span><br><span class="line">13. Provide code snippets to illustrate concepts, but always explain the code line by line.</span><br><span class="line">14. Use comments throughout the code to help document what is happening</span><br><span class="line"></span><br><span class="line">Address the my questions thoroughly, keeping in mind the guidelines above. If the question is unclear or lacks context, ask me for clarification.</span><br><span class="line"></span><br><span class="line">Review the code and provide feedback. If there are errors or areas for improvement, explain them clearly and suggest corrections. If the code is correct, offer praise and explain why it&#x27;s a good implementation.</span><br><span class="line"></span><br><span class="line">Structure your responses as follows:</span><br><span class="line">1. Format your response as markdown</span><br><span class="line">2. Answer my question</span><br><span class="line">3. Code review and feedback</span><br><span class="line">4. Suggestions for further learning or practice</span><br><span class="line"></span><br><span class="line">Remember, your goal is not just to help me write correct code, but to help me understand the underlying principles and develop my programming skills. Always strive to be clear, patient, and encouraging in your responses.</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>AI</category>
+        <category>LLM</category>
       </categories>
       <tags>
         <tag>PromptEngineering</tag>
       </tags>
   </entry>
   <entry>
-    <title>讀書筆記 - The Element Of Style</title>
+    <title>讀書筆記：The Element Of Style</title>
     <url>/2024/09/12/ReadingNote-TheElementOfStyle/</url>
     <content><![CDATA[<p>The Elements of Style (中譯：英文寫作聖經) 是一本由 William Strunk Jr. 和他的學生 E.B. White 共同編寫的寫作指南。該書首次出版於 1918 年，經過多次修訂和再版，是英語寫作中最具影響力和廣受讚譽的作品之一。</p>
-<p>本筆記參考自<a href="https://www.books.com.tw/products/0010799359?srsltid=AfmBOorE8HMkpW610FrH8fKdDEwNSZwDDcwv2iPFy0almvvNnYxCByYo">英文寫作聖經</a>，詳細內容和實際範例請見原文。</p>
 <span id="more"></span>
 
+<p>本筆記參考自<a href="https://www.books.com.tw/products/0010799359?srsltid=AfmBOorE8HMkpW610FrH8fKdDEwNSZwDDcwv2iPFy0almvvNnYxCByYo">英文寫作聖經</a>，詳細內容和實際範例請見原文。</p>
 <h2 id="第一章-英文語法的七個基本原則"><a href="#第一章-英文語法的七個基本原則" class="headerlink" title="第一章 英文語法的七個基本原則"></a>第一章 英文語法的七個基本原則</h2><h4 id="1-加「’s」形成名詞的單數所有格。"><a href="#1-加「’s」形成名詞的單數所有格。" class="headerlink" title="1. 加「’s」形成名詞的單數所有格。"></a>1. 加「’s」形成名詞的單數所有格。</h4><ul>
 <li>但有部分例外：<ul>
 <li>以 <em>-es</em> 或 <em>-is</em> 結尾的古代專有名詞</li>
@@ -388,37 +469,6 @@
       </categories>
       <tags>
         <tag>VS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio Code 擴充套件</title>
-    <url>/2024/09/17/VSCodePlugin/</url>
-    <content><![CDATA[<p>整理目前會用到的 Visual Studio Code 擴充套件。</p>
-<span id="more"></span>
-
-<h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
-<li>Bookmarks</li>
-<li>C&#x2F;C++</li>
-<li>Clang-Format</li>
-<li>Code Runner</li>
-<li>CodeSnap</li>
-<li>indent-rainbow</li>
-<li>Material Icon Theme</li>
-<li>One Monokai Theme</li>
-<li>Peacock</li>
-<li>Pylance</li>
-<li>Python</li>
-<li>Python Debugger</li>
-</ul>
-<h2 id="設定值"><a href="#設定值" class="headerlink" title="設定值"></a>設定值</h2><h4 id="CodeSnap"><a href="#CodeSnap" class="headerlink" title="CodeSnap"></a>CodeSnap</h4><p><img src="/./2024/09/17/VSCodePlugin/Settings-CodeSnap.png"></p>
-<h4 id="Peacock"><a href="#Peacock" class="headerlink" title="Peacock"></a>Peacock</h4><p>在專案根目錄新增 <code>./vscode/settings.json</code> 設定檔，複製貼上下面的設定。<br>之後可以透過 <code>Peacock: Change to a Favorite Color</code> 切換顏色。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;peacock.favoriteColors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Blue&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#375669&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Green&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#456525&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Red&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#82231c&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Yellow&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#9e7e38&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;My Color - Purple&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#511536&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Editor</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
       </tags>
   </entry>
 </search>
