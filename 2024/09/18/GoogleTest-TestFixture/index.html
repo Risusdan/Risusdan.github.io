@@ -19,27 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"remove","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="記錄一些待填的坑。">
+    <meta name="description" content="本文說明如何使用 GoogleTest 中的測試夾具。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="未來規劃">
-<meta property="og:url" content="http://example.com/2024/09/11/MyPlan/index.html">
+<meta property="og:title" content="GoogleTest：測試夾具">
+<meta property="og:url" content="http://example.com/2024/09/18/GoogleTest-TestFixture/index.html">
 <meta property="og:site_name" content="Daniel Su&#39;s Blog">
-<meta property="og:description" content="記錄一些待填的坑。">
+<meta property="og:description" content="本文說明如何使用 GoogleTest 中的測試夾具。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-09-11T14:57:48.000Z">
-<meta property="article:modified_time" content="2024-09-17T16:19:03.562Z">
+<meta property="article:published_time" content="2024-09-18T13:37:09.000Z">
+<meta property="article:modified_time" content="2024-09-18T14:08:13.157Z">
 <meta property="article:author" content="Daniel Su">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="UnitTest">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/09/11/MyPlan/">
+<link rel="canonical" href="http://example.com/2024/09/18/GoogleTest-TestFixture/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/09/11/MyPlan/","path":"2024/09/11/MyPlan/","title":"未來規劃"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/09/18/GoogleTest-TestFixture/","path":"2024/09/18/GoogleTest-TestFixture/","title":"GoogleTest：測試夾具"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>未來規劃 | Daniel Su's Blog</title>
+<title>GoogleTest：測試夾具 | Daniel Su's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0QZBECJS9"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-C0QZBECJS9","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -137,7 +140,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/11/MyPlan/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/18/GoogleTest-TestFixture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -150,12 +153,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="未來規劃 | Daniel Su's Blog">
+      <meta itemprop="name" content="GoogleTest：測試夾具 | Daniel Su's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          未來規劃
+          GoogleTest：測試夾具
         </h1>
 
         <div class="post-meta-container">
@@ -165,15 +168,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-09-11 22:57:48" itemprop="dateCreated datePublished" datetime="2024-09-11T22:57:48+08:00">2024-09-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-18 00:19:03" itemprop="dateModified" datetime="2024-09-18T00:19:03+08:00">2024-09-18</time>
+      <time title="Created: 2024-09-18 21:37:09 / Modified: 22:08:13" itemprop="dateCreated datePublished" datetime="2024-09-18T21:37:09+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -181,7 +178,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MyPlan/" itemprop="url" rel="index"><span itemprop="name">MyPlan</span></a>
+          <a href="/categories/GoogleTest/" itemprop="url" rel="index"><span itemprop="name">GoogleTest</span></a>
         </span>
     </span>
 
@@ -192,7 +189,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>148</span>
+      <span>322</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -209,86 +206,21 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>記錄一些待填的坑。</p>
+    <div class="post-body" itemprop="articleBody"><p>本文說明如何使用 GoogleTest 中的測試夾具。</p>
 <span id="more"></span>
 
-<h2 id="編輯器"><a href="#編輯器" class="headerlink" title="編輯器"></a>編輯器</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> Visual Studio Code</li>
-<li><input checked="" disabled="" type="checkbox"> Visual Studio</li>
-</ul>
-<h2 id="腳本語言"><a href="#腳本語言" class="headerlink" title="腳本語言"></a>腳本語言</h2><ul>
-<li><input disabled="" type="checkbox"> Batch(Windows)</li>
-<li><input disabled="" type="checkbox"> Bash(Linux)</li>
-<li><input disabled="" type="checkbox"> Make(Linux)</li>
-</ul>
-<h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><ul>
-<li><input disabled="" type="checkbox"> GoogleTest(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> FakeFunctionFramework(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> NUnit(C#)</li>
-<li><input disabled="" type="checkbox"> Shouldly(C#)</li>
-<li><input disabled="" type="checkbox"> FluentAssertions(C#)</li>
-<li><input disabled="" type="checkbox"> Pytest(Python)</li>
-</ul>
-<h2 id="靜態分析"><a href="#靜態分析" class="headerlink" title="靜態分析"></a>靜態分析</h2><ul>
-<li><input disabled="" type="checkbox"> Cppcheck(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> Clang-Tidy(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> SonarQube(C#&#x2F;Python)</li>
-</ul>
-<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> Clang-Format(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> PEP8(Python)</li>
-</ul>
-<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><ul>
-<li><input disabled="" type="checkbox"> log4net(C#)</li>
-<li><input disabled="" type="checkbox"> logging(Python)</li>
-</ul>
-<h2 id="套件管理"><a href="#套件管理" class="headerlink" title="套件管理"></a>套件管理</h2><ul>
-<li><input disabled="" type="checkbox"> Scoop(Windows)</li>
-<li><input disabled="" type="checkbox"> Poetry(Python)</li>
-</ul>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
-<li><input disabled="" type="checkbox"> UML</li>
-<li><input disabled="" type="checkbox"> SysML</li>
-<li><input disabled="" type="checkbox"> PlantUML</li>
-<li><input disabled="" type="checkbox"> Doxygen</li>
-<li><input disabled="" type="checkbox"> Mermaid</li>
-</ul>
-<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><ul>
-<li><input disabled="" type="checkbox"> Git</li>
-<li><input disabled="" type="checkbox"> GitLab</li>
-</ul>
-<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><ul>
-<li><input disabled="" type="checkbox"> Docker</li>
-<li><input disabled="" type="checkbox"> Docker Compose</li>
-</ul>
-<h2 id="持續整合"><a href="#持續整合" class="headerlink" title="持續整合"></a>持續整合</h2><ul>
-<li><input disabled="" type="checkbox"> Jenkins</li>
-<li><input disabled="" type="checkbox"> GitLab CI&#x2F;CD</li>
-</ul>
-<h2 id="產業規範"><a href="#產業規範" class="headerlink" title="產業規範"></a>產業規範</h2><ul>
-<li><input disabled="" type="checkbox"> ASPICE</li>
-<li><input disabled="" type="checkbox"> ISO 26262</li>
-<li><input disabled="" type="checkbox"> AUTOSAR</li>
-</ul>
-<h2 id="作業系統"><a href="#作業系統" class="headerlink" title="作業系統"></a>作業系統</h2><ul>
-<li><input disabled="" type="checkbox"> Linux</li>
-<li><input disabled="" type="checkbox"> FreeRTOS</li>
-</ul>
-<h2 id="微控制器"><a href="#微控制器" class="headerlink" title="微控制器"></a>微控制器</h2><ul>
-<li><input disabled="" type="checkbox"> UART</li>
-<li><input disabled="" type="checkbox"> I2C</li>
-<li><input disabled="" type="checkbox"> SPI</li>
-<li><input disabled="" type="checkbox"> CAN</li>
-<li><input disabled="" type="checkbox"> Bluetooth</li>
-<li><input disabled="" type="checkbox"> Ethernet</li>
-<li><input disabled="" type="checkbox"> USB</li>
-</ul>
-<h2 id="Side-Project"><a href="#Side-Project" class="headerlink" title="Side Project"></a>Side Project</h2><ul>
-<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://app.codecrafters.io/catalog">Build your own Interpreter</a></li>
-<li><input disabled="" type="checkbox"> FreeRTOS</li>
-<li><input disabled="" type="checkbox"> Python Scraper</li>
-<li><input disabled="" type="checkbox"> C++ CI&#x2F;CD Process</li>
-</ul>
+<p>如果發現自己正在撰寫兩個以上，前置或後置動作相似的測試案例，則可以考慮使用測試夾具提高撰寫效率。</p>
+<h2 id="如何建立測試夾具"><a href="#如何建立測試夾具" class="headerlink" title="如何建立測試夾具"></a>如何建立測試夾具</h2><ol>
+<li>從 <code>testing::Test</code> 衍生一個類別，並在類別主體開頭加上 <code>protected:</code>，以便從子類別存取夾具成員。</li>
+<li>在類別中宣告任何你打算使用的物件。</li>
+<li>根據需要撰寫 <code>SetUp()</code> 函數來準備測試的前置動作。小心拼寫錯誤。</li>
+<li>根據需要撰寫 <code>TearDown()</code> 函數來準備測試的後置動作，或釋放 <code>SetUp()</code> 中分配的任何資源。</li>
+</ol>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>假設我們想要測試 <code>Queue</code> 類別，則可以建立以下測試夾具：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然後我們可以在測試中使用夾具，但不同於 <code>TEST()</code>，使用測試夾具的時候要搭配 <code>TEST_F()</code>(F 代表 Fixture)，且第一個參數必須是測試夾具類別的名稱。換句話說，<code>TEST_F()</code> 這個巨集不需要指定測試套件名稱。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -297,16 +229,24 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/UnitTest/" rel="tag"># UnitTest</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/09/12/ReadingNote-TheElementOfStyle/" rel="prev" title="讀書筆記：The Element Of Style">
-                  <i class="fa fa-angle-left"></i> 讀書筆記：The Element Of Style
+                <a href="/2024/09/18/GoogleTest-RunOnWindows/" rel="prev" title="GoogleTest：在 Windows 上執行">
+                  <i class="fa fa-angle-left"></i> GoogleTest：在 Windows 上執行
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/09/18/GoogleTest-Assertions/" rel="next" title="GoogleTest：斷言列表">
+                  GoogleTest：斷言列表 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

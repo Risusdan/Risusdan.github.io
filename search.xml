@@ -1,6 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>程式碼格式化工具：ClangFormat</title>
+    <url>/2024/09/17/ClangForamt/</url>
+    <content><![CDATA[<p>厭倦了每次都要手動調整程式碼排版嗎？ ClangFormat 是一種程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-ClangFormat"><a href="#什麼是-ClangFormat" class="headerlink" title="什麼是 ClangFormat?"></a>什麼是 ClangFormat?</h2><ul>
+<li>屬於 LLVM 專案的一部分。</li>
+<li>可以格式化 C、C++、JavaScript、Java、Objective-C 等語言。</li>
+<li>可以透過名為 <code>.clang-format</code> 的配置文件，客製格式化規則。</li>
+</ul>
+<h2 id="為什麼需要-ClangFormat"><a href="#為什麼需要-ClangFormat" class="headerlink" title="為什麼需要 ClangFormat?"></a>為什麼需要 ClangFormat?</h2><ul>
+<li>強制統一專案的程式碼風格，提高程式碼的可讀性</li>
+<li>透過自動化流程節省人工調整排版的時間和精力</li>
+<li>程式碼審查時不用花費時間在討論程式碼風格上</li>
+<li>透過特定格式的檔案配置規則，這些配置檔還可以與程式碼一起進行版本控制</li>
+</ul>
+<h2 id="如何使用-ClangFormat"><a href="#如何使用-ClangFormat" class="headerlink" title="如何使用 ClangFormat?"></a>如何使用 ClangFormat?</h2><h4 id="1-安裝-ClangFormat"><a href="#1-安裝-ClangFormat" class="headerlink" title="1. 安裝 ClangFormat"></a>1. 安裝 ClangFormat</h4><ul>
+<li>在 Windows 上，可以透過 Scoop 安裝：<code>scoop install llvm</code></li>
+<li>在 Linux 上，可以透過套件管理工具安裝：<code>sudo apt-get install clang-format</code></li>
+<li>在 macOS 上，可以透過 Homebrew 安裝：<code>brew install clang-format</code></li>
+</ul>
+<h4 id="2-配置-ClangFormat"><a href="#2-配置-ClangFormat" class="headerlink" title="2. 配置 ClangFormat"></a>2. 配置 ClangFormat</h4><ul>
+<li>ClangFormat 在執行時會自動尋找專案根目錄下的 <code>.clang-format</code> 文件來進行格式化，所以第一步是建立 <code>.clang-format</code> 文件。</li>
+<li>使用者可以自行在專案根目錄下建立一個 <code>.clang-format</code> 文件，也可以使用命令 <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> 將 LLVM 公版規則匯出成 <code>.clang-format</code> 文件並移到專案根目錄下。</li>
+<li>所有可用的配置選項都列在 <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a> 文件中。</li>
+</ul>
+<h4 id="3-格式化程式碼"><a href="#3-格式化程式碼" class="headerlink" title="3. 格式化程式碼"></a>3. 格式化程式碼</h4><ul>
+<li>每當想要格式化單個文件時，可以使用命令 <code>clang-format -i &lt;file&gt;</code> 來格式化單個文件。</li>
+<li>在 Visual Studio Code 中，可以安裝 <code>Clang-Format</code> 擴充套件，使用 <code>Ctrl+Alt+F</code> 或是點擊右鍵選單中的 <code>Format Document</code> 來格式化文件。</li>
+</ul>
+<h2 id="使用範例"><a href="#使用範例" class="headerlink" title="使用範例"></a>使用範例</h2><p>格式化前：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> arr[MAX];</span><br><span class="line"><span class="type">int</span> n,i,j,temp;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>,n);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;arr[i]);&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n-i<span class="number">-1</span>;j++)&#123;</span><br><span class="line"><span class="keyword">if</span>(arr[j]&gt;arr[j<span class="number">+1</span>])&#123;</span><br><span class="line">temp=arr[j];</span><br><span class="line">arr[j]=arr[j<span class="number">+1</span>];</span><br><span class="line">arr[j<span class="number">+1</span>]=temp;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,arr[i]);&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式化後：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX];</span><br><span class="line">    <span class="type">int</span> n, i, j, temp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                temp       = arr[j];</span><br><span class="line">                arr[j]     = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="我的-clang-format-配置"><a href="#我的-clang-format-配置" class="headerlink" title="我的 .clang-format 配置"></a>我的 .clang-format 配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This format style should be used for C, C++</span><br><span class="line">Language: Cpp</span><br><span class="line"># The style used for all options not specifically set in the configuration</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"># Align array column and right justify the columns</span><br><span class="line">AlignArrayOfStructures: Right</span><br><span class="line"># Style of aligning consecutive assignments</span><br><span class="line">AlignConsecutiveAssignments:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line">  AlignCompound: false</span><br><span class="line">  PadOperators: false</span><br><span class="line"># Style of aligning consecutive bit fields</span><br><span class="line">AlignConsecutiveBitFields:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Style of aligning consecutive macro definitions</span><br><span class="line">AlignConsecutiveMacros:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Align escaped newlines as far left as possible</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line"># If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line</span><br><span class="line">AllowAllArgumentsOnNextLine: false</span><br><span class="line"># If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line"># If true, short case labels will be contracted to a single line</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"># Allow short enums on a single line</span><br><span class="line">AllowShortEnumsOnASingleLine: false</span><br><span class="line"># Never merge functions into a single line</span><br><span class="line">AllowShortFunctionsOnASingleLine: None</span><br><span class="line"># Never put short ifs on the same line</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never</span><br><span class="line"># If false, a function call’s arguments will either be all on the same line or will have one line each</span><br><span class="line">BinPackArguments: false</span><br><span class="line"># If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each</span><br><span class="line">BinPackParameters: false</span><br><span class="line"># Add space after the `:` only</span><br><span class="line">BitFieldColonSpacing: After</span><br><span class="line"># Always break before braces</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line"># Break before operators that aren’t assignments</span><br><span class="line">BreakBeforeBinaryOperators: NonAssignment</span><br><span class="line"># The column limit</span><br><span class="line">ColumnLimit: 80</span><br><span class="line"># Includes are never sorted</span><br><span class="line">SortIncludes: Never</span><br><span class="line"># Indent case labels one level from the switch statement</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"># Does not indent any directives</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line"># The number of columns to use for indentation</span><br><span class="line">IndentWidth: 4</span><br><span class="line"># Align pointer to the left</span><br><span class="line">PointerAlignment: Left</span><br><span class="line"># If false, spaces will be removed before assignment operator</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"># Never use tab</span><br><span class="line">UseTab: Never</span><br><span class="line"># Specify whether access modifiers should have their own indentation level</span><br><span class="line">IndentAccessModifiers: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jserv-的-clang-format-配置文件"><a href="#Jserv-的-clang-format-配置文件" class="headerlink" title="Jserv 的 .clang-format 配置文件"></a>Jserv 的 .clang-format 配置文件</h2><p>參考來源：<a href="https://github.com/sysprog21/rv32emu/blob/master/.clang-format">https://github.com/sysprog21/rv32emu/blob/master/.clang-format</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Formatter</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fake Function Framework</title>
+    <url>/2024/09/18/FakeFunctionFramework-Intro/</url>
+    <content><![CDATA[<p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
+<span id="more"></span>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>GoogleTest：斷言列表</title>
+    <url>/2024/09/18/GoogleTest-Assertions/</url>
+    <content><![CDATA[<p>本文列出 GoogleTest 支援的斷言。</p>
+<span id="more"></span>
+
+<p>大部分的斷言都有 <code>EXPECT_</code> 和 <code>ASSERT_</code> 兩種版本：</p>
+<ul>
+<li><code>EXPECT_</code> ：在失敗時會產生非致命失敗，允許當前測試案例繼續執行</li>
+<li><code>ASSERT_</code> ：在失敗時會產生致命失敗，中斷當前的測試案例</li>
+</ul>
+<p>另外所有斷言都支援以 <code>&lt;&lt;</code> 運算子串流自訂的失敗訊息，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">EXPECT_TRUE</span>(my_condition) &lt;&lt; <span class="string">&quot;Oh, my condition is not true&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generalized-Assertion"><a href="#Generalized-Assertion" class="headerlink" title="Generalized Assertion"></a>Generalized Assertion</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `value` matches the `matcher`.</span></span><br><span class="line"><span class="built_in">EXPECT_THAT</span>(value, matcher)</span><br><span class="line"><span class="built_in">ASSERT_THAT</span>(value, matcher)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Boolean-Conditions"><a href="#Boolean-Conditions" class="headerlink" title="Boolean Conditions"></a>Boolean Conditions</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `condition` is true.</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `condition` is false.</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 == val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否相等</li>
+<li>如果用在兩個字串，會測試它們是否在相同的記憶體位置，而不是它們是否有相同的值。使用 <code>EXPECT_STREQ</code> 比較字串的值</li>
+<li>當比較指標是否為 <code>NULL</code> 時，使用 <code>EXPECT_EQ(ptr, nullptr)</code> 代替 <code>EXPECT_EQ(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 != val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否不相等</li>
+<li>如果用在兩個字串，會測試它們是否在不同的記憶體位置，而不是它們是否有不同的值。使用 <code>EXPECT_STRNE</code> 比較字串的值</li>
+<li>當比較指標是否不為 <code>NULL</code> 時，使用 <code>EXPECT_NE(ptr, nullptr)</code> 代替 <code>EXPECT_NE(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 &lt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &lt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h2><ul>
+<li>以下斷言比較兩個 <strong>C 字串</strong>。要比較兩個 <code>string</code> 對象，請使用 <code>EXPECT_EQ</code> 或 <code>EXPECT_NE</code> 代替。</li>
+<li>比較字串與 <code>NULL</code> 時，使用 <code>EXPECT_EQ(c_string, nullptr)</code> 或 <code>EXPECT_NE(c_string, nullptr)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1, str2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Floating-Point-Comparison"><a href="#Floating-Point-Comparison" class="headerlink" title="Floating-Point Comparison"></a>Floating-Point Comparison</h2><ul>
+<li>由於四捨五入的誤差，兩個浮點數完全相等的機率非常低，所以 <code>EXPECT_EQ</code> 不適合用於浮點數比較。一般來說，為了讓浮點數比較有意義，使用者需要仔細選擇 <strong>誤差範圍</strong>。</li>
+<li>GoogleTest 也提供使用 ULPs 的斷言，ULPs(Units in the Last Place) 是單位在最低有效位數的縮寫，詳細請參考 <a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers</a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two float values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two double values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the difference between `val1` and `val2` </span></span><br><span class="line"><span class="comment">// does not exceed the absolute error bound `abs_error`.</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1, val2, abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1, val2, abs_error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><ul>
+<li>以下斷言驗證某段程式碼是否拋出例外。需要啟用建置環境中的例外。</li>
+<li>程式碼區塊可以包含多個語句，例如：<code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest：基礎概念</title>
+    <url>/2024/09/18/GoogleTest-Intro/</url>
+    <content><![CDATA[<p>GoogleTest 是一款由 Google 開發，用於 C&#x2F;C++ 的單元測試框架。本文將介紹 GoogleTest 的基本概念和用法。</p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>單元測試中的「單元」指的是軟體最小的可測試單元（如函數、方法等），而單元測試的目的是確保每個單元都能符合預期地工作。通常單元測試會透過單元測試框架來撰寫、管理和執行，例如 GoogleTest 就是一種用於 C&#x2F;C++ 的單元測試框架。</p>
+<h2 id="名詞介紹"><a href="#名詞介紹" class="headerlink" title="名詞介紹"></a>名詞介紹</h2><h4 id="斷言-Assertion"><a href="#斷言-Assertion" class="headerlink" title="斷言 (Assertion)"></a>斷言 (Assertion)</h4><ul>
+<li>用來檢查測試條件是否成立</li>
+<li>在 GoogleTest 中斷言是用巨集實現的，請參考 <a href="/2024/09/18/GoogleTest-Assertions/" title="GoogleTest：斷言列表">GoogleTest：斷言列表</a></li>
+<li>斷言的結果可以是以下三種之一：<ul>
+<li>成功 (Success)：測試條件成立</li>
+<li>非致命失敗 (Nonfatal Failure)：測試條件不成立，但該測試案例可以繼續進行</li>
+<li>致命失敗 (Fatal Failure)：測試條件不成立，該測試案例中斷</li>
+</ul>
+</li>
+</ul>
+<h4 id="測試-Test"><a href="#測試-Test" class="headerlink" title="測試 (Test)"></a>測試 (Test)</h4><ul>
+<li>測試案例 (Test Case) 在 GoogleTest 中稱為測試 (Test)，用來測試待測函數在某個情境下邏輯是否正確</li>
+<li>測試會包含一或多個斷言，當中如果有任何一個斷言失敗，該測試案例就會視為失敗 (fail)，否則視為成功 (succeed)</li>
+<li>使用 <code>TEST(test_suite_name, test_name)</code> 巨集來定義測試套件和測試案例</li>
+<li>習慣上，測試套件名稱會與待測函數的模組或功能相關，測試案例名稱會與待測函數的測試情境相關</li>
+</ul>
+<h4 id="測試套件-Test-Suite"><a href="#測試套件-Test-Suite" class="headerlink" title="測試套件 (Test Suite)"></a>測試套件 (Test Suite)</h4><ul>
+<li>包含一或多個測試案例，用來將相關的測試案例組織在一起，以反映被測試代碼的結構</li>
+</ul>
+<h2 id="如何撰寫測試案例"><a href="#如何撰寫測試案例" class="headerlink" title="如何撰寫測試案例"></a>如何撰寫測試案例</h2><ol>
+<li>引入 GoogleTest 相關的標頭檔</li>
+<li>使用 <code>TEST(test_suite_name, test_name)</code> 巨集來定義測試案例</li>
+<li>在測試案例中用 Arrange (準備測試環境)、Act (執行待測函數)、Assert (驗證結果) 三個步驟撰寫測試案例</li>
+<li>視情況使用測試夾具、模擬函數等進階功能協助撰寫測試案例</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;gtest/gtest.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Function to be tested</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Test case</span></span><br><span class="line"><span class="built_in">TEST</span>(MathFunctions, AdditionWorks)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Arrange</span></span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="type">int</span> expected_sum = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Act</span></span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">add</span>(a, b);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Assert</span></span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(expected_sum, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何執行測試案例"><a href="#如何執行測試案例" class="headerlink" title="如何執行測試案例"></a>如何執行測試案例</h2><ul>
+<li>在 GoogleTest 中，使用者不需要自行設定哪些測試案例會被執行，GoogleTest 會自動搜尋並執行所有定義好的測試案例</li>
+<li>比起撰寫一個 <code>main</code> 函數，更推薦的做法是連結 GoogleTest 的 <code>gtest_main</code> 程式庫，庫中會定義好 <code>main</code> 函數並執行所有測試案例</li>
+<li>關於如何在 Windows 上執行測試案例，請參考 <a href="/2024/09/18/GoogleTest-RunOnWindows/" title="GoogleTest：在 Windows 上執行">GoogleTest：在 Windows 上執行</a></li>
+</ul>
+<h2 id="進階功能"><a href="#進階功能" class="headerlink" title="進階功能"></a>進階功能</h2><h4 id="測試夾具-Test-Fixture"><a href="#測試夾具-Test-Fixture" class="headerlink" title="測試夾具 (Test Fixture)"></a>測試夾具 (Test Fixture)</h4><ul>
+<li>有時候多個測試案例有相同的前置或後置動作，這時候可以將這些動作放在測試夾具中，避免重複寫程式碼</li>
+<li>測試夾具通常被定義成 <code>SetUp()</code> 和 <code>TearDown()</code> 函數，每當某個測試案例開始執行時，<code>SetUp()</code> 函數會被調用；該測試案例執行完畢後，<code>TearDown()</code> 函數會被調用</li>
+<li>詳細請參考 <a href="/2024/09/18/GoogleTest-TestFixture/" title="GoogleTest：測試夾具">GoogleTest：測試夾具</a></li>
+</ul>
+<h4 id="模擬函數-Mock-Function"><a href="#模擬函數-Mock-Function" class="headerlink" title="模擬函數 (Mock Function)"></a>模擬函數 (Mock Function)</h4><ul>
+<li>有時候待測函數會呼叫其他函數，這些函數稱為依賴函數(dependency function)，對於單元測試來說，我們希望待測函數是獨立被測試的，不受到其他函數的影響，因此需要建立模擬函數，模擬這些依賴函數的行為</li>
+<li>模擬函數可以設定返回值、參數等，以模擬依賴函數行為</li>
+<li>詳細請參考 <a href="/2024/09/18/FakeFunctionFramework-Intro/" title="Fake Function Framework">Fake Function Framework</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest：在 Windows 上執行</title>
+    <url>/2024/09/18/GoogleTest-RunOnWindows/</url>
+    <content><![CDATA[<p>本文說明如何在 Windows 上運行 GoogleTest。</p>
+<span id="more"></span>
+
+<h2 id="準備工作"><a href="#準備工作" class="headerlink" title="準備工作"></a>準備工作</h2><ol>
+<li>到 <a href="https://www.msys2.org/">MSYS2 官網</a> 下載安裝檔</li>
+<li>執行安裝檔並按照指示操作，完成安裝後開啟 MSYS2 應用程式</li>
+<li>使用命令 <code>pacman -S mingw-w64-i686-toolchain</code> 安裝編譯工具鏈</li>
+<li>使用命令 <code>pacman -S mingw-w64-i686-gtest</code> 安裝 GoogleTest</li>
+<li>從 <a href="https://drive.google.com/file/d/1x-SK-bSzKzWXamI_FodryykiEtWbCC1J/view?usp=drive_link">這裡</a> 下載 GoogleTest 預建置版本。</li>
+<li>將 <code>libgtest.a</code> 和 <code>libgtest_main.a</code> 檔案解壓縮，放到你的專案目錄。</li>
+</ol>
+<h2 id="使用範例"><a href="#使用範例" class="headerlink" title="使用範例"></a>使用範例</h2><p>在專案根目錄新增 <code>example/add.cpp</code>、<code>example/add.h</code>、<code>example/add_test.cpp</code> 之後，應該會有一個類似以下的目錄結構：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">your_project/</span><br><span class="line">├── src/</span><br><span class="line">│   └── example/</span><br><span class="line">│       ├── add.cpp</span><br><span class="line">│       ├── add.h</span><br><span class="line">│       └── add_test.cpp</span><br><span class="line">├── libgtest.a</span><br><span class="line">└── libgtest_main.a</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>add.cpp</code> 中新增以下程式碼：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>add.h</code> 中新增以下程式碼：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> ADD_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD_H</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>add_test.cpp</code> 中新增以下程式碼：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;gtest/gtest.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, PositiveNumbers)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">1</span>, <span class="number">4</span>), <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">5</span>, <span class="number">0</span>), <span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, NegativeNumbers)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-2</span>, <span class="number">-3</span>), <span class="number">-5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-1</span>, <span class="number">-4</span>), <span class="number">-5</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-5</span>, <span class="number">0</span>), <span class="number">-5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST</span>(AddTest, PositiveAndNegativeNumber)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">-3</span>), <span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">-2</span>, <span class="number">3</span>), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(<span class="built_in">Add</span>(<span class="number">2</span>, <span class="number">-2</span>), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>開啟終端機，執行以下命令編譯專案：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">g++ ./Example/add.cpp ./Example/add_test.cpp -o TestResult -I/mingw32/include -L/mingw32/lib -lgtest -lgtest_main -pthread</span><br></pre></td></tr></table></figure>
+
+<p>執行以下命令執行測試：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">.\TestResult.exe</span><br></pre></td></tr></table></figure>
+
+<p>應該要看到以下輸出，表示測試案例均通過：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Running main() from C:/M/B/src/googletest-1.15.2/googletest/src/gtest_main.cc</span><br><span class="line">[==========] Running 3 tests from 1 test suite.</span><br><span class="line">[----------] Global test environment set-up.</span><br><span class="line">[----------] 3 tests from AddTest</span><br><span class="line">[ RUN      ] AddTest.PositiveNumbers</span><br><span class="line">[       OK ] AddTest.PositiveNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.NegativeNumbers</span><br><span class="line">[       OK ] AddTest.NegativeNumbers (0 ms)</span><br><span class="line">[ RUN      ] AddTest.PositiveAndNegativeNumber</span><br><span class="line">[       OK ] AddTest.PositiveAndNegativeNumber (0 ms)</span><br><span class="line">[----------] 3 tests from AddTest (9 ms total)</span><br><span class="line"></span><br><span class="line">[----------] Global test environment tear-down</span><br><span class="line">[==========] 3 tests from 1 test suite ran. (16 ms total)</span><br><span class="line">[  PASSED  ] 3 tests.</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-GNU-Make-編譯測試案例"><a href="#使用-GNU-Make-編譯測試案例" class="headerlink" title="使用 GNU Make 編譯測試案例"></a>使用 GNU Make 編譯測試案例</h2><p>GNU Make 是一種自動化建構工具，可以提高編譯過程的效率。</p>
+<h4 id="安裝-Make"><a href="#安裝-Make" class="headerlink" title="安裝 Make"></a>安裝 Make</h4><p>開啟 MSYS2 應用程式，使用 <code>pacman -S make</code> 可以安裝 Make。</p>
+<p>安裝完成後可以在終端機執行 <code>make --version</code> 查看 Make 版本確認安裝成功。</p>
+<h4 id="新增-Makefile"><a href="#新增-Makefile" class="headerlink" title="新增 Makefile"></a>新增 Makefile</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">your_project/</span><br><span class="line">├── src/</span><br><span class="line">│   └── example/</span><br><span class="line">│       ├── add.cpp</span><br><span class="line">│       ├── add.h</span><br><span class="line">│       └── add_test.cpp</span><br><span class="line">├── libgtest.a</span><br><span class="line">├── libgtest_main.a</span><br><span class="line">└── Makefile</span><br></pre></td></tr></table></figure>
+
+<p>在專案根目錄新增 <code>Makefile</code> 檔案，這樣執行 Make 時才可以根據其內容進行編譯：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Compiler and flags</span></span><br><span class="line">CXX := g++</span><br><span class="line">CXXFLAGS := -std=c++14 -Wall -Wextra -I/mingw32/<span class="keyword">include</span></span><br><span class="line">LDFLAGS := -L/mingw32/lib -lgtest -lgtest_main -pthread</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directories</span></span><br><span class="line">SRC_DIR := src</span><br><span class="line">BUILD_DIR := build</span><br><span class="line">BIN_DIR := bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># Target executable</span></span><br><span class="line">TARGET := <span class="variable">$(BIN_DIR)</span>/TestResult.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Source files</span></span><br><span class="line">SRCS := <span class="variable">$(<span class="built_in">wildcard</span> <span class="variable">$(SRC_DIR)</span>/*/*.cpp)</span></span><br><span class="line">OBJS := <span class="variable">$(<span class="built_in">patsubst</span> <span class="variable">$(SRC_DIR)</span>/%.cpp,<span class="variable">$(BUILD_DIR)</span>/%.o,<span class="variable">$(SRCS)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ensure build and bin directories exist</span></span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span>)</span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Main target</span></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Linking</span></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(OBJS)</span> -o <span class="variable">$@</span> <span class="variable">$(LDFLAGS)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compilation</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/%.o: <span class="variable">$(SRC_DIR)</span>/%.cpp</span><br><span class="line">	@if not exist <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>) mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>)</span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean target</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run target</span></span><br><span class="line"><span class="section">run: <span class="variable">$(TARGET)</span></span></span><br><span class="line">	<span class="variable">$(TARGET)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: all clean run</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="執行-Make"><a href="#執行-Make" class="headerlink" title="執行 Make"></a>執行 Make</h4><p>在終端機執行以下命令編譯測試案例：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">make all</span><br></pre></td></tr></table></figure>
+
+<p>在終端機執行以下命令執行測試案例：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">make run</span><br></pre></td></tr></table></figure>
+
+<p>在終端機執行以下命令清除編譯結果：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">make clean</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest：測試夾具</title>
+    <url>/2024/09/18/GoogleTest-TestFixture/</url>
+    <content><![CDATA[<p>本文說明如何使用 GoogleTest 中的測試夾具。</p>
+<span id="more"></span>
+
+<p>如果發現自己正在撰寫兩個以上，前置或後置動作相似的測試案例，則可以考慮使用測試夾具提高撰寫效率。</p>
+<h2 id="如何建立測試夾具"><a href="#如何建立測試夾具" class="headerlink" title="如何建立測試夾具"></a>如何建立測試夾具</h2><ol>
+<li>從 <code>testing::Test</code> 衍生一個類別，並在類別主體開頭加上 <code>protected:</code>，以便從子類別存取夾具成員。</li>
+<li>在類別中宣告任何你打算使用的物件。</li>
+<li>根據需要撰寫 <code>SetUp()</code> 函數來準備測試的前置動作。小心拼寫錯誤。</li>
+<li>根據需要撰寫 <code>TearDown()</code> 函數來準備測試的後置動作，或釋放 <code>SetUp()</code> 中分配的任何資源。</li>
+</ol>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>假設我們想要測試 <code>Queue</code> 類別，則可以建立以下測試夾具：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然後我們可以在測試中使用夾具，但不同於 <code>TEST()</code>，使用測試夾具的時候要搭配 <code>TEST_F()</code>(F 代表 Fixture)，且第一個參數必須是測試夾具類別的名稱。換句話說，<code>TEST_F()</code> 這個巨集不需要指定測試套件名稱。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>未來規劃</title>
     <url>/2024/09/11/MyPlan/</url>
     <content><![CDATA[<p>記錄一些待填的坑。</p>
@@ -89,53 +356,35 @@
       </categories>
   </entry>
   <entry>
-    <title>程式碼格式化工具：ClangFormat</title>
-    <url>/2024/09/17/ClangForamt/</url>
-    <content><![CDATA[<p>厭倦了每次都要手動調整程式碼排版嗎？ ClangFormat 是一種程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
+    <title>提示工程</title>
+    <url>/2024/09/16/PromptEngineering/</url>
+    <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
 <span id="more"></span>
 
-<h2 id="什麼是-ClangFormat"><a href="#什麼是-ClangFormat" class="headerlink" title="什麼是 ClangFormat?"></a>什麼是 ClangFormat?</h2><ul>
-<li>屬於 LLVM 專案的一部分。</li>
-<li>可以格式化 C、C++、JavaScript、Java、Objective-C 等語言。</li>
-<li>可以透過名為 <code>.clang-format</code> 的配置文件，客製格式化規則。</li>
-</ul>
-<h2 id="為什麼需要-ClangFormat"><a href="#為什麼需要-ClangFormat" class="headerlink" title="為什麼需要 ClangFormat?"></a>為什麼需要 ClangFormat?</h2><ul>
-<li>強制統一專案的程式碼風格，提高程式碼的可讀性</li>
-<li>透過自動化流程節省人工調整排版的時間和精力</li>
-<li>程式碼審查時不用花費時間在討論程式碼風格上</li>
-<li>透過特定格式的檔案配置規則，這些配置檔還可以與程式碼一起進行版本控制</li>
-</ul>
-<h2 id="如何使用-ClangFormat"><a href="#如何使用-ClangFormat" class="headerlink" title="如何使用 ClangFormat?"></a>如何使用 ClangFormat?</h2><h4 id="1-安裝-ClangFormat"><a href="#1-安裝-ClangFormat" class="headerlink" title="1. 安裝 ClangFormat"></a>1. 安裝 ClangFormat</h4><ul>
-<li>在 Windows 上，可以透過 Scoop 安裝：<code>scoop install llvm</code></li>
-<li>在 Linux 上，可以透過套件管理工具安裝：<code>sudo apt-get install clang-format</code></li>
-<li>在 macOS 上，可以透過 Homebrew 安裝：<code>brew install clang-format</code></li>
-</ul>
-<h4 id="2-配置-ClangFormat"><a href="#2-配置-ClangFormat" class="headerlink" title="2. 配置 ClangFormat"></a>2. 配置 ClangFormat</h4><ul>
-<li>ClangFormat 在執行時會自動尋找專案根目錄下的 <code>.clang-format</code> 文件來進行格式化，所以第一步是建立 <code>.clang-format</code> 文件。</li>
-<li>使用者可以自行在專案根目錄下建立一個 <code>.clang-format</code> 文件，也可以使用命令 <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> 將 LLVM 公版規則匯出成 <code>.clang-format</code> 文件並移到專案根目錄下。</li>
-<li>所有可用的配置選項都列在 <a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a> 文件中。</li>
-</ul>
-<h4 id="3-格式化程式碼"><a href="#3-格式化程式碼" class="headerlink" title="3. 格式化程式碼"></a>3. 格式化程式碼</h4><ul>
-<li>每當想要格式化單個文件時，可以使用命令 <code>clang-format -i &lt;file&gt;</code> 來格式化單個文件。</li>
-<li>在 Visual Studio Code 中，可以安裝 <code>Clang-Format</code> 擴充套件，使用 <code>Ctrl+Alt+F</code> 或是點擊右鍵選單中的 <code>Format Document</code> 來格式化文件。</li>
-</ul>
-<h2 id="使用範例"><a href="#使用範例" class="headerlink" title="使用範例"></a>使用範例</h2><p>格式化前：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> arr[MAX];</span><br><span class="line"><span class="type">int</span> n,i,j,temp;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>,n);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;arr[i]);&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n-i<span class="number">-1</span>;j++)&#123;</span><br><span class="line"><span class="keyword">if</span>(arr[j]&gt;arr[j<span class="number">+1</span>])&#123;</span><br><span class="line">temp=arr[j];</span><br><span class="line">arr[j]=arr[j<span class="number">+1</span>];</span><br><span class="line">arr[j<span class="number">+1</span>]=temp;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,arr[i]);&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="什麼是提示工程"><a href="#什麼是提示工程" class="headerlink" title="什麼是提示工程?"></a>什麼是提示工程?</h2><p>提示工程（Prompt Engineering）指的是設計「提示」的過程，以提高大型語言模型的回覆品質和相關性。這種技術涉及撰寫清晰、具體的問題或指示，讓 AI 能夠更好地理解用戶需求並生成更符合預期的結果。</p>
+<p>舉例來說，一個不好的提示可能會是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">寫一篇關於人工智能的文章。</span><br></pre></td></tr></table></figure>
 
-<p>格式化後：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX];</span><br><span class="line">    <span class="type">int</span> n, i, j, temp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                temp       = arr[j];</span><br><span class="line">                arr[j]     = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一個好的提示可能會是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">請您寫一篇500字左右的文章,概括解釋什麼是人工智能。您的文章應該包括以下關鍵要點:</span><br><span class="line">- 人工智能的定義及其歷史發展</span><br><span class="line">- 人工智能的主要應用領域及代表性技術</span><br><span class="line">- 人工智能的未來發展趨勢及可能帶來的影響</span><br></pre></td></tr></table></figure>
 
-<h2 id="我的-clang-format-配置"><a href="#我的-clang-format-配置" class="headerlink" title="我的 .clang-format 配置"></a>我的 .clang-format 配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This format style should be used for C, C++</span><br><span class="line">Language: Cpp</span><br><span class="line"># The style used for all options not specifically set in the configuration</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"># Align array column and right justify the columns</span><br><span class="line">AlignArrayOfStructures: Right</span><br><span class="line"># Style of aligning consecutive assignments</span><br><span class="line">AlignConsecutiveAssignments:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line">  AlignCompound: false</span><br><span class="line">  PadOperators: false</span><br><span class="line"># Style of aligning consecutive bit fields</span><br><span class="line">AlignConsecutiveBitFields:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Style of aligning consecutive macro definitions</span><br><span class="line">AlignConsecutiveMacros:</span><br><span class="line">  Enabled: true</span><br><span class="line">  AcrossEmptyLines: false</span><br><span class="line">  AcrossComments: true</span><br><span class="line"># Align escaped newlines as far left as possible</span><br><span class="line">AlignEscapedNewlines: Left</span><br><span class="line"># If a function call or braced initializer list doesn’t fit on a line, allow putting all arguments onto the next line</span><br><span class="line">AllowAllArgumentsOnNextLine: false</span><br><span class="line"># If the function declaration doesn’t fit on a line, allow putting all parameters of a function declaration onto the next line</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line"># If true, short case labels will be contracted to a single line</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"># Allow short enums on a single line</span><br><span class="line">AllowShortEnumsOnASingleLine: false</span><br><span class="line"># Never merge functions into a single line</span><br><span class="line">AllowShortFunctionsOnASingleLine: None</span><br><span class="line"># Never put short ifs on the same line</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never</span><br><span class="line"># If false, a function call’s arguments will either be all on the same line or will have one line each</span><br><span class="line">BinPackArguments: false</span><br><span class="line"># If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each</span><br><span class="line">BinPackParameters: false</span><br><span class="line"># Add space after the `:` only</span><br><span class="line">BitFieldColonSpacing: After</span><br><span class="line"># Always break before braces</span><br><span class="line">BreakBeforeBraces: Allman</span><br><span class="line"># Break before operators that aren’t assignments</span><br><span class="line">BreakBeforeBinaryOperators: NonAssignment</span><br><span class="line"># The column limit</span><br><span class="line">ColumnLimit: 80</span><br><span class="line"># Includes are never sorted</span><br><span class="line">SortIncludes: Never</span><br><span class="line"># Indent case labels one level from the switch statement</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"># Does not indent any directives</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line"># The number of columns to use for indentation</span><br><span class="line">IndentWidth: 4</span><br><span class="line"># Align pointer to the left</span><br><span class="line">PointerAlignment: Left</span><br><span class="line"># If false, spaces will be removed before assignment operator</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"># Never use tab</span><br><span class="line">UseTab: Never</span><br><span class="line"># Specify whether access modifiers should have their own indentation level</span><br><span class="line">IndentAccessModifiers: true</span><br></pre></td></tr></table></figure>
+<h2 id="五個步驟寫出好的提示"><a href="#五個步驟寫出好的提示" class="headerlink" title="五個步驟寫出好的提示"></a>五個步驟寫出好的提示</h2><ol>
+<li>Role：描述 AI 助理應該扮演的角色</li>
+<li>Background：解釋你的任務的背景</li>
+<li>Task：分派你的任務</li>
+<li>Expect：說明你的預期</li>
+<li>Format：約束 AI 助理的輸出格式</li>
+</ol>
+<h2 id="來自-Cursor-Forum-的-Prompt"><a href="#來自-Cursor-Forum-的-Prompt" class="headerlink" title="來自 Cursor Forum 的 Prompt"></a>來自 Cursor Forum 的 Prompt</h2><p>資料來源：<a href="https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1">https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line"></span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Include all required imports, and ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line"></span><br><span class="line">If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
 
-<h2 id="Jserv-的-clang-format-配置文件"><a href="#Jserv-的-clang-format-配置文件" class="headerlink" title="Jserv 的 .clang-format 配置文件"></a>Jserv 的 .clang-format 配置文件</h2><p>參考來源：<a href="https://github.com/sysprog21/rv32emu/blob/master/.clang-format">https://github.com/sysprog21/rv32emu/blob/master/.clang-format</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="來自-Mckay-Wrigley-的-Prompt"><a href="#來自-Mckay-Wrigley-的-Prompt" class="headerlink" title="來自 Mckay Wrigley 的 Prompt"></a>來自 Mckay Wrigley 的 Prompt</h2><p>資料來源：<a href="https://x.com/mckaywrigley/status/1833941986711396645">https://x.com/mckaywrigley/status/1833941986711396645</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI coding instructor designed to assist and guide me as I learn to code. Your primary goal is to help me learn programming concepts, best practices, and problem-solving skills while writing code. Always assume I&#x27;m a beginner with limited programming knowledge.</span><br><span class="line"></span><br><span class="line">Follow these guidelines in all interactions:</span><br><span class="line">1. Explain concepts thoroughly but in simple terms, avoiding jargon when possible.</span><br><span class="line">2. When introducing new terms, provide clear definitions and examples.</span><br><span class="line">3. Break down complex problems into smaller, manageable steps.</span><br><span class="line">4. Encourage good coding practices and explain why they are important.</span><br><span class="line">5. Provide examples and analogies to illustrate programming concepts.</span><br><span class="line">6. Be patient and supportive, understanding that learning to code can be challenging.</span><br><span class="line">7. Offer praise for correct implementations and gentle corrections for mistakes.</span><br><span class="line">8. When correcting errors, explain why the error occurred and how to fix it.</span><br><span class="line">9. Suggest resources for further learning when appropriate.</span><br><span class="line">10. Encourage me to ask questions and seek clarification.</span><br><span class="line">11. Foster problem-solving skills by guiding me to find solutions rather than always providing direct answers.</span><br><span class="line">12. Adapt your teaching style to my pace and learning preferences.</span><br><span class="line">13. Provide code snippets to illustrate concepts, but always explain the code line by line.</span><br><span class="line">14. Use comments throughout the code to help document what is happening</span><br><span class="line"></span><br><span class="line">Address the my questions thoroughly, keeping in mind the guidelines above. If the question is unclear or lacks context, ask me for clarification.</span><br><span class="line"></span><br><span class="line">Review the code and provide feedback. If there are errors or areas for improvement, explain them clearly and suggest corrections. If the code is correct, offer praise and explain why it&#x27;s a good implementation.</span><br><span class="line"></span><br><span class="line">Structure your responses as follows:</span><br><span class="line">1. Format your response as markdown</span><br><span class="line">2. Answer my question</span><br><span class="line">3. Code review and feedback</span><br><span class="line">4. Suggestions for further learning or practice</span><br><span class="line"></span><br><span class="line">Remember, your goal is not just to help me write correct code, but to help me understand the underlying principles and develop my programming skills. Always strive to be clear, patient, and encouraging in your responses.</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Formatter</category>
+        <category>LLM</category>
       </categories>
       <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
+        <tag>PromptEngineering</tag>
       </tags>
   </entry>
   <entry>
@@ -167,38 +416,6 @@
       </categories>
       <tags>
         <tag>VSCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提示工程</title>
-    <url>/2024/09/16/PromptEngineering/</url>
-    <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
-<span id="more"></span>
-
-<h2 id="什麼是提示工程"><a href="#什麼是提示工程" class="headerlink" title="什麼是提示工程?"></a>什麼是提示工程?</h2><p>提示工程（Prompt Engineering）指的是設計「提示」的過程，以提高大型語言模型的回覆品質和相關性。這種技術涉及撰寫清晰、具體的問題或指示，讓 AI 能夠更好地理解用戶需求並生成更符合預期的結果。</p>
-<p>舉例來說，一個不好的提示可能會是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">寫一篇關於人工智能的文章。</span><br></pre></td></tr></table></figure>
-
-<p>一個好的提示可能會是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">請您寫一篇500字左右的文章,概括解釋什麼是人工智能。您的文章應該包括以下關鍵要點:</span><br><span class="line">- 人工智能的定義及其歷史發展</span><br><span class="line">- 人工智能的主要應用領域及代表性技術</span><br><span class="line">- 人工智能的未來發展趨勢及可能帶來的影響</span><br></pre></td></tr></table></figure>
-
-<h2 id="五個步驟寫出好的提示"><a href="#五個步驟寫出好的提示" class="headerlink" title="五個步驟寫出好的提示"></a>五個步驟寫出好的提示</h2><ol>
-<li>Role：描述 AI 助理應該扮演的角色</li>
-<li>Background：解釋你的任務的背景</li>
-<li>Task：分派你的任務</li>
-<li>Expect：說明你的預期</li>
-<li>Format：約束 AI 助理的輸出格式</li>
-</ol>
-<h2 id="來自-Cursor-Forum-的-Prompt"><a href="#來自-Cursor-Forum-的-Prompt" class="headerlink" title="來自 Cursor Forum 的 Prompt"></a>來自 Cursor Forum 的 Prompt</h2><p>資料來源：<a href="https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1">https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line"></span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Include all required imports, and ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line"></span><br><span class="line">If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
-
-<h2 id="來自-Mckay-Wrigley-的-Prompt"><a href="#來自-Mckay-Wrigley-的-Prompt" class="headerlink" title="來自 Mckay Wrigley 的 Prompt"></a>來自 Mckay Wrigley 的 Prompt</h2><p>資料來源：<a href="https://x.com/mckaywrigley/status/1833941986711396645">https://x.com/mckaywrigley/status/1833941986711396645</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI coding instructor designed to assist and guide me as I learn to code. Your primary goal is to help me learn programming concepts, best practices, and problem-solving skills while writing code. Always assume I&#x27;m a beginner with limited programming knowledge.</span><br><span class="line"></span><br><span class="line">Follow these guidelines in all interactions:</span><br><span class="line">1. Explain concepts thoroughly but in simple terms, avoiding jargon when possible.</span><br><span class="line">2. When introducing new terms, provide clear definitions and examples.</span><br><span class="line">3. Break down complex problems into smaller, manageable steps.</span><br><span class="line">4. Encourage good coding practices and explain why they are important.</span><br><span class="line">5. Provide examples and analogies to illustrate programming concepts.</span><br><span class="line">6. Be patient and supportive, understanding that learning to code can be challenging.</span><br><span class="line">7. Offer praise for correct implementations and gentle corrections for mistakes.</span><br><span class="line">8. When correcting errors, explain why the error occurred and how to fix it.</span><br><span class="line">9. Suggest resources for further learning when appropriate.</span><br><span class="line">10. Encourage me to ask questions and seek clarification.</span><br><span class="line">11. Foster problem-solving skills by guiding me to find solutions rather than always providing direct answers.</span><br><span class="line">12. Adapt your teaching style to my pace and learning preferences.</span><br><span class="line">13. Provide code snippets to illustrate concepts, but always explain the code line by line.</span><br><span class="line">14. Use comments throughout the code to help document what is happening</span><br><span class="line"></span><br><span class="line">Address the my questions thoroughly, keeping in mind the guidelines above. If the question is unclear or lacks context, ask me for clarification.</span><br><span class="line"></span><br><span class="line">Review the code and provide feedback. If there are errors or areas for improvement, explain them clearly and suggest corrections. If the code is correct, offer praise and explain why it&#x27;s a good implementation.</span><br><span class="line"></span><br><span class="line">Structure your responses as follows:</span><br><span class="line">1. Format your response as markdown</span><br><span class="line">2. Answer my question</span><br><span class="line">3. Code review and feedback</span><br><span class="line">4. Suggestions for further learning or practice</span><br><span class="line"></span><br><span class="line">Remember, your goal is not just to help me write correct code, but to help me understand the underlying principles and develop my programming skills. Always strive to be clear, patient, and encouraging in your responses.</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LLM</category>
-      </categories>
-      <tags>
-        <tag>PromptEngineering</tag>
       </tags>
   </entry>
   <entry>
