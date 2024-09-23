@@ -268,213 +268,6 @@
       </tags>
   </entry>
   <entry>
-    <title>未來規劃</title>
-    <url>/2024/09/11/MyPlan/</url>
-    <content><![CDATA[<p>記錄一些待填的坑。</p>
-<span id="more"></span>
-
-<h2 id="編輯器"><a href="#編輯器" class="headerlink" title="編輯器"></a>編輯器</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> Visual Studio Code</li>
-<li><input checked="" disabled="" type="checkbox"> Visual Studio</li>
-</ul>
-<h2 id="腳本語言"><a href="#腳本語言" class="headerlink" title="腳本語言"></a>腳本語言</h2><ul>
-<li><input disabled="" type="checkbox"> Batch(Windows)</li>
-<li><input disabled="" type="checkbox"> Bash(Linux)</li>
-<li><input disabled="" type="checkbox"> Make(Linux)</li>
-</ul>
-<h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> GoogleTest(C&#x2F;C++)</li>
-<li><input checked="" disabled="" type="checkbox"> GoogleTest Test Coverage</li>
-<li><input disabled="" type="checkbox"> FakeFunctionFramework(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> NUnit(C#)</li>
-<li><input disabled="" type="checkbox"> NUnit Test Coverage</li>
-<li><input disabled="" type="checkbox"> Shouldly(C#)</li>
-<li><input disabled="" type="checkbox"> FluentAssertions(C#)</li>
-<li><input disabled="" type="checkbox"> Pytest(Python)</li>
-<li><input disabled="" type="checkbox"> Pytest Test Coverage</li>
-</ul>
-<h2 id="靜態分析"><a href="#靜態分析" class="headerlink" title="靜態分析"></a>靜態分析</h2><ul>
-<li><input disabled="" type="checkbox"> Cppcheck(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> Clang-Tidy(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> SonarQube(C#&#x2F;Python)</li>
-</ul>
-<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
-<li><input checked="" disabled="" type="checkbox"> Clang-Format(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> PEP8(Python)</li>
-</ul>
-<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><ul>
-<li><input disabled="" type="checkbox"> log4net(C#)</li>
-<li><input disabled="" type="checkbox"> logging(Python)</li>
-</ul>
-<h2 id="套件管理"><a href="#套件管理" class="headerlink" title="套件管理"></a>套件管理</h2><ul>
-<li><input disabled="" type="checkbox"> Scoop(Windows)</li>
-<li><input disabled="" type="checkbox"> Poetry(Python)</li>
-</ul>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
-<li><input disabled="" type="checkbox"> UML</li>
-<li><input disabled="" type="checkbox"> SysML</li>
-<li><input disabled="" type="checkbox"> PlantUML</li>
-<li><input disabled="" type="checkbox"> Doxygen</li>
-<li><input disabled="" type="checkbox"> Mermaid</li>
-</ul>
-<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><ul>
-<li><input disabled="" type="checkbox"> Git</li>
-<li><input disabled="" type="checkbox"> GitLab</li>
-</ul>
-<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><ul>
-<li><input disabled="" type="checkbox"> Docker</li>
-<li><input disabled="" type="checkbox"> Docker Compose</li>
-<li><input disabled="" type="checkbox"> Kubernetes</li>
-</ul>
-<h2 id="持續整合"><a href="#持續整合" class="headerlink" title="持續整合"></a>持續整合</h2><ul>
-<li><input disabled="" type="checkbox"> Jenkins</li>
-<li><input disabled="" type="checkbox"> GitLab CI&#x2F;CD</li>
-</ul>
-<h2 id="產業規範"><a href="#產業規範" class="headerlink" title="產業規範"></a>產業規範</h2><ul>
-<li><input disabled="" type="checkbox"> ASPICE</li>
-<li><input disabled="" type="checkbox"> ISO 26262</li>
-<li><input disabled="" type="checkbox"> AUTOSAR</li>
-</ul>
-<h2 id="作業系統"><a href="#作業系統" class="headerlink" title="作業系統"></a>作業系統</h2><ul>
-<li><input disabled="" type="checkbox"> Linux</li>
-<li><input disabled="" type="checkbox"> FreeRTOS</li>
-</ul>
-<h2 id="微控制器"><a href="#微控制器" class="headerlink" title="微控制器"></a>微控制器</h2><ul>
-<li><input disabled="" type="checkbox"> UART</li>
-<li><input disabled="" type="checkbox"> I2C</li>
-<li><input disabled="" type="checkbox"> SPI</li>
-<li><input disabled="" type="checkbox"> CAN</li>
-<li><input disabled="" type="checkbox"> Bluetooth</li>
-<li><input disabled="" type="checkbox"> Ethernet</li>
-<li><input disabled="" type="checkbox"> USB</li>
-</ul>
-<h2 id="Side-Project"><a href="#Side-Project" class="headerlink" title="Side Project"></a>Side Project</h2><ul>
-<li><input disabled="" type="checkbox"> <a href="https://app.codecrafters.io/catalog">Build your own Interpreter</a></li>
-<li><input disabled="" type="checkbox"> FreeRTOS</li>
-<li><input disabled="" type="checkbox"> Python Scraper</li>
-<li><input disabled="" type="checkbox"> C++ CI&#x2F;CD Process</li>
-</ul>
-<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><ul>
-<li><input disabled="" type="checkbox"> Linux basic<ul>
-<li><input disabled="" type="checkbox"> Bash script</li>
-<li><input disabled="" type="checkbox"> File system</li>
-<li><input disabled="" type="checkbox"> Manage server</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Network concepts (Wireshark)<ul>
-<li><input disabled="" type="checkbox"> OSI and TCP&#x2F;IP models</li>
-<li><input disabled="" type="checkbox"> IP addressing and subnetting</li>
-<li><input disabled="" type="checkbox"> DNS and DHCP</li>
-<li><input disabled="" type="checkbox"> HTTP&#x2F;HTTPS, FTP, SSH</li>
-<li><input disabled="" type="checkbox"> Firewall and security groups</li>
-<li><input disabled="" type="checkbox"> Ping, traceroute, netstat</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=8JJ101D3knE">Git</a></li>
-<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc">Python</a><ul>
-<li><input disabled="" type="checkbox"> Basic syntax</li>
-<li><input disabled="" type="checkbox"> Data structures</li>
-<li><input disabled="" type="checkbox"> Modules and packages</li>
-<li><input disabled="" type="checkbox"> Working with files</li>
-<li><input disabled="" type="checkbox"> Exception handling</li>
-<li><input disabled="" type="checkbox"> Automation scripts</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Cloud providers (AWS)<ul>
-<li><input disabled="" type="checkbox"> Launch, configure, and manage virtual machines</li>
-<li><input disabled="" type="checkbox"> Store and manage data</li>
-<li><input disabled="" type="checkbox"> Manage users, groups, and roles</li>
-<li><input disabled="" type="checkbox"> Setup and manage isolated networks</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=pTFZFxd4hOI">Containerization (Docker)</a><ul>
-<li><input disabled="" type="checkbox"> Create Docker images</li>
-<li><input disabled="" type="checkbox"> Starting, stopping, and managing containers</li>
-<li><input disabled="" type="checkbox"> Write Dockerfiles</li>
-<li><input disabled="" type="checkbox"> Run multi-container applications using Docker Compose</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> CI&#x2F;CD tools (Jenkins)<ul>
-<li><input disabled="" type="checkbox"> Create and manage pipelines</li>
-<li><input disabled="" type="checkbox"> Write Jenkinsfiles</li>
-<li><input disabled="" type="checkbox"> Integrate automated tests</li>
-<li><input disabled="" type="checkbox"> Automate the build process</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Orchestration and management tools (Kubernetes)<ul>
-<li><input disabled="" type="checkbox"> Overall architecture</li>
-<li><input disabled="" type="checkbox"> Key components</li>
-<li><input disabled="" type="checkbox"> Manage resources</li>
-<li><input disabled="" type="checkbox"> Scale applications</li>
-<li><input disabled="" type="checkbox"> Networking model</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Networking and infrastructure services (Nginx)<ul>
-<li><input disabled="" type="checkbox"> Configure Nginx as a reverse proxy</li>
-<li><input disabled="" type="checkbox"> Configure Nginx as a forward proxy</li>
-<li><input disabled="" type="checkbox"> Caching strategies</li>
-<li><input disabled="" type="checkbox"> Load balancer configuration</li>
-<li><input disabled="" type="checkbox"> Configure firewalls and security groups</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Configuration management tools (Ansible)<ul>
-<li><input disabled="" type="checkbox"> Write playbooks</li>
-<li><input disabled="" type="checkbox"> Use roles and modules</li>
-<li><input disabled="" type="checkbox"> Manage variables and templates</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Infrastructure as code (Terraform)<ul>
-<li><input disabled="" type="checkbox"> Basic and advanced concepts</li>
-<li><input disabled="" type="checkbox"> Terraform configuration files</li>
-<li><input disabled="" type="checkbox"> Terraform modules</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Monitoring and logging tools (Prometheus, Grafana)<ul>
-<li><input disabled="" type="checkbox"> Architecture and data model</li>
-<li><input disabled="" type="checkbox"> Collect metrics</li>
-<li><input disabled="" type="checkbox"> Write queries</li>
-<li><input disabled="" type="checkbox"> Set up alerts</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>MyPlan</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>提示工程</title>
-    <url>/2024/09/16/PromptEngineering/</url>
-    <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
-<span id="more"></span>
-
-<h2 id="什麼是提示工程"><a href="#什麼是提示工程" class="headerlink" title="什麼是提示工程?"></a>什麼是提示工程?</h2><p>提示工程（Prompt Engineering）指的是設計「提示」的過程，以提高大型語言模型的回覆品質和相關性。這種技術涉及撰寫清晰、具體的問題或指示，讓 AI 能夠更好地理解用戶需求並生成更符合預期的結果。</p>
-<p>舉例來說，一個不好的提示可能會是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">寫一篇關於人工智能的文章。</span><br></pre></td></tr></table></figure>
-
-<p>一個好的提示可能會是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">請您寫一篇500字左右的文章,概括解釋什麼是人工智能。您的文章應該包括以下關鍵要點:</span><br><span class="line">- 人工智能的定義及其歷史發展</span><br><span class="line">- 人工智能的主要應用領域及代表性技術</span><br><span class="line">- 人工智能的未來發展趨勢及可能帶來的影響</span><br></pre></td></tr></table></figure>
-
-<h2 id="五個步驟寫出好的提示"><a href="#五個步驟寫出好的提示" class="headerlink" title="五個步驟寫出好的提示"></a>五個步驟寫出好的提示</h2><ol>
-<li>Role：描述 AI 助理應該扮演的角色</li>
-<li>Background：解釋你的任務的背景</li>
-<li>Task：分派你的任務</li>
-<li>Expect：說明你的預期</li>
-<li>Format：約束 AI 助理的輸出格式</li>
-</ol>
-<h2 id="來自-Cursor-Forum-的-Prompt"><a href="#來自-Cursor-Forum-的-Prompt" class="headerlink" title="來自 Cursor Forum 的 Prompt"></a>來自 Cursor Forum 的 Prompt</h2><p>資料來源：<a href="https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1">https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line"></span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Include all required imports, and ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line"></span><br><span class="line">If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
-
-<h2 id="來自-Mckay-Wrigley-的-Prompt"><a href="#來自-Mckay-Wrigley-的-Prompt" class="headerlink" title="來自 Mckay Wrigley 的 Prompt"></a>來自 Mckay Wrigley 的 Prompt</h2><p>資料來源：<a href="https://x.com/mckaywrigley/status/1833941986711396645">https://x.com/mckaywrigley/status/1833941986711396645</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI coding instructor designed to assist and guide me as I learn to code. Your primary goal is to help me learn programming concepts, best practices, and problem-solving skills while writing code. Always assume I&#x27;m a beginner with limited programming knowledge.</span><br><span class="line"></span><br><span class="line">Follow these guidelines in all interactions:</span><br><span class="line">1. Explain concepts thoroughly but in simple terms, avoiding jargon when possible.</span><br><span class="line">2. When introducing new terms, provide clear definitions and examples.</span><br><span class="line">3. Break down complex problems into smaller, manageable steps.</span><br><span class="line">4. Encourage good coding practices and explain why they are important.</span><br><span class="line">5. Provide examples and analogies to illustrate programming concepts.</span><br><span class="line">6. Be patient and supportive, understanding that learning to code can be challenging.</span><br><span class="line">7. Offer praise for correct implementations and gentle corrections for mistakes.</span><br><span class="line">8. When correcting errors, explain why the error occurred and how to fix it.</span><br><span class="line">9. Suggest resources for further learning when appropriate.</span><br><span class="line">10. Encourage me to ask questions and seek clarification.</span><br><span class="line">11. Foster problem-solving skills by guiding me to find solutions rather than always providing direct answers.</span><br><span class="line">12. Adapt your teaching style to my pace and learning preferences.</span><br><span class="line">13. Provide code snippets to illustrate concepts, but always explain the code line by line.</span><br><span class="line">14. Use comments throughout the code to help document what is happening</span><br><span class="line"></span><br><span class="line">Address the my questions thoroughly, keeping in mind the guidelines above. If the question is unclear or lacks context, ask me for clarification.</span><br><span class="line"></span><br><span class="line">Review the code and provide feedback. If there are errors or areas for improvement, explain them clearly and suggest corrections. If the code is correct, offer praise and explain why it&#x27;s a good implementation.</span><br><span class="line"></span><br><span class="line">Structure your responses as follows:</span><br><span class="line">1. Format your response as markdown</span><br><span class="line">2. Answer my question</span><br><span class="line">3. Code review and feedback</span><br><span class="line">4. Suggestions for further learning or practice</span><br><span class="line"></span><br><span class="line">Remember, your goal is not just to help me write correct code, but to help me understand the underlying principles and develop my programming skills. Always strive to be clear, patient, and encouraging in your responses.</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LLM</category>
-      </categories>
-      <tags>
-        <tag>PromptEngineering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>讀書筆記：The Element Of Style</title>
     <url>/2024/09/12/ReadingNote-TheElementOfStyle/</url>
     <content><![CDATA[<p>The Elements of Style (中譯：英文寫作聖經) 是一本由 William Strunk Jr. 和他的學生 E.B. White 共同編寫的寫作指南。該書首次出版於 1918 年，經過多次修訂和再版，是英語寫作中最具影響力和廣受讚譽的作品之一。</p>
@@ -773,6 +566,213 @@
       </categories>
       <tags>
         <tag>VS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>未來規劃</title>
+    <url>/2024/09/11/MyPlan/</url>
+    <content><![CDATA[<p>記錄一些待填的坑。</p>
+<span id="more"></span>
+
+<h2 id="編輯器"><a href="#編輯器" class="headerlink" title="編輯器"></a>編輯器</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> Visual Studio Code</li>
+<li><input checked="" disabled="" type="checkbox"> Visual Studio</li>
+</ul>
+<h2 id="腳本語言"><a href="#腳本語言" class="headerlink" title="腳本語言"></a>腳本語言</h2><ul>
+<li><input disabled="" type="checkbox"> Batch(Windows)</li>
+<li><input disabled="" type="checkbox"> Bash(Linux)</li>
+<li><input disabled="" type="checkbox"> Make(Linux)</li>
+</ul>
+<h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> GoogleTest(C&#x2F;C++)</li>
+<li><input checked="" disabled="" type="checkbox"> GoogleTest Test Coverage</li>
+<li><input disabled="" type="checkbox"> FakeFunctionFramework(C&#x2F;C++)</li>
+<li><input disabled="" type="checkbox"> NUnit(C#)</li>
+<li><input disabled="" type="checkbox"> NUnit Test Coverage</li>
+<li><input disabled="" type="checkbox"> Shouldly(C#)</li>
+<li><input disabled="" type="checkbox"> FluentAssertions(C#)</li>
+<li><input disabled="" type="checkbox"> Pytest(Python)</li>
+<li><input disabled="" type="checkbox"> Pytest Test Coverage</li>
+</ul>
+<h2 id="靜態分析"><a href="#靜態分析" class="headerlink" title="靜態分析"></a>靜態分析</h2><ul>
+<li><input disabled="" type="checkbox"> Cppcheck(C&#x2F;C++)</li>
+<li><input disabled="" type="checkbox"> Clang-Tidy(C&#x2F;C++)</li>
+<li><input disabled="" type="checkbox"> SonarQube(C#&#x2F;Python)</li>
+</ul>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> Clang-Format(C&#x2F;C++)</li>
+<li><input disabled="" type="checkbox"> PEP8(Python)</li>
+</ul>
+<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><ul>
+<li><input disabled="" type="checkbox"> log4net(C#)</li>
+<li><input disabled="" type="checkbox"> logging(Python)</li>
+</ul>
+<h2 id="套件管理"><a href="#套件管理" class="headerlink" title="套件管理"></a>套件管理</h2><ul>
+<li><input disabled="" type="checkbox"> Scoop(Windows)</li>
+<li><input disabled="" type="checkbox"> Poetry(Python)</li>
+</ul>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+<li><input disabled="" type="checkbox"> UML</li>
+<li><input disabled="" type="checkbox"> SysML</li>
+<li><input disabled="" type="checkbox"> PlantUML</li>
+<li><input disabled="" type="checkbox"> Doxygen</li>
+<li><input disabled="" type="checkbox"> Mermaid</li>
+</ul>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><ul>
+<li><input disabled="" type="checkbox"> Git</li>
+<li><input disabled="" type="checkbox"> GitLab</li>
+</ul>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><ul>
+<li><input disabled="" type="checkbox"> Docker</li>
+<li><input disabled="" type="checkbox"> Docker Compose</li>
+<li><input disabled="" type="checkbox"> Kubernetes</li>
+</ul>
+<h2 id="持續整合"><a href="#持續整合" class="headerlink" title="持續整合"></a>持續整合</h2><ul>
+<li><input disabled="" type="checkbox"> Jenkins</li>
+<li><input disabled="" type="checkbox"> GitLab CI&#x2F;CD</li>
+</ul>
+<h2 id="產業規範"><a href="#產業規範" class="headerlink" title="產業規範"></a>產業規範</h2><ul>
+<li><input disabled="" type="checkbox"> ASPICE</li>
+<li><input disabled="" type="checkbox"> ISO 26262</li>
+<li><input disabled="" type="checkbox"> AUTOSAR</li>
+</ul>
+<h2 id="作業系統"><a href="#作業系統" class="headerlink" title="作業系統"></a>作業系統</h2><ul>
+<li><input disabled="" type="checkbox"> Linux</li>
+<li><input disabled="" type="checkbox"> FreeRTOS</li>
+</ul>
+<h2 id="微控制器"><a href="#微控制器" class="headerlink" title="微控制器"></a>微控制器</h2><ul>
+<li><input disabled="" type="checkbox"> UART</li>
+<li><input disabled="" type="checkbox"> I2C</li>
+<li><input disabled="" type="checkbox"> SPI</li>
+<li><input disabled="" type="checkbox"> CAN</li>
+<li><input disabled="" type="checkbox"> Bluetooth</li>
+<li><input disabled="" type="checkbox"> Ethernet</li>
+<li><input disabled="" type="checkbox"> USB</li>
+</ul>
+<h2 id="Side-Project"><a href="#Side-Project" class="headerlink" title="Side Project"></a>Side Project</h2><ul>
+<li><input disabled="" type="checkbox"> <a href="https://app.codecrafters.io/catalog">Build your own Interpreter</a></li>
+<li><input disabled="" type="checkbox"> FreeRTOS</li>
+<li><input disabled="" type="checkbox"> Python Scraper</li>
+<li><input disabled="" type="checkbox"> C++ CI&#x2F;CD Process</li>
+</ul>
+<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a><a href="https://www.youtube.com/watch?v=6GQRb4fGvtk">DevOps</a></h2><ul>
+<li><input disabled="" type="checkbox"> Linux basic<ul>
+<li><input disabled="" type="checkbox"> Bash script</li>
+<li><input disabled="" type="checkbox"> File system</li>
+<li><input disabled="" type="checkbox"> Manage server</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Network concepts (Wireshark)<ul>
+<li><input disabled="" type="checkbox"> OSI and TCP&#x2F;IP models</li>
+<li><input disabled="" type="checkbox"> IP addressing and subnetting</li>
+<li><input disabled="" type="checkbox"> DNS and DHCP</li>
+<li><input disabled="" type="checkbox"> HTTP&#x2F;HTTPS, FTP, SSH</li>
+<li><input disabled="" type="checkbox"> Firewall and security groups</li>
+<li><input disabled="" type="checkbox"> Ping, traceroute, netstat</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=8JJ101D3knE">Git</a></li>
+<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc">Python</a><ul>
+<li><input disabled="" type="checkbox"> Basic syntax</li>
+<li><input disabled="" type="checkbox"> Data structures</li>
+<li><input disabled="" type="checkbox"> Modules and packages</li>
+<li><input disabled="" type="checkbox"> Working with files</li>
+<li><input disabled="" type="checkbox"> Exception handling</li>
+<li><input disabled="" type="checkbox"> Automation scripts</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Cloud providers (AWS)<ul>
+<li><input disabled="" type="checkbox"> Launch, configure, and manage virtual machines</li>
+<li><input disabled="" type="checkbox"> Store and manage data</li>
+<li><input disabled="" type="checkbox"> Manage users, groups, and roles</li>
+<li><input disabled="" type="checkbox"> Setup and manage isolated networks</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://www.youtube.com/watch?v=pTFZFxd4hOI">Containerization (Docker)</a><ul>
+<li><input disabled="" type="checkbox"> Create Docker images</li>
+<li><input disabled="" type="checkbox"> Starting, stopping, and managing containers</li>
+<li><input disabled="" type="checkbox"> Write Dockerfiles</li>
+<li><input disabled="" type="checkbox"> Run multi-container applications using Docker Compose</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> CI&#x2F;CD tools (Jenkins)<ul>
+<li><input disabled="" type="checkbox"> Create and manage pipelines</li>
+<li><input disabled="" type="checkbox"> Write Jenkinsfiles</li>
+<li><input disabled="" type="checkbox"> Integrate automated tests</li>
+<li><input disabled="" type="checkbox"> Automate the build process</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Orchestration and management tools (Kubernetes)<ul>
+<li><input disabled="" type="checkbox"> Overall architecture</li>
+<li><input disabled="" type="checkbox"> Key components</li>
+<li><input disabled="" type="checkbox"> Manage resources</li>
+<li><input disabled="" type="checkbox"> Scale applications</li>
+<li><input disabled="" type="checkbox"> Networking model</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Networking and infrastructure services (Nginx)<ul>
+<li><input disabled="" type="checkbox"> Configure Nginx as a reverse proxy</li>
+<li><input disabled="" type="checkbox"> Configure Nginx as a forward proxy</li>
+<li><input disabled="" type="checkbox"> Caching strategies</li>
+<li><input disabled="" type="checkbox"> Load balancer configuration</li>
+<li><input disabled="" type="checkbox"> Configure firewalls and security groups</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Configuration management tools (Ansible)<ul>
+<li><input disabled="" type="checkbox"> Write playbooks</li>
+<li><input disabled="" type="checkbox"> Use roles and modules</li>
+<li><input disabled="" type="checkbox"> Manage variables and templates</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Infrastructure as code (Terraform)<ul>
+<li><input disabled="" type="checkbox"> Basic and advanced concepts</li>
+<li><input disabled="" type="checkbox"> Terraform configuration files</li>
+<li><input disabled="" type="checkbox"> Terraform modules</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Monitoring and logging tools (Prometheus, Grafana)<ul>
+<li><input disabled="" type="checkbox"> Architecture and data model</li>
+<li><input disabled="" type="checkbox"> Collect metrics</li>
+<li><input disabled="" type="checkbox"> Write queries</li>
+<li><input disabled="" type="checkbox"> Set up alerts</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MyPlan</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>提示工程</title>
+    <url>/2024/09/16/PromptEngineering/</url>
+    <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
+<span id="more"></span>
+
+<h2 id="什麼是提示工程"><a href="#什麼是提示工程" class="headerlink" title="什麼是提示工程?"></a>什麼是提示工程?</h2><p>提示工程（Prompt Engineering）指的是設計「提示」的過程，以提高大型語言模型的回覆品質和相關性。這種技術涉及撰寫清晰、具體的問題或指示，讓 AI 能夠更好地理解用戶需求並生成更符合預期的結果。</p>
+<p>舉例來說，一個不好的提示可能會是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">寫一篇關於人工智能的文章。</span><br></pre></td></tr></table></figure>
+
+<p>一個好的提示可能會是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">請您寫一篇500字左右的文章,概括解釋什麼是人工智能。您的文章應該包括以下關鍵要點:</span><br><span class="line">- 人工智能的定義及其歷史發展</span><br><span class="line">- 人工智能的主要應用領域及代表性技術</span><br><span class="line">- 人工智能的未來發展趨勢及可能帶來的影響</span><br></pre></td></tr></table></figure>
+
+<h2 id="五個步驟寫出好的提示"><a href="#五個步驟寫出好的提示" class="headerlink" title="五個步驟寫出好的提示"></a>五個步驟寫出好的提示</h2><ol>
+<li>Role：描述 AI 助理應該扮演的角色</li>
+<li>Background：解釋你的任務的背景</li>
+<li>Task：分派你的任務</li>
+<li>Expect：說明你的預期</li>
+<li>Format：約束 AI 助理的輸出格式</li>
+</ol>
+<h2 id="來自-Cursor-Forum-的-Prompt"><a href="#來自-Cursor-Forum-的-Prompt" class="headerlink" title="來自 Cursor Forum 的 Prompt"></a>來自 Cursor Forum 的 Prompt</h2><p>資料來源：<a href="https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1">https://forum.cursor.com/t/share-your-rules-for-ai/2377/2?page=1</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an expert AI programming assistant that primarily focuses on producing clear, readable code.</span><br><span class="line">You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.</span><br><span class="line"></span><br><span class="line">- Follow the user’s requirements carefully &amp; to the letter.</span><br><span class="line">- First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.</span><br><span class="line">- Confirm, then write code!</span><br><span class="line">- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.</span><br><span class="line">- Focus on readability over being performant.</span><br><span class="line">- Fully implement all requested functionality.</span><br><span class="line">- Leave NO todo’s, placeholders or missing pieces.</span><br><span class="line">- Ensure code is complete! Verify thoroughly finalized.</span><br><span class="line">- Include all required imports, and ensure proper naming of key components.</span><br><span class="line">- Be concise. Minimize any other prose.</span><br><span class="line"></span><br><span class="line">If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.</span><br></pre></td></tr></table></figure>
+
+<h2 id="來自-Mckay-Wrigley-的-Prompt"><a href="#來自-Mckay-Wrigley-的-Prompt" class="headerlink" title="來自 Mckay Wrigley 的 Prompt"></a>來自 Mckay Wrigley 的 Prompt</h2><p>資料來源：<a href="https://x.com/mckaywrigley/status/1833941986711396645">https://x.com/mckaywrigley/status/1833941986711396645</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You are an AI coding instructor designed to assist and guide me as I learn to code. Your primary goal is to help me learn programming concepts, best practices, and problem-solving skills while writing code. Always assume I&#x27;m a beginner with limited programming knowledge.</span><br><span class="line"></span><br><span class="line">Follow these guidelines in all interactions:</span><br><span class="line">1. Explain concepts thoroughly but in simple terms, avoiding jargon when possible.</span><br><span class="line">2. When introducing new terms, provide clear definitions and examples.</span><br><span class="line">3. Break down complex problems into smaller, manageable steps.</span><br><span class="line">4. Encourage good coding practices and explain why they are important.</span><br><span class="line">5. Provide examples and analogies to illustrate programming concepts.</span><br><span class="line">6. Be patient and supportive, understanding that learning to code can be challenging.</span><br><span class="line">7. Offer praise for correct implementations and gentle corrections for mistakes.</span><br><span class="line">8. When correcting errors, explain why the error occurred and how to fix it.</span><br><span class="line">9. Suggest resources for further learning when appropriate.</span><br><span class="line">10. Encourage me to ask questions and seek clarification.</span><br><span class="line">11. Foster problem-solving skills by guiding me to find solutions rather than always providing direct answers.</span><br><span class="line">12. Adapt your teaching style to my pace and learning preferences.</span><br><span class="line">13. Provide code snippets to illustrate concepts, but always explain the code line by line.</span><br><span class="line">14. Use comments throughout the code to help document what is happening</span><br><span class="line"></span><br><span class="line">Address the my questions thoroughly, keeping in mind the guidelines above. If the question is unclear or lacks context, ask me for clarification.</span><br><span class="line"></span><br><span class="line">Review the code and provide feedback. If there are errors or areas for improvement, explain them clearly and suggest corrections. If the code is correct, offer praise and explain why it&#x27;s a good implementation.</span><br><span class="line"></span><br><span class="line">Structure your responses as follows:</span><br><span class="line">1. Format your response as markdown</span><br><span class="line">2. Answer my question</span><br><span class="line">3. Code review and feedback</span><br><span class="line">4. Suggestions for further learning or practice</span><br><span class="line"></span><br><span class="line">Remember, your goal is not just to help me write correct code, but to help me understand the underlying principles and develop my programming skills. Always strive to be clear, patient, and encouraging in your responses.</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LLM</category>
+      </categories>
+      <tags>
+        <tag>PromptEngineering</tag>
       </tags>
   </entry>
 </search>
