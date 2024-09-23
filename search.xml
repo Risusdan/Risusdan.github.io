@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Fake Function Framework</title>
-    <url>/2024/09/18/FakeFunctionFramework-Intro/</url>
-    <content><![CDATA[<p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
-<span id="more"></span>
-
-]]></content>
-  </entry>
-  <entry>
     <title>程式碼格式化工具：ClangFormat</title>
     <url>/2024/09/17/ClangForamt/</url>
     <content><![CDATA[<p>厭倦了每次都要手動調整程式碼排版嗎？ ClangFormat 是一種程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
@@ -57,6 +49,14 @@
         <tag>C</tag>
         <tag>C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Fake Function Framework</title>
+    <url>/2024/09/18/FakeFunctionFramework-Intro/</url>
+    <content><![CDATA[<p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
+<span id="more"></span>
+
+]]></content>
   </entry>
   <entry>
     <title>GoogleTest：斷言列表</title>
@@ -240,6 +240,34 @@
       </tags>
   </entry>
   <entry>
+    <title>GoogleTest：測試夾具</title>
+    <url>/2024/09/18/GoogleTest-TestFixture/</url>
+    <content><![CDATA[<p>本文說明如何使用 GoogleTest 中的測試夾具。</p>
+<span id="more"></span>
+
+<p>如果發現自己正在撰寫兩個以上，前置或後置動作相似的測試案例，則可以考慮使用測試夾具提高撰寫效率。</p>
+<h2 id="如何建立測試夾具"><a href="#如何建立測試夾具" class="headerlink" title="如何建立測試夾具?"></a>如何建立測試夾具?</h2><ol>
+<li>從 <code>testing::Test</code> 衍生一個類別，並在類別主體開頭加上 <code>protected:</code>，以便從子類別存取夾具成員。</li>
+<li>在類別中宣告任何你打算使用的物件。</li>
+<li>根據需要撰寫 <code>SetUp()</code> 函數來準備測試的前置動作。小心拼寫錯誤。</li>
+<li>根據需要撰寫 <code>TearDown()</code> 函數來準備測試的後置動作，或釋放 <code>SetUp()</code> 中分配的任何資源。</li>
+</ol>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>假設我們想要測試 <code>Queue</code> 類別，則可以建立以下測試夾具：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然後我們可以在測試中使用夾具，但不同於 <code>TEST()</code>，使用測試夾具的時候要搭配 <code>TEST_F()</code>(F 代表 Fixture)，且第一個參數必須是測試夾具類別的名稱。換句話說，<code>TEST_F()</code> 這個巨集不需要指定測試套件名稱。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>未來規劃</title>
     <url>/2024/09/11/MyPlan/</url>
     <content><![CDATA[<p>記錄一些待填的坑。</p>
@@ -256,7 +284,7 @@
 </ul>
 <h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><ul>
 <li><input checked="" disabled="" type="checkbox"> GoogleTest(C&#x2F;C++)</li>
-<li><input disabled="" type="checkbox"> GoogleTest Test Coverage</li>
+<li><input checked="" disabled="" type="checkbox"> GoogleTest Test Coverage</li>
 <li><input disabled="" type="checkbox"> FakeFunctionFramework(C&#x2F;C++)</li>
 <li><input disabled="" type="checkbox"> NUnit(C#)</li>
 <li><input disabled="" type="checkbox"> NUnit Test Coverage</li>
@@ -296,6 +324,7 @@
 <h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><ul>
 <li><input disabled="" type="checkbox"> Docker</li>
 <li><input disabled="" type="checkbox"> Docker Compose</li>
+<li><input disabled="" type="checkbox"> Kubernetes</li>
 </ul>
 <h2 id="持續整合"><a href="#持續整合" class="headerlink" title="持續整合"></a>持續整合</h2><ul>
 <li><input disabled="" type="checkbox"> Jenkins</li>
@@ -325,38 +354,39 @@
 <li><input disabled="" type="checkbox"> Python Scraper</li>
 <li><input disabled="" type="checkbox"> C++ CI&#x2F;CD Process</li>
 </ul>
+<h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><ul>
+<li><input disabled="" type="checkbox"> Python</li>
+<li><input disabled="" type="checkbox"> Git</li>
+<li><input disabled="" type="checkbox"> Linux Basic<ul>
+<li><input disabled="" type="checkbox"> Shell Script</li>
+<li><input disabled="" type="checkbox"> File System</li>
+<li><input disabled="" type="checkbox"> Manage Server</li>
+<li><input disabled="" type="checkbox"> Network Concept</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Cloud Platform<ul>
+<li><input disabled="" type="checkbox"> AWS</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Containerize Applications<ul>
+<li><input disabled="" type="checkbox"> Docker</li>
+<li><input disabled="" type="checkbox"> Kubernetes</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> CI&#x2F;CD Tools<ul>
+<li><input disabled="" type="checkbox"> Jenkins</li>
+<li><input disabled="" type="checkbox"> GitLab CI&#x2F;CD</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Infrastructure as Code<ul>
+<li><input disabled="" type="checkbox"> Terraform</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>MyPlan</category>
       </categories>
-  </entry>
-  <entry>
-    <title>GoogleTest：測試夾具</title>
-    <url>/2024/09/18/GoogleTest-TestFixture/</url>
-    <content><![CDATA[<p>本文說明如何使用 GoogleTest 中的測試夾具。</p>
-<span id="more"></span>
-
-<p>如果發現自己正在撰寫兩個以上，前置或後置動作相似的測試案例，則可以考慮使用測試夾具提高撰寫效率。</p>
-<h2 id="如何建立測試夾具"><a href="#如何建立測試夾具" class="headerlink" title="如何建立測試夾具?"></a>如何建立測試夾具?</h2><ol>
-<li>從 <code>testing::Test</code> 衍生一個類別，並在類別主體開頭加上 <code>protected:</code>，以便從子類別存取夾具成員。</li>
-<li>在類別中宣告任何你打算使用的物件。</li>
-<li>根據需要撰寫 <code>SetUp()</code> 函數來準備測試的前置動作。小心拼寫錯誤。</li>
-<li>根據需要撰寫 <code>TearDown()</code> 函數來準備測試的後置動作，或釋放 <code>SetUp()</code> 中分配的任何資源。</li>
-</ol>
-<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>假設我們想要測試 <code>Queue</code> 類別，則可以建立以下測試夾具：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueueTest</span> : <span class="keyword">public</span> testing::Test</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="built_in">QueueTest</span>()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// q0_ remains empty</span></span><br><span class="line">            q1_.<span class="built_in">Enqueue</span>(<span class="number">1</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">2</span>);</span><br><span class="line">            q2_.<span class="built_in">Enqueue</span>(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q0_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q1_;</span><br><span class="line">        Queue&lt;<span class="type">int</span>&gt; q2_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然後我們可以在測試中使用夾具，但不同於 <code>TEST()</code>，使用測試夾具的時候要搭配 <code>TEST_F()</code>(F 代表 Fixture)，且第一個參數必須是測試夾具類別的名稱。換句話說，<code>TEST_F()</code> 這個巨集不需要指定測試套件名稱。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">TEST_F</span>(QueueTest, IsEmptyInitially)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q0_.<span class="built_in">Size</span>(), <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">EXPECT_TRUE</span>(q0_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">    <span class="built_in">EXPECT_EQ</span>(q1_.<span class="built_in">Size</span>(), <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">EXPECT_FALSE</span>(q1_.<span class="built_in">IsEmpty</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>GoogleTest</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-        <tag>UnitTest</tag>
-      </tags>
   </entry>
   <entry>
     <title>提示工程</title>
