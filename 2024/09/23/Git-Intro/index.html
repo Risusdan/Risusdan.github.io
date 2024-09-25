@@ -26,12 +26,12 @@
 <meta property="og:site_name" content="Daniel&#39;s Blog">
 <meta property="og:description" content="記錄一些常用的 Git 指令。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/Git-Intro/Git-Structure.jpg">
+<meta property="og:image" content="http://example.com/2024/09/23/Git-Intro/Git-Structure.jpg">
 <meta property="article:published_time" content="2024-09-23T15:18:01.000Z">
-<meta property="article:modified_time" content="2024-09-24T01:03:24.297Z">
+<meta property="article:modified_time" content="2024-09-25T15:10:29.730Z">
 <meta property="article:author" content="Daniel">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Git-Intro/Git-Structure.jpg">
+<meta name="twitter:image" content="http://example.com/2024/09/23/Git-Intro/Git-Structure.jpg">
 
 
 <link rel="canonical" href="http://example.com/2024/09/23/Git-Intro/">
@@ -175,7 +175,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-24 09:03:24" itemprop="dateModified" datetime="2024-09-24T09:03:24+08:00">2024-09-24</time>
+      <time title="Modified: 2024-09-25 23:10:29" itemprop="dateModified" datetime="2024-09-25T23:10:29+08:00">2024-09-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -194,14 +194,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.5k</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
+      <span>11 mins.</span>
     </span>
 </div>
 
@@ -214,13 +214,52 @@
     <div class="post-body" itemprop="articleBody"><p>記錄一些常用的 Git 指令。</p>
 <span id="more"></span>
 
-<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><ul>
+<h2 id="目錄"><a href="#目錄" class="headerlink" title="# 目錄"></a># 目錄</h2><ul>
+<li><a href="#%E5%AE%89%E8%A3%9D">安裝</a></li>
+<li><a href="#%E8%A8%AD%E5%AE%9A">設定</a><ul>
+<li><a href="#%E8%A8%AD%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E8%88%87%E9%83%B5%E4%BB%B6%E5%9C%B0%E5%9D%80">設定使用者名稱與郵件地址</a></li>
+<li><a href="#%E8%A8%AD%E5%AE%9A%E7%B8%AE%E5%AF%AB">設定縮寫</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B">名詞解釋</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">常用指令</a><ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a></li>
+<li><a href="#%E6%9F%A5%E8%A9%A2%E7%8B%80%E6%85%8B">查詢狀態</a></li>
+<li><a href="#%E6%AA%A2%E8%A6%96%E7%B4%80%E9%8C%84">檢視紀錄</a></li>
+<li><a href="#%E6%96%B0%E5%A2%9E%E6%AA%94%E6%A1%88%E7%B5%A6Git%E7%AE%A1%E7%90%86">新增檔案給Git管理</a></li>
+<li><a href="#%E5%81%9C%E6%AD%A2%E8%BF%BD%E8%B9%A4%E6%AA%94%E6%A1%88">停止追蹤檔案</a></li>
+<li><a href="#%E5%BF%BD%E7%95%A5%E6%AA%94%E6%A1%88%E7%9A%84%E8%BF%BD%E8%B9%A4">忽略檔案的追蹤</a></li>
+<li><a href="#%E6%8F%90%E4%BA%A4">提交</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4%E8%A8%8A%E6%81%AF">修改提交訊息</a></li>
+<li><a href="#%E6%95%91%E5%9B%9E%E8%A2%AB%E5%88%AA%E9%99%A4%E7%9A%84%E6%AA%94%E6%A1%88">救回被刪除的檔案</a></li>
+<li><a href="#%E6%8B%86%E6%8E%89%E6%9C%80%E8%BF%91%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4">拆掉最近一次的提交</a></li>
+<li><a href="#%E6%AA%A2%E6%9F%A5%E7%9B%AE%E5%89%8D%E6%9C%89%E5%93%AA%E4%BA%9B%E5%88%86%E6%94%AF">檢查目前有哪些分支</a></li>
+<li><a href="#%E6%96%B0%E5%A2%9E%E5%88%86%E6%94%AF">新增分支</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%88%86%E6%94%AF">重新命名分支</a></li>
+<li><a href="#%E5%88%AA%E9%99%A4%E5%88%86%E6%94%AF">刪除分支</a></li>
+<li><a href="#%E5%88%87%E6%8F%9B%E5%88%86%E6%94%AF">切換分支</a></li>
+<li><a href="#%E6%96%B0%E5%A2%9E%E4%B8%A6%E5%88%87%E6%8F%9B%E5%88%86%E6%94%AF">新增並切換分支</a></li>
+<li><a href="#%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF">合併分支</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8rebase%E5%90%88%E4%BD%B5%E5%88%86%E6%94%AF">使用rebase合併分支</a></li>
+<li><a href="#%E5%8F%96%E6%B6%88rebase%E5%90%88%E4%BD%B5%E7%9A%84%E5%88%86%E6%94%AF">取消rebase合併的分支</a></li>
+<li><a href="#%E6%AF%94%E8%BC%83%E6%AA%94%E6%A1%88%E5%B7%AE%E7%95%B0">比較檔案差異</a></li>
+<li><a href="#%E8%99%95%E7%90%86%E8%A1%9D%E7%AA%81">處理衝突</a></li>
+<li><a href="#%E5%8A%A0%E5%85%A5%E6%A8%99%E7%B1%A4">加入標籤</a></li>
+<li><a href="#%E6%9A%AB%E5%AD%98">暫存</a></li>
+<li><a href="#%E6%8E%A8%E9%80%81%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB">推送遠端儲存庫</a></li>
+<li><a href="#%E6%8B%89%E5%8F%96%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB">拉取遠端儲存庫</a></li>
+<li><a href="#%E8%A4%87%E8%A3%BD%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB">複製遠端儲存庫</a></li>
+<li><a href="#%E6%80%8E%E9%BA%BC%E8%B7%9F%E4%B8%8A%E7%95%B6%E5%88%9Dfork%E7%9A%84%E9%81%A0%E7%AB%AF%E5%84%B2%E5%AD%98%E5%BA%AB%E7%9A%84%E9%80%B2%E5%BA%A6">怎麼跟上當初fork的遠端儲存庫的進度</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="# 安裝"></a># 安裝</h2><ul>
 <li>Windows: 到 <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git 官網</a> 下載安裝檔案，並依照安裝步驟進行安裝。</li>
 <li>Linux: 使用套件管理工具安裝，例如在 Ubuntu 使用 <code>sudo apt-get install git</code> 安裝。</li>
 <li>macOS: 使用 Homebrew 安裝，輸入 <code>brew install git</code> 安裝。</li>
 </ul>
 <p>安裝完成後，開啟終端機，輸入 <code>git --version</code> 確認 Git 是否安裝成功。</p>
-<h2 id="設定-Git"><a href="#設定-Git" class="headerlink" title="設定 Git"></a>設定 Git</h2><h4 id="設定使用者名稱與郵件地址"><a href="#設定使用者名稱與郵件地址" class="headerlink" title="設定使用者名稱與郵件地址"></a>設定使用者名稱與郵件地址</h4><p>初次使用 Git 時，需要設定使用者名稱與郵件地址。</p>
+<h2 id="設定"><a href="#設定" class="headerlink" title="# 設定"></a># 設定</h2><h4 id="設定使用者名稱與郵件地址"><a href="#設定使用者名稱與郵件地址" class="headerlink" title="設定使用者名稱與郵件地址"></a>設定使用者名稱與郵件地址</h4><p>初次使用 Git 時，需要設定使用者名稱與郵件地址。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@example.com&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>設定完成後，可以透過 <code>git config --list</code> 確認是否設定成功。</p>
@@ -228,37 +267,171 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.st status</span><br><span class="line">git config --global alias.1 <span class="string">&quot;log --oneline --graph&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>未來可以透過 <code>git co</code> 代替 <code>git checkout</code>，<code>git st</code> 代替 <code>git status</code>，<code>git 1</code> 代替 <code>git log --oneline --graph</code>。</p>
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p><img src="/./Git-Intro/Git-Structure.jpg"></p>
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="# 名詞解釋"></a># 名詞解釋</h2><img src="/2024/09/23/Git-Intro/Git-Structure.jpg" class="" title="Git Structure">
+
 <ul>
 <li>工作目錄(Working Directory)：實際存放檔案的那個目錄。</li>
 <li>暫存區(Staging Area)：又稱索引(index)，是 Git 用來暫存檔案的地方，我們可以透過 <code>git add</code> 將檔案新增到暫存區。</li>
 <li>本地儲存庫(Local Repository)：是 Git 在本地端(自己的電腦)存放檔案的地方，我們可以透過 <code>git commit</code> 將暫存區的檔案提交到本地儲存庫。</li>
 <li>遠端儲存庫(Remote Repository)：是 Git 在遠端(例如伺服器)存放檔案的地方，我們可以透過 <code>git push</code> 將本地儲存庫的檔案提交到遠端儲存庫。</li>
-<li>HEAD：是一個指標，指向目前所在的提交(commit)，每次提交時，HEAD 會指向新的提交。</li>
+<li>HEAD：是一個指標，指向目前所在的提交，每次提交時，HEAD 會指向新的提交。</li>
+<li>斷頭(Detached HEAD)：當 HEAD 指向某個提交時，如果該提交不是任一本地分支的頭，則稱為斷頭。使用 <code>git checkout &lt;branch-name&gt;</code> 可以讓 HEAD 指向某個分支的頭，離開斷頭狀態。</li>
+<li>分支(Branch)：每個分支都是一條獨立的線，每條線上都有一個指標，指向該分支的最新提交。</li>
+<li>標籤(Tag)：標籤是一個指標，指向某個特定的提交，通常用來標記某個提交的重大意義，例如某個版本正式推出去給大家用了。</li>
 </ul>
-<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>用 <code>git init</code> 初始化目錄，讓該目錄下的檔案被 Git 管理。</p>
-<h4 id="查詢狀態"><a href="#查詢狀態" class="headerlink" title="查詢狀態"></a>查詢狀態</h4><p>用 <code>git status</code> 查詢現在這個目錄的狀態，包含工作目錄、暫存區、遠端儲存庫的狀態。</p>
-<h4 id="檢視紀錄"><a href="#檢視紀錄" class="headerlink" title="檢視紀錄"></a>檢視紀錄</h4><p>用 <code>git log</code> 檢視本地儲存庫(Local Repository)的紀錄，越新的紀錄會越在上面。</p>
-<p>用 <code>git log --oneline</code> 可以讓紀錄變成一行。</p>
-<p>用 <code>git log --oneline --graph</code> 可以讓紀錄變成圖形。</p>
-<p>如果只想檢視前 10 筆紀錄，可以使用 <code>git log --oneline --n 10</code>。</p>
-<p>如果只想檢視某個人的紀錄，可以使用 <code>git log --oneline --author=&quot;Your Name&quot;</code>。</p>
-<p>如果想搜尋提交訊息中符合某個關鍵字的紀錄，可以使用 <code>git log --oneline --grep=&quot;Your Keyword&quot;</code>。</p>
-<h4 id="新增檔案給-Git-管理"><a href="#新增檔案給-Git-管理" class="headerlink" title="新增檔案給 Git 管理"></a>新增檔案給 Git 管理</h4><p>用 <code>git add &lt;file&gt;</code> 將檔案新增到暫存區(Staging Area)。</p>
-<p>如果想要新增所有檔案，可以使用 <code>git add .</code>。</p>
-<h4 id="停止追蹤檔案"><a href="#停止追蹤檔案" class="headerlink" title="停止追蹤檔案"></a>停止追蹤檔案</h4><p>用 <code>git rm --cached &lt;file&gt;</code> 停止追蹤某個檔案，但不刪除該檔案。</p>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="# 常用指令"></a># 常用指令</h2><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git init</code></td>
+<td align="left">初始化目錄，讓該目錄下的檔案被 Git 管理。</td>
+</tr>
+</tbody></table>
+<h4 id="查詢狀態"><a href="#查詢狀態" class="headerlink" title="查詢狀態"></a>查詢狀態</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git status</code></td>
+<td align="left">查詢現在這個目錄的狀態，包含工作目錄、暫存區、遠端儲存庫的狀態。</td>
+</tr>
+</tbody></table>
+<h4 id="檢視紀錄"><a href="#檢視紀錄" class="headerlink" title="檢視紀錄"></a>檢視紀錄</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git log</code></td>
+<td align="left">檢視本地儲存庫的紀錄，越新的紀錄會越在上面。</td>
+</tr>
+<tr>
+<td align="left"><code>git log --oneline</code></td>
+<td align="left">讓紀錄變成一行。</td>
+</tr>
+<tr>
+<td align="left"><code>git log --oneline --graph</code></td>
+<td align="left">讓紀錄變成圖形。</td>
+</tr>
+<tr>
+<td align="left"><code>git log --oneline --author=&quot;Your Name&quot;</code></td>
+<td align="left">檢視某個人的紀錄。</td>
+</tr>
+<tr>
+<td align="left"><code>git log --oneline --grep=&quot;Your Keyword&quot;</code></td>
+<td align="left">檢視提交訊息中符合某個關鍵字的紀錄。</td>
+</tr>
+<tr>
+<td align="left"><code>git log --oneline --n 10</code></td>
+<td align="left">檢視前 10 筆紀錄。</td>
+</tr>
+</tbody></table>
+<h4 id="新增檔案給Git管理"><a href="#新增檔案給Git管理" class="headerlink" title="新增檔案給Git管理"></a>新增檔案給Git管理</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git add &lt;file&gt;</code></td>
+<td align="left">將檔案新增到暫存區。</td>
+</tr>
+<tr>
+<td align="left"><code>git add .</code></td>
+<td align="left">將所有檔案新增到暫存區。</td>
+</tr>
+</tbody></table>
+<h4 id="停止追蹤檔案"><a href="#停止追蹤檔案" class="headerlink" title="停止追蹤檔案"></a>停止追蹤檔案</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git rm --cached &lt;file&gt;</code></td>
+<td align="left">停止追蹤某個檔案，但不刪除該檔案。</td>
+</tr>
+</tbody></table>
 <h4 id="忽略檔案的追蹤"><a href="#忽略檔案的追蹤" class="headerlink" title="忽略檔案的追蹤"></a>忽略檔案的追蹤</h4><p>有些檔案不想要被 Git 追蹤，例如編譯後的檔案、暫存檔案等，可以建立並編輯 <code>.gitignore</code> 來忽略這些檔案。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.tmp</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line">img/*.png</span><br></pre></td></tr></table></figure>
 
-<p>注意 <code>.gitignore</code> 檔案本身也需要被 Git 追蹤，所以需要將 <code>.gitignore</code> 檔案新增到暫存區(Staging Area)。</p>
+<p>注意 <code>.gitignore</code> 檔案本身也需要被 Git 追蹤，所以需要將 <code>.gitignore</code> 檔案新增到暫存區。</p>
 <p>還要注意 <code>.gitignore</code> 只對尚未被追蹤的檔案有效，如果是已經被追蹤的檔案，需要先用 <code>git rm --cached</code> 來移除追蹤，才能生效。</p>
-<h4 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h4><p>用 <code>git commit -m &quot;Commit Message&quot;</code> 將暫存區(Staging Area)的檔案提交到本地儲存庫(Local Repository)。</p>
-<h4 id="修改提交訊息"><a href="#修改提交訊息" class="headerlink" title="修改提交訊息"></a>修改提交訊息</h4><p>用 <code>git commit --amend -m &quot;New Commit Message&quot;</code> 修改最近一次提交的訊息。</p>
-<h4 id="救回被刪除的檔案"><a href="#救回被刪除的檔案" class="headerlink" title="救回被刪除的檔案"></a>救回被刪除的檔案</h4><p>如果檔案被刪除，可以使用 <code>git checkout &lt;file&gt;</code> 來救回被刪除的檔案。 <code>git checkout</code> 在後面接檔名或路徑的時候，會從暫存區(Staging Area)拿出檔案，覆蓋掉工作目錄(Working Directory)的檔案。</p>
-<p>如果想要一口氣救回所有被刪除的檔案，可以使用 <code>git checkout .</code>。</p>
-<h4 id="拆掉最近一次的提交"><a href="#拆掉最近一次的提交" class="headerlink" title="拆掉最近一次的提交"></a>拆掉最近一次的提交</h4><p>如果想要用「相對」的方式拆掉前一次的提交，可以使用 <code>git reset HEAD^</code>，後面接的 <code>^</code> 代表 HEAD 節點前一次的提交。</p>
-<p>如果是前五次提交，可以使用 <code>git reset HEAD~5</code>。</p>
-<p>如果想要用「絕對」的方式拆掉某一次的提交，可以使用 <code>git reset &lt;commit-id&gt;</code>。</p>
+<h4 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git commit -m &quot;Commit Message&quot;</code></td>
+<td align="left">將暫存區的檔案提交到本地儲存庫。</td>
+</tr>
+</tbody></table>
+<h4 id="修改提交訊息"><a href="#修改提交訊息" class="headerlink" title="修改提交訊息"></a>修改提交訊息</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git commit --amend -m &quot;New Commit Message&quot;</code></td>
+<td align="left">修改最近一次提交的訊息。</td>
+</tr>
+</tbody></table>
+<h4 id="救回被刪除的檔案"><a href="#救回被刪除的檔案" class="headerlink" title="救回被刪除的檔案"></a>救回被刪除的檔案</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git checkout &lt;file&gt;</code></td>
+<td align="left">後面接檔名或路徑的時候，會從暫存區拿出檔案，覆蓋掉工作目錄的檔案。</td>
+</tr>
+<tr>
+<td align="left"><code>git checkout .</code></td>
+<td align="left">一口氣救回所有被刪除的檔案。</td>
+</tr>
+</tbody></table>
+<h4 id="拆掉最近一次的提交"><a href="#拆掉最近一次的提交" class="headerlink" title="拆掉最近一次的提交"></a>拆掉最近一次的提交</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git reset HEAD^</code></td>
+<td align="left">用「相對」的方式拆掉前一次的提交，後面接的 <code>^</code> 代表 HEAD 節點前一次的提交。</td>
+</tr>
+<tr>
+<td align="left"><code>git revert HEAD --no-edit</code></td>
+<td align="left">拆掉前一次的提交，Git 會自動新增一個新的提交(即比較有禮貌的 <code>git reset</code>，因為不會把舊的 commit 砍掉)。</td>
+</tr>
+<tr>
+<td align="left"><code>git reset HEAD~5</code></td>
+<td align="left">用「相對」的方式拆掉前五次提交，後面接的 <code>~</code> 再接數字，代表 HEAD 節點前五次的提交。</td>
+</tr>
+<tr>
+<td align="left"><code>git reset &lt;commit-id&gt;</code></td>
+<td align="left">用「絕對」的方式拆掉某一次的提交。</td>
+</tr>
+</tbody></table>
 <p><code>reset</code> 指令可以搭配以下三種常見參數使用：</p>
 <table>
 <thead>
@@ -277,21 +450,285 @@
 </tr>
 </tbody></table>
 <p>實際上 <code>reset</code> 比較像是「移動到」某個提交，那些被拆掉的檔案即便是 <code>--hard</code> 模式，也還是存在於本地儲存庫(Local Repository)中，只是被塞到某個角落而已(想救還是救的回來)。</p>
-<p>如果想救回用 <code>--hard</code> 模式丟掉的檔案，可以透過 <code>git reflog</code> 找到被拆掉的 commit id，再用 <code>git reset &lt;commit-id&gt; --hard</code> 救回檔案。</p>
-<h4 id="檢查目前有哪些分支"><a href="#檢查目前有哪些分支" class="headerlink" title="檢查目前有哪些分支"></a>檢查目前有哪些分支</h4><p>用 <code>git branch</code> 檢查目前有哪些分支，有星星符號的表示目前所在的分支。</p>
-<h4 id="新增分支"><a href="#新增分支" class="headerlink" title="新增分支"></a>新增分支</h4><p>用 <code>git branch &lt;branch-name&gt;</code> 新增一個分支。</p>
-<h4 id="重新命名分支"><a href="#重新命名分支" class="headerlink" title="重新命名分支"></a>重新命名分支</h4><p>用 <code>git branch -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;</code> 重新命名分支。</p>
-<h4 id="刪除分支"><a href="#刪除分支" class="headerlink" title="刪除分支"></a>刪除分支</h4><p>用 <code>git branch -d &lt;branch-name&gt;</code> 刪除某個分支，如果分支還沒合併到主分支，會刪除失敗。</p>
-<h4 id="切換分支"><a href="#切換分支" class="headerlink" title="切換分支"></a>切換分支</h4><p>用 <code>git checkout &lt;branch-name&gt;</code> 切換到某個分支。</p>
+<p>如果想救回用 <code>--hard</code> 模式丟掉的檔案，可以透過 <code>git reflog</code> 找到被拆掉的 commit id，再用 <code>git reset &lt;commit-id&gt; --hard</code> 救回檔案。注意 <code>reflog</code> 預設會保留30天。</p>
+<h4 id="檢查目前有哪些分支"><a href="#檢查目前有哪些分支" class="headerlink" title="檢查目前有哪些分支"></a>檢查目前有哪些分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git branch</code></td>
+<td align="left">檢查目前有哪些分支，有星星符號的表示目前所在的分支。</td>
+</tr>
+</tbody></table>
+<h4 id="新增分支"><a href="#新增分支" class="headerlink" title="新增分支"></a>新增分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git branch &lt;branch-name&gt;</code></td>
+<td align="left">新增一個分支。</td>
+</tr>
+</tbody></table>
+<h4 id="重新命名分支"><a href="#重新命名分支" class="headerlink" title="重新命名分支"></a>重新命名分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git branch -m &lt;old-branch-name&gt; &lt;new-branch-name&gt;</code></td>
+<td align="left">重新命名分支。</td>
+</tr>
+</tbody></table>
+<h4 id="刪除分支"><a href="#刪除分支" class="headerlink" title="刪除分支"></a>刪除分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git branch -d &lt;branch-name&gt;</code></td>
+<td align="left">刪除某個分支，如果分支還沒合併到主分支，會刪除失敗。</td>
+</tr>
+</tbody></table>
+<h4 id="切換分支"><a href="#切換分支" class="headerlink" title="切換分支"></a>切換分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git checkout &lt;branch-name&gt;</code></td>
+<td align="left">切換到某個分支。</td>
+</tr>
+</tbody></table>
 <p>Git 在切換分支的時候主要做了兩件事：</p>
 <ol>
 <li>把 HEAD 指向新的分支。</li>
 <li>更新暫存區和工作目錄，將檔案換成目前所在分支的檔案(但切換分支之前所做的修改還是會留在工作目錄不受影響)。</li>
 </ol>
 <p>也就是說，切換分支並不會影響已經在工作目錄的那些修改。</p>
-<h4 id="新增並切換分支"><a href="#新增並切換分支" class="headerlink" title="新增並切換分支"></a>新增並切換分支</h4><p>用 <code>git checkout -b &lt;branch-name&gt;</code> 新增一個分支並切換到該分支。</p>
-<h4 id="合併分支"><a href="#合併分支" class="headerlink" title="合併分支"></a>合併分支</h4><p>用 <code>git merge &lt;branch-name&gt;</code> 將某個分支合併到「目前所在」的分支。</p>
-<p>如果合併分支的時候希望無論如何都出現小耳朵，不要被 fast-forward 做優化，可以使用 <code>git merge --no-ff &lt;branch-name&gt;</code>。</p>
+<h4 id="新增並切換分支"><a href="#新增並切換分支" class="headerlink" title="新增並切換分支"></a>新增並切換分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git checkout -b &lt;branch-name&gt;</code></td>
+<td align="left">新增一個分支並切換到該分支。</td>
+</tr>
+<tr>
+<td align="left"><code>git checkout -b &lt;branch-name&gt; &lt;commit-id&gt;</code></td>
+<td align="left">從某個提交新增一個分支，並切換到該分支。</td>
+</tr>
+</tbody></table>
+<h4 id="合併分支"><a href="#合併分支" class="headerlink" title="合併分支"></a>合併分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git merge &lt;branch-name&gt;</code></td>
+<td align="left">將某個分支合併到「目前所在」的分支。</td>
+</tr>
+<tr>
+<td align="left"><code>git merge --no-ff &lt;branch-name&gt;</code></td>
+<td align="left">將某個分支合併到「目前所在」的分支，且無論如何都出現小耳朵，不被 fast-forward 做優化。</td>
+</tr>
+</tbody></table>
+<p>合併後的分支實際上已經沒有利用價值，可以自行決定刪除或保留。</p>
+<h4 id="使用rebase合併分支"><a href="#使用rebase合併分支" class="headerlink" title="使用rebase合併分支"></a>使用rebase合併分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git rebase &lt;branch-name&gt;</code></td>
+<td align="left">將目前所在的分支，以某個分支為基準重新定義。</td>
+</tr>
+</tbody></table>
+<p>對於已經推出去到遠端儲存庫的 commit，非必要的話盡量不要用 rebase 修改，以免造成遠端儲存庫的混亂。</p>
+<h4 id="取消rebase合併的分支"><a href="#取消rebase合併的分支" class="headerlink" title="取消rebase合併的分支"></a>取消rebase合併的分支</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git reset ORIG_HEAD --hard</code></td>
+<td align="left">取消透過 rebase 合併的分支。</td>
+</tr>
+</tbody></table>
+<p>針對一些比較危險的操作，Git 會把操作前的狀態記錄在 <code>ORIG_HEAD</code>，所以取消 rebase 合併的分支時，可以透過 <code>git reset ORIG_HEAD --hard</code> 救回來。</p>
+<h4 id="比較檔案差異"><a href="#比較檔案差異" class="headerlink" title="比較檔案差異"></a>比較檔案差異</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git diff</code></td>
+<td align="left">比較工作目錄和暫存區的差異。</td>
+</tr>
+<tr>
+<td align="left"><code>git diff --cached</code></td>
+<td align="left">比較暫存區和本地儲存庫的差異。</td>
+</tr>
+<tr>
+<td align="left"><code>git diff &lt;commit-id&gt; &lt;commit-id&gt;</code></td>
+<td align="left">比較兩個提交的差異。</td>
+</tr>
+</tbody></table>
+<h4 id="處理衝突"><a href="#處理衝突" class="headerlink" title="處理衝突"></a>處理衝突</h4><p>無論是一般的合併或是透過 rebase 合併，都會有衝突的問題，需要手動編輯解決。</p>
+<p>如果不是文字檔類型的衝突，需要用 <code>git checkout --theirs</code> 或 <code>git checkout --ours</code> 選擇要保留哪一邊的內容。</p>
+<p>編輯衝突的檔案後，需要重新用 <code>git add</code> 新增到暫存區，並用 <code>git commit</code> 提交到本地儲存庫。</p>
+<h4 id="加入標籤"><a href="#加入標籤" class="headerlink" title="加入標籤"></a>加入標籤</h4><p>分支跟標籤的差別在於，分支會隨著提交而移動，但標籤永遠指向某個特定的提交。</p>
+<table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git tag &lt;tag-name&gt; -a -m &quot;Tag Message&quot;</code></td>
+<td align="left">在目前的提交新增一個標籤。</td>
+</tr>
+<tr>
+<td align="left"><code>git tag &lt;tag-name&gt; &lt;commit-id&gt; -a -m &quot;Tag Message&quot;</code></td>
+<td align="left">在指定的提交新增一個標籤。</td>
+</tr>
+<tr>
+<td align="left"><code>git tag -d &lt;tag-name&gt;</code></td>
+<td align="left">刪除一個標籤。</td>
+</tr>
+</tbody></table>
+<h4 id="暫存"><a href="#暫存" class="headerlink" title="暫存"></a>暫存</h4><p>最直覺的暫存方式是先做一個簡單的提交，例如 <code>git commit -m &quot;WIP&quot;</code>，然後去做其他事情，之後再透過 <code>git reset</code> 把該提交拆掉。</p>
+<p>但這種方式有個缺點，就是每次拆掉提交後，都會需要重新做一次提交，如果修改的檔案很多，會需要花很多時間。</p>
+<p>這時候就可以使用 <code>git stash</code> 來暫存目前的工作目錄和暫存區的狀態，之後再把暫存套用到目前的工作目錄和暫存區。</p>
+<table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git stash</code></td>
+<td align="left">將目前的工作目錄和暫存區的狀態暫存起來。stash 可重複使用，越新的暫存編號越小。</td>
+</tr>
+<tr>
+<td align="left"><code>git stash list</code></td>
+<td align="left">檢視目前有哪些暫存。</td>
+</tr>
+<tr>
+<td align="left"><code>git stash apply &lt;stash-name&gt;</code></td>
+<td align="left">將某個暫存套用到目前的工作目錄和暫存區。</td>
+</tr>
+<tr>
+<td align="left"><code>git stash drop &lt;stash-name&gt;</code></td>
+<td align="left">刪除某個暫存。</td>
+</tr>
+<tr>
+<td align="left"><code>git stash pop</code></td>
+<td align="left">將最近一次的暫存套用到目前的工作目錄和暫存區，並刪除該暫存。</td>
+</tr>
+<tr>
+<td align="left"><code>git stash pop &lt;stash-name&gt;</code></td>
+<td align="left">將某個暫存套用到目前的工作目錄和暫存區，並刪除該暫存。</td>
+</tr>
+</tbody></table>
+<p>注意 <code>git stash</code> 預設只會暫存已經被追蹤的檔案，如果有些檔案是 <code>Untracked</code> 狀態則不會被暫存。</p>
+<p>如果想要把 <code>Untracked</code> 狀態的檔案也一起暫存，可以改用 <code>git stash -u</code> 來暫存。</p>
+<h4 id="推送遠端儲存庫"><a href="#推送遠端儲存庫" class="headerlink" title="推送遠端儲存庫"></a>推送遠端儲存庫</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git remote add &lt;remote-name&gt; &lt;remote-url&gt;</code></td>
+<td align="left">新增一個遠端儲存庫的代稱。</td>
+</tr>
+<tr>
+<td align="left"><code>git remote -v</code></td>
+<td align="left">檢視目前有哪些遠端儲存庫。</td>
+</tr>
+<tr>
+<td align="left"><code>git push &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td align="left">將本地儲存庫的某個分支推送到遠端儲存庫。</td>
+</tr>
+<tr>
+<td align="left"><code>git push -u &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td align="left">將本地儲存庫的某個分支推送到遠端儲存庫，並設定追蹤關係，未來推送或拉取都可以用 <code>git push</code> 或 <code>git pull</code> 簡化。</td>
+</tr>
+</tbody></table>
+<p>在 Git 中可以替每個分支設定一個上游分支(Upstream Branch)。</p>
+<h4 id="拉取遠端儲存庫"><a href="#拉取遠端儲存庫" class="headerlink" title="拉取遠端儲存庫"></a>拉取遠端儲存庫</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git fetch &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td align="left">將遠端儲存庫的某個分支拉取到本地儲存庫，但不合併。</td>
+</tr>
+<tr>
+<td align="left"><code>git pull &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td align="left">將遠端儲存庫的某個分支拉取到本地儲存庫，並合併。</td>
+</tr>
+<tr>
+<td align="left"><code>git pull --rebase &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td align="left">將遠端儲存庫的某個分支拉取到本地儲存庫，並透過 rebase 的方式合併。</td>
+</tr>
+</tbody></table>
+<p><code>git pull</code> 指令等同於 <code>git fetch</code> + <code>git merge</code>。</p>
+<h4 id="複製遠端儲存庫"><a href="#複製遠端儲存庫" class="headerlink" title="複製遠端儲存庫"></a>複製遠端儲存庫</h4><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>git clone &lt;remote-url&gt;</code></td>
+<td align="left">將遠端儲存庫複製到本地儲存庫。</td>
+</tr>
+<tr>
+<td align="left"><code>git clone &lt;remote-url&gt; &lt;local-directory&gt;</code></td>
+<td align="left">將遠端儲存庫複製到本地儲存庫，並指定本地儲存庫的目錄名稱。</td>
+</tr>
+<tr>
+<td align="left"><code>git fork &lt;remote-url&gt;</code></td>
+<td align="left">將某人的遠端儲存庫複製到自己的遠端儲存庫，並設定追蹤關係(可以做 pull request)。</td>
+</tr>
+</tbody></table>
+<h4 id="怎麼跟上當初fork的遠端儲存庫的進度"><a href="#怎麼跟上當初fork的遠端儲存庫的進度" class="headerlink" title="怎麼跟上當初fork的遠端儲存庫的進度"></a>怎麼跟上當初fork的遠端儲存庫的進度</h4><ol>
+<li>用 <code>git remote add upstream &lt;原作者的遠端儲存庫&gt;</code> 新增原作者的遠端儲存庫</li>
+<li>用 <code>git fetch upstream</code> 拉取原作者遠端儲存庫的最新進度到本地儲存庫</li>
+<li>用 <code>git merge upstream/main</code> 把原作者遠端儲存庫的最新進度合併到本地儲存庫</li>
+<li>用 <code>git push</code> 把本地儲存庫的最新進度推送到自己的遠端儲存庫</li>
+</ol>
 
     </div>
 
@@ -341,14 +778,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">10k</span>
+    <span title="Word count total">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">36 mins.</span>
+    <span title="Reading time total">42 mins.</span>
   </span>
 </div>
 
