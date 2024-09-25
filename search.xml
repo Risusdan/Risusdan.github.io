@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Fake Function Framework</title>
-    <url>/2024/09/18/FakeFunctionFramework-Intro/</url>
-    <content><![CDATA[<p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
-<span id="more"></span>
-
-]]></content>
-  </entry>
-  <entry>
     <title>程式碼格式化工具：ClangFormat</title>
     <url>/2024/09/17/ClangForamt/</url>
     <content><![CDATA[<p>厭倦了每次都要手動調整程式碼排版嗎？ ClangFormat 是一種程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
@@ -57,6 +49,14 @@
         <tag>C</tag>
         <tag>C++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Fake Function Framework</title>
+    <url>/2024/09/18/FakeFunctionFramework-Intro/</url>
+    <content><![CDATA[<p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
+<span id="more"></span>
+
+]]></content>
   </entry>
   <entry>
     <title>Git</title>
