@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"remove","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。">
+  <meta name="description" content="蒐集一些跟說話有關的結構化思考框架。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fake Function Framework">
-<meta property="og:url" content="http://example.com/2024/09/18/FakeFunctionFramework-Intro/index.html">
+<meta property="og:title" content="結構化思考：說話">
+<meta property="og:url" content="http://example.com/2024/10/02/StructuredThinking-Speaking/index.html">
 <meta property="og:site_name" content="Daniel&#39;s Blog">
-<meta property="og:description" content="寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。">
+<meta property="og:description" content="蒐集一些跟說話有關的結構化思考框架。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-09-18T13:37:54.000Z">
-<meta property="article:modified_time" content="2024-09-18T14:11:57.613Z">
+<meta property="article:published_time" content="2024-10-02T02:54:22.000Z">
+<meta property="article:modified_time" content="2024-10-02T03:29:23.146Z">
 <meta property="article:author" content="Daniel">
+<meta property="article:tag" content="Speaking">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2024/09/18/FakeFunctionFramework-Intro/">
+<link rel="canonical" href="http://example.com/2024/10/02/StructuredThinking-Speaking/">
 
 
 <script id="page-configurations">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>Fake Function Framework | Daniel's Blog</title>
+  <title>結構化思考：說話 | Daniel's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0QZBECJS9"></script>
     <script>
@@ -205,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/18/FakeFunctionFramework-Intro/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/02/StructuredThinking-Speaking/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Fake Function Framework
+          結構化思考：說話
         </h1>
 
         <div class="post-meta">
@@ -229,7 +230,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-09-18 21:37:54 / Modified: 22:11:57" itemprop="dateCreated datePublished" datetime="2024-09-18T21:37:54+08:00">2024-09-18</time>
+              <time title="Created: 2024-10-02 10:54:22 / Modified: 11:29:23" itemprop="dateCreated datePublished" datetime="2024-10-02T10:54:22+08:00">2024-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/StructuredThinking/" itemprop="url" rel="index"><span itemprop="name">StructuredThinking</span></a>
+                </span>
             </span>
 
           <br>
@@ -238,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>39</span>
+              <span>707</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -257,9 +267,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
+        <p>蒐集一些跟說話有關的結構化思考框架。</p>
 <span id="more"></span>
 
+<h2 id="溝通漏斗"><a href="#溝通漏斗" class="headerlink" title="溝通漏斗"></a>溝通漏斗</h2><p>溝通漏斗是指在工作中團隊溝通效率下降的一種現象。具體表現為：</p>
+<ul>
+<li>當一個人想表達 100% 的內容時，實際表達出來只有 80%。</li>
+<li>這 80% 的內容進入別人耳中，由於文化、知識背景等因素，只有 60% 被理解。</li>
+<li>實際被理解和消化的只有 40%。</li>
+<li>等到這 40% 被具體執行時，只剩下 20%。</li>
+<li>三個月後，信息可能只剩下 5%。</li>
+</ul>
+<h2 id="PREP"><a href="#PREP" class="headerlink" title="PREP"></a>PREP</h2><p>PREP 框架是一種用於「匯報」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Point (結論)：讓對方清楚接下來的談話方向</li>
+<li>Reason (依據)：透過有效的數據或事實，驗證結論的正確性</li>
+<li>Example (舉例)：透過舉例引起對方的共鳴</li>
+<li>Point (結論)：強化雙方對結論的共識</li>
+</ul>
+<p>例如：「調查結果顯示，顧客對我們的服務越來越滿意。從 2023 年 1 月到 2024 年 6 月，顧客滿意度從 70% 提升到 90%。前陣子我們邀請了顧客到公司參觀，他們對我們的環境和員工都提供了相當正面的評價。因此，我們可以得出結論，顧客對我們的服務非常滿意。」</p>
+<h2 id="FFC"><a href="#FFC" class="headerlink" title="FFC"></a>FFC</h2><p>FFC 框架是一種用於「讚美」的結構化思考框架，由以下三個部分組成：</p>
+<ul>
+<li>Feeling (感受)：說出內心感受</li>
+<li>Fact (事實)：陳述客觀事實</li>
+<li>Compare (比較)：將對方與同類人對比，讓對方認為這的確是事實</li>
+</ul>
+<p>例如：「我覺得這個產品真的很棒，因為它有很直覺的介面，而且使用起來很順暢，不像其他產品一樣卡卡的。」</p>
+<h2 id="RIDE"><a href="#RIDE" class="headerlink" title="RIDE"></a>RIDE</h2><p>RIDE 框架是一種用於「說服別人接收我的方法」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Risk (風險)：不採納我的方法的風險</li>
+<li>Interest (利益)：採納我的方法的好處</li>
+<li>Difference (差異)：舉例說明我的方法與其他方法的差異</li>
+<li>Effect (影響)：說明採納我的方法的負面影響 (太完美的方案，反而讓人覺得不真實)</li>
+</ul>
+<p>例如：「如果我們不採納 A 方法，我們的市場佔有率可能會下降，而且相較於 B 方法，A 方法的效率更高，只是需要多花一點時間。」</p>
+<h2 id="GROW"><a href="#GROW" class="headerlink" title="GROW"></a>GROW</h2><p>GROW 框架是一種用於「解決問題」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Goal (目標)：明確任務目標</li>
+<li>Reality (現況)：分析現況</li>
+<li>Options (選項)：提出可能的解決方案</li>
+<li>Wish (期望)：說明期望的動作</li>
+</ul>
+<p>例如：「你想要解決什麼問題？目前是什麼情況？有哪些可能的解決方案？你希望怎麼開始？」</p>
 
     </div>
 
@@ -268,6 +317,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Speaking/" rel="tag"># Speaking</a>
+          </div>
 
         
 
@@ -275,12 +327,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/09/18/GoogleTest-RunOnWindows/" rel="prev" title="GoogleTest：在 Windows 上執行">
-      <i class="fa fa-chevron-left"></i> GoogleTest：在 Windows 上執行
+    <a href="/2024/09/23/Git-Intro/" rel="prev" title="Git">
+      <i class="fa fa-chevron-left"></i> Git
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/09/21/GoogleTest-CodeCoverage/" rel="next" title="GoogleTest：測試覆蓋率">
-      GoogleTest：測試覆蓋率 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/10/02/StructuredThinking-Coding/" rel="next" title="結構化思考：寫程式">
+      結構化思考：寫程式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

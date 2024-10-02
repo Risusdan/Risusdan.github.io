@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"remove","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。">
+  <meta name="description" content="蒐集一些跟寫程式有關的結構化思考框架。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fake Function Framework">
-<meta property="og:url" content="http://example.com/2024/09/18/FakeFunctionFramework-Intro/index.html">
+<meta property="og:title" content="結構化思考：寫程式">
+<meta property="og:url" content="http://example.com/2024/10/02/StructuredThinking-Coding/index.html">
 <meta property="og:site_name" content="Daniel&#39;s Blog">
-<meta property="og:description" content="寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。">
+<meta property="og:description" content="蒐集一些跟寫程式有關的結構化思考框架。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-09-18T13:37:54.000Z">
-<meta property="article:modified_time" content="2024-09-18T14:11:57.613Z">
+<meta property="article:published_time" content="2024-10-02T03:22:12.000Z">
+<meta property="article:modified_time" content="2024-10-02T03:29:20.440Z">
 <meta property="article:author" content="Daniel">
+<meta property="article:tag" content="Coding">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2024/09/18/FakeFunctionFramework-Intro/">
+<link rel="canonical" href="http://example.com/2024/10/02/StructuredThinking-Coding/">
 
 
 <script id="page-configurations">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>Fake Function Framework | Daniel's Blog</title>
+  <title>結構化思考：寫程式 | Daniel's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0QZBECJS9"></script>
     <script>
@@ -205,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/18/FakeFunctionFramework-Intro/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/02/StructuredThinking-Coding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Fake Function Framework
+          結構化思考：寫程式
         </h1>
 
         <div class="post-meta">
@@ -229,7 +230,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-09-18 21:37:54 / Modified: 22:11:57" itemprop="dateCreated datePublished" datetime="2024-09-18T21:37:54+08:00">2024-09-18</time>
+              <time title="Created: 2024-10-02 11:22:12 / Modified: 11:29:20" itemprop="dateCreated datePublished" datetime="2024-10-02T11:22:12+08:00">2024-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/StructuredThinking/" itemprop="url" rel="index"><span itemprop="name">StructuredThinking</span></a>
+                </span>
             </span>
 
           <br>
@@ -238,7 +248,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>39</span>
+              <span>152</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -257,9 +267,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>寫 C&#x2F;C++ 單元測試的時候遇到依賴函數要怎麼隔離? 也許導入 Fake Function Framework 是個更簡單好用的方法。</p>
+        <p>蒐集一些跟寫程式有關的結構化思考框架。</p>
 <span id="more"></span>
 
+<h2 id="REACTO"><a href="#REACTO" class="headerlink" title="REACTO"></a>REACTO</h2><p>REACTO 框架是一種用於「面試解題」的結構化思考框架，由以下六個部分組成：</p>
+<ul>
+<li>Repeat (重複)：重複題目，確認自己對題目的理解跟面試官一致</li>
+<li>Example (舉例)：用簡單的例子確認自己對 input&#x2F;behavior&#x2F;output 的理解是否正確</li>
+<li>Approaches (解法)：提出幾個可能的解法</li>
+<li>Coding (寫程式)：寫出程式碼</li>
+<li>Testing (測試)：測試自己的程式碼是否正確</li>
+<li>Optimize (優化)：優化自己的程式碼 (效能、可讀性、可維護性)</li>
+</ul>
 
     </div>
 
@@ -268,6 +287,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Coding/" rel="tag"># Coding</a>
+          </div>
 
         
 
@@ -275,13 +297,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/09/18/GoogleTest-RunOnWindows/" rel="prev" title="GoogleTest：在 Windows 上執行">
-      <i class="fa fa-chevron-left"></i> GoogleTest：在 Windows 上執行
+    <a href="/2024/10/02/StructuredThinking-Speaking/" rel="prev" title="結構化思考：說話">
+      <i class="fa fa-chevron-left"></i> 結構化思考：說話
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/09/21/GoogleTest-CodeCoverage/" rel="next" title="GoogleTest：測試覆蓋率">
-      GoogleTest：測試覆蓋率 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

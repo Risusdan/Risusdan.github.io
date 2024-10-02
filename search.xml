@@ -59,6 +59,67 @@
 ]]></content>
   </entry>
   <entry>
+    <title>GoogleTest：斷言列表</title>
+    <url>/2024/09/18/GoogleTest-Assertions/</url>
+    <content><![CDATA[<p>本文列出 GoogleTest 支援的斷言。</p>
+<span id="more"></span>
+
+<p>大部分的斷言都有 <code>EXPECT_</code> 和 <code>ASSERT_</code> 兩種版本：</p>
+<ul>
+<li><code>EXPECT_</code> ：在失敗時會產生非致命失敗，允許當前測試案例繼續執行</li>
+<li><code>ASSERT_</code> ：在失敗時會產生致命失敗，中斷當前的測試案例</li>
+</ul>
+<p>另外所有斷言都支援以 <code>&lt;&lt;</code> 運算子串流自訂的失敗訊息，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">EXPECT_TRUE</span>(my_condition) &lt;&lt; <span class="string">&quot;Oh, my condition is not true&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generalized-Assertion"><a href="#Generalized-Assertion" class="headerlink" title="Generalized Assertion"></a>Generalized Assertion</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `value` matches the `matcher`.</span></span><br><span class="line"><span class="built_in">EXPECT_THAT</span>(value, matcher)</span><br><span class="line"><span class="built_in">ASSERT_THAT</span>(value, matcher)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Boolean-Conditions"><a href="#Boolean-Conditions" class="headerlink" title="Boolean Conditions"></a>Boolean Conditions</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `condition` is true.</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `condition` is false.</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 == val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否相等</li>
+<li>如果用在兩個字串，會測試它們是否在相同的記憶體位置，而不是它們是否有相同的值。使用 <code>EXPECT_STREQ</code> 比較字串的值</li>
+<li>當比較指標是否為 <code>NULL</code> 時，使用 <code>EXPECT_EQ(ptr, nullptr)</code> 代替 <code>EXPECT_EQ(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 != val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否不相等</li>
+<li>如果用在兩個字串，會測試它們是否在不同的記憶體位置，而不是它們是否有不同的值。使用 <code>EXPECT_STRNE</code> 比較字串的值</li>
+<li>當比較指標是否不為 <code>NULL</code> 時，使用 <code>EXPECT_NE(ptr, nullptr)</code> 代替 <code>EXPECT_NE(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 &lt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &lt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h2><ul>
+<li>以下斷言比較兩個 <strong>C 字串</strong>。要比較兩個 <code>string</code> 對象，請使用 <code>EXPECT_EQ</code> 或 <code>EXPECT_NE</code> 代替。</li>
+<li>比較字串與 <code>NULL</code> 時，使用 <code>EXPECT_EQ(c_string, nullptr)</code> 或 <code>EXPECT_NE(c_string, nullptr)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1, str2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Floating-Point-Comparison"><a href="#Floating-Point-Comparison" class="headerlink" title="Floating-Point Comparison"></a>Floating-Point Comparison</h2><ul>
+<li>由於四捨五入的誤差，兩個浮點數完全相等的機率非常低，所以 <code>EXPECT_EQ</code> 不適合用於浮點數比較。一般來說，為了讓浮點數比較有意義，使用者需要仔細選擇 <strong>誤差範圍</strong>。</li>
+<li>GoogleTest 也提供使用 ULPs 的斷言，ULPs(Units in the Last Place) 是單位在最低有效位數的縮寫，詳細請參考 <a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers</a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two float values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two double values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the difference between `val1` and `val2` </span></span><br><span class="line"><span class="comment">// does not exceed the absolute error bound `abs_error`.</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1, val2, abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1, val2, abs_error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><ul>
+<li>以下斷言驗證某段程式碼是否拋出例外。需要啟用建置環境中的例外。</li>
+<li>程式碼區塊可以包含多個語句，例如：<code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git</title>
     <url>/2024/09/23/Git-Intro/</url>
     <content><![CDATA[<p>記錄一些常用的 Git 指令。</p>
@@ -583,67 +644,6 @@
       <categories>
         <category>VersionControl</category>
       </categories>
-  </entry>
-  <entry>
-    <title>GoogleTest：斷言列表</title>
-    <url>/2024/09/18/GoogleTest-Assertions/</url>
-    <content><![CDATA[<p>本文列出 GoogleTest 支援的斷言。</p>
-<span id="more"></span>
-
-<p>大部分的斷言都有 <code>EXPECT_</code> 和 <code>ASSERT_</code> 兩種版本：</p>
-<ul>
-<li><code>EXPECT_</code> ：在失敗時會產生非致命失敗，允許當前測試案例繼續執行</li>
-<li><code>ASSERT_</code> ：在失敗時會產生致命失敗，中斷當前的測試案例</li>
-</ul>
-<p>另外所有斷言都支援以 <code>&lt;&lt;</code> 運算子串流自訂的失敗訊息，例如：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">EXPECT_TRUE</span>(my_condition) &lt;&lt; <span class="string">&quot;Oh, my condition is not true&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Generalized-Assertion"><a href="#Generalized-Assertion" class="headerlink" title="Generalized Assertion"></a>Generalized Assertion</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `value` matches the `matcher`.</span></span><br><span class="line"><span class="built_in">EXPECT_THAT</span>(value, matcher)</span><br><span class="line"><span class="built_in">ASSERT_THAT</span>(value, matcher)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Boolean-Conditions"><a href="#Boolean-Conditions" class="headerlink" title="Boolean Conditions"></a>Boolean Conditions</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `condition` is true.</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `condition` is false.</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 == val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以比較兩個指標是否相等</li>
-<li>如果用在兩個字串，會測試它們是否在相同的記憶體位置，而不是它們是否有相同的值。使用 <code>EXPECT_STREQ</code> 比較字串的值</li>
-<li>當比較指標是否為 <code>NULL</code> 時，使用 <code>EXPECT_EQ(ptr, nullptr)</code> 代替 <code>EXPECT_EQ(ptr, NULL)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 != val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以比較兩個指標是否不相等</li>
-<li>如果用在兩個字串，會測試它們是否在不同的記憶體位置，而不是它們是否有不同的值。使用 <code>EXPECT_STRNE</code> 比較字串的值</li>
-<li>當比較指標是否不為 <code>NULL</code> 時，使用 <code>EXPECT_NE(ptr, nullptr)</code> 代替 <code>EXPECT_NE(ptr, NULL)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 &lt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &lt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h2><ul>
-<li>以下斷言比較兩個 <strong>C 字串</strong>。要比較兩個 <code>string</code> 對象，請使用 <code>EXPECT_EQ</code> 或 <code>EXPECT_NE</code> 代替。</li>
-<li>比較字串與 <code>NULL</code> 時，使用 <code>EXPECT_EQ(c_string, nullptr)</code> 或 <code>EXPECT_NE(c_string, nullptr)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1, str2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Floating-Point-Comparison"><a href="#Floating-Point-Comparison" class="headerlink" title="Floating-Point Comparison"></a>Floating-Point Comparison</h2><ul>
-<li>由於四捨五入的誤差，兩個浮點數完全相等的機率非常低，所以 <code>EXPECT_EQ</code> 不適合用於浮點數比較。一般來說，為了讓浮點數比較有意義，使用者需要仔細選擇 <strong>誤差範圍</strong>。</li>
-<li>GoogleTest 也提供使用 ULPs 的斷言，ULPs(Units in the Last Place) 是單位在最低有效位數的縮寫，詳細請參考 <a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers</a></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two float values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two double values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the difference between `val1` and `val2` </span></span><br><span class="line"><span class="comment">// does not exceed the absolute error bound `abs_error`.</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1, val2, abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1, val2, abs_error)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><ul>
-<li>以下斷言驗證某段程式碼是否拋出例外。需要啟用建置環境中的例外。</li>
-<li>程式碼區塊可以包含多個語句，例如：<code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>GoogleTest</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-        <tag>UnitTest</tag>
-      </tags>
   </entry>
   <entry>
     <title>GoogleTest：測試覆蓋率</title>
@@ -1288,6 +1288,82 @@
       </categories>
       <tags>
         <tag>EnglishWriting</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>結構化思考：寫程式</title>
+    <url>/2024/10/02/StructuredThinking-Coding/</url>
+    <content><![CDATA[<p>蒐集一些跟寫程式有關的結構化思考框架。</p>
+<span id="more"></span>
+
+<h2 id="REACTO"><a href="#REACTO" class="headerlink" title="REACTO"></a>REACTO</h2><p>REACTO 框架是一種用於「面試解題」的結構化思考框架，由以下六個部分組成：</p>
+<ul>
+<li>Repeat (重複)：重複題目，確認自己對題目的理解跟面試官一致</li>
+<li>Example (舉例)：用簡單的例子確認自己對 input&#x2F;behavior&#x2F;output 的理解是否正確</li>
+<li>Approaches (解法)：提出幾個可能的解法</li>
+<li>Coding (寫程式)：寫出程式碼</li>
+<li>Testing (測試)：測試自己的程式碼是否正確</li>
+<li>Optimize (優化)：優化自己的程式碼 (效能、可讀性、可維護性)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>StructuredThinking</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>結構化思考：說話</title>
+    <url>/2024/10/02/StructuredThinking-Speaking/</url>
+    <content><![CDATA[<p>蒐集一些跟說話有關的結構化思考框架。</p>
+<span id="more"></span>
+
+<h2 id="溝通漏斗"><a href="#溝通漏斗" class="headerlink" title="溝通漏斗"></a>溝通漏斗</h2><p>溝通漏斗是指在工作中團隊溝通效率下降的一種現象。具體表現為：</p>
+<ul>
+<li>當一個人想表達 100% 的內容時，實際表達出來只有 80%。</li>
+<li>這 80% 的內容進入別人耳中，由於文化、知識背景等因素，只有 60% 被理解。</li>
+<li>實際被理解和消化的只有 40%。</li>
+<li>等到這 40% 被具體執行時，只剩下 20%。</li>
+<li>三個月後，信息可能只剩下 5%。</li>
+</ul>
+<h2 id="PREP"><a href="#PREP" class="headerlink" title="PREP"></a>PREP</h2><p>PREP 框架是一種用於「匯報」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Point (結論)：讓對方清楚接下來的談話方向</li>
+<li>Reason (依據)：透過有效的數據或事實，驗證結論的正確性</li>
+<li>Example (舉例)：透過舉例引起對方的共鳴</li>
+<li>Point (結論)：強化雙方對結論的共識</li>
+</ul>
+<p>例如：「調查結果顯示，顧客對我們的服務越來越滿意。從 2023 年 1 月到 2024 年 6 月，顧客滿意度從 70% 提升到 90%。前陣子我們邀請了顧客到公司參觀，他們對我們的環境和員工都提供了相當正面的評價。因此，我們可以得出結論，顧客對我們的服務非常滿意。」</p>
+<h2 id="FFC"><a href="#FFC" class="headerlink" title="FFC"></a>FFC</h2><p>FFC 框架是一種用於「讚美」的結構化思考框架，由以下三個部分組成：</p>
+<ul>
+<li>Feeling (感受)：說出內心感受</li>
+<li>Fact (事實)：陳述客觀事實</li>
+<li>Compare (比較)：將對方與同類人對比，讓對方認為這的確是事實</li>
+</ul>
+<p>例如：「我覺得這個產品真的很棒，因為它有很直覺的介面，而且使用起來很順暢，不像其他產品一樣卡卡的。」</p>
+<h2 id="RIDE"><a href="#RIDE" class="headerlink" title="RIDE"></a>RIDE</h2><p>RIDE 框架是一種用於「說服別人接收我的方法」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Risk (風險)：不採納我的方法的風險</li>
+<li>Interest (利益)：採納我的方法的好處</li>
+<li>Difference (差異)：舉例說明我的方法與其他方法的差異</li>
+<li>Effect (影響)：說明採納我的方法的負面影響 (太完美的方案，反而讓人覺得不真實)</li>
+</ul>
+<p>例如：「如果我們不採納 A 方法，我們的市場佔有率可能會下降，而且相較於 B 方法，A 方法的效率更高，只是需要多花一點時間。」</p>
+<h2 id="GROW"><a href="#GROW" class="headerlink" title="GROW"></a>GROW</h2><p>GROW 框架是一種用於「解決問題」的結構化思考框架，由以下四個部分組成：</p>
+<ul>
+<li>Goal (目標)：明確任務目標</li>
+<li>Reality (現況)：分析現況</li>
+<li>Options (選項)：提出可能的解決方案</li>
+<li>Wish (期望)：說明期望的動作</li>
+</ul>
+<p>例如：「你想要解決什麼問題？目前是什麼情況？有哪些可能的解決方案？你希望怎麼開始？」</p>
+]]></content>
+      <categories>
+        <category>StructuredThinking</category>
+      </categories>
+      <tags>
+        <tag>Speaking</tag>
       </tags>
   </entry>
   <entry>
