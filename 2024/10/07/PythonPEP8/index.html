@@ -28,7 +28,7 @@
 <meta property="og:description" content="PEP8 是 Python 中最廣泛使用的程式碼風格指南，主要目的是提高程式碼的可讀性。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-07T12:29:36.000Z">
-<meta property="article:modified_time" content="2024-10-07T13:12:38.364Z">
+<meta property="article:modified_time" content="2024-10-09T00:49:29.837Z">
 <meta property="article:author" content="Daniel">
 <meta property="article:tag" content="CodingStyle">
 <meta name="twitter:card" content="summary">
@@ -228,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2024-10-07 20:29:36 / Modified: 21:12:38" itemprop="dateCreated datePublished" datetime="2024-10-07T20:29:36+08:00">2024-10-07</time>
+              <time title="Created: 2024-10-07 20:29:36" itemprop="dateCreated datePublished" datetime="2024-10-07T20:29:36+08:00">2024-10-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-10-09 08:49:29" itemprop="dateModified" datetime="2024-10-09T08:49:29+08:00">2024-10-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,7 +254,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>33</span>
+              <span>325</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -270,8 +276,29 @@
         <p>PEP8 是 Python 中最廣泛使用的程式碼風格指南，主要目的是提高程式碼的可讀性。</p>
 <span id="more"></span>
 
-<p>XXX</p>
-
+<h2 id="什麼是-PEP8"><a href="#什麼是-PEP8" class="headerlink" title="什麼是 PEP8 ?"></a>什麼是 PEP8 ?</h2><ul>
+<li>PEP 是 Python Enhancement Proposal 的縮寫</li>
+<li>一開始是創始人 Guido van Rossum 和其它 Python 開發者共同製定的一套規範，用於統一大家撰寫程式碼時的風格，提高程式碼的可讀性、一致性和可維護性</li>
+<li>後來被 Python 社區廣泛接受，成為 Python 的官方標準</li>
+<li>注意不要過度遵守 PEP8，有些規範在實際開發中可能不適用，還是要以專案為主</li>
+<li>詳細條文可以參考 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0008/">PEP8 官方文件</a></li>
+</ul>
+<h2 id="自動格式化工具"><a href="#自動格式化工具" class="headerlink" title="自動格式化工具"></a>自動格式化工具</h2><ul>
+<li>自動格式化工具可以幫助我們快速地將程式碼格式化成 PEP8 的格式</li>
+<li>常用的自動格式化工具<ul>
+<li><code>autopep8</code>：autopep8 automatically formats Python code to conform to the PEP 8 style guide. (GitHub star 4.6k)</li>
+<li><code>yapf</code>：YAPF is a Python formatter based on clang-format. (GitHub star 13.8k)</li>
+<li><code>black</code>：Black is the uncompromising Python code formatter. (GitHub star 38.7k)</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何在-vscode-使用-black-格式化程式碼"><a href="#如何在-vscode-使用-black-格式化程式碼" class="headerlink" title="如何在 vscode 使用 black 格式化程式碼?"></a>如何在 vscode 使用 black 格式化程式碼?</h2><ul>
+<li>執行 <code>pip install black</code></li>
+<li>安裝 <code>Black Formatter</code> Extension</li>
+<li>對著想要格式化的程式碼按右鍵，選擇 <code>Format Document</code></li>
+<li>也可以透過 vscode 設定，勾選 <code>Editor: Format On Save</code> 在儲存檔案時自動格式化</li>
+</ul>
+<h2 id="一些常用的-PEP8-規範"><a href="#一些常用的-PEP8-規範" class="headerlink" title="一些常用的 PEP8 規範"></a>一些常用的 PEP8 規範</h2>
     </div>
 
     
@@ -292,7 +319,10 @@
     <a href="/2024/10/07/AWhirlwindTourOfPython/" rel="prev" title="Python 快速入門">
       <i class="fa fa-chevron-left"></i> Python 快速入門
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/10/09/PythonFileProcess/" rel="next" title="PythonFileProcess">
+      PythonFileProcess <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -355,7 +385,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
