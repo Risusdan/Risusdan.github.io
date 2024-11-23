@@ -625,6 +625,103 @@
 ]]></content>
   </entry>
   <entry>
+    <title>GoogleTest：斷言列表</title>
+    <url>/2024/09/18/GoogleTest-Assertions/</url>
+    <content><![CDATA[<p>本文列出 GoogleTest 支援的斷言。</p>
+<span id="more"></span>
+
+<p>大部分的斷言都有 <code>EXPECT_</code> 和 <code>ASSERT_</code> 兩種版本：</p>
+<ul>
+<li><code>EXPECT_</code> ：在失敗時會產生非致命失敗，允許當前測試案例繼續執行</li>
+<li><code>ASSERT_</code> ：在失敗時會產生致命失敗，中斷當前的測試案例</li>
+</ul>
+<p>另外所有斷言都支援以 <code>&lt;&lt;</code> 運算子串流自訂的失敗訊息，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">EXPECT_TRUE</span>(my_condition) &lt;&lt; <span class="string">&quot;Oh, my condition is not true&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generalized-Assertion"><a href="#Generalized-Assertion" class="headerlink" title="Generalized Assertion"></a>Generalized Assertion</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `value` matches the `matcher`.</span></span><br><span class="line"><span class="built_in">EXPECT_THAT</span>(value, matcher)</span><br><span class="line"><span class="built_in">ASSERT_THAT</span>(value, matcher)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Boolean-Conditions"><a href="#Boolean-Conditions" class="headerlink" title="Boolean Conditions"></a>Boolean Conditions</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `condition` is true.</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `condition` is false.</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 == val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否相等</li>
+<li>如果用在兩個字串，會測試它們是否在相同的記憶體位置，而不是它們是否有相同的值。使用 <code>EXPECT_STREQ</code> 比較字串的值</li>
+<li>當比較指標是否為 <code>NULL</code> 時，使用 <code>EXPECT_EQ(ptr, nullptr)</code> 代替 <code>EXPECT_EQ(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 != val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以比較兩個指標是否不相等</li>
+<li>如果用在兩個字串，會測試它們是否在不同的記憶體位置，而不是它們是否有不同的值。使用 <code>EXPECT_STRNE</code> 比較字串的值</li>
+<li>當比較指標是否不為 <code>NULL</code> 時，使用 <code>EXPECT_NE(ptr, nullptr)</code> 代替 <code>EXPECT_NE(ptr, NULL)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 &lt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &lt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h2><ul>
+<li>以下斷言比較兩個 <strong>C 字串</strong>。要比較兩個 <code>string</code> 對象，請使用 <code>EXPECT_EQ</code> 或 <code>EXPECT_NE</code> 代替。</li>
+<li>比較字串與 <code>NULL</code> 時，使用 <code>EXPECT_EQ(c_string, nullptr)</code> 或 <code>EXPECT_NE(c_string, nullptr)</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1, str2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Floating-Point-Comparison"><a href="#Floating-Point-Comparison" class="headerlink" title="Floating-Point Comparison"></a>Floating-Point Comparison</h2><ul>
+<li>由於四捨五入的誤差，兩個浮點數完全相等的機率非常低，所以 <code>EXPECT_EQ</code> 不適合用於浮點數比較。一般來說，為了讓浮點數比較有意義，使用者需要仔細選擇 <strong>誤差範圍</strong>。</li>
+<li>GoogleTest 也提供使用 ULPs 的斷言，ULPs(Units in the Last Place) 是單位在最低有效位數的縮寫，詳細請參考 <a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers</a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two float values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two double values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the difference between `val1` and `val2` </span></span><br><span class="line"><span class="comment">// does not exceed the absolute error bound `abs_error`.</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1, val2, abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1, val2, abs_error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><ul>
+<li>以下斷言驗證某段程式碼是否拋出例外。需要啟用建置環境中的例外。</li>
+<li>程式碼區塊可以包含多個語句，例如：<code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GoogleTest：測試覆蓋率</title>
+    <url>/2024/09/21/GoogleTest-CodeCoverage/</url>
+    <content><![CDATA[<p>本文說明如何在執行單元測試後，再透過 gcov 執行單元測試覆蓋率分析。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-gcov"><a href="#什麼是-gcov" class="headerlink" title="什麼是 gcov?"></a>什麼是 gcov?</h2><p>gcov 是一個與 GCC 編譯器配套的程式碼覆蓋率分析工具。它能夠幫助使用者了解執行單元測試時，待測程式中哪些部分有被執行、哪些部分未被執行，從而評估測試的完整性。</p>
+<h2 id="什麼是-gcovr"><a href="#什麼是-gcovr" class="headerlink" title="什麼是 gcovr?"></a>什麼是 gcovr?</h2><p>gcovr 是一個用於生成程式碼覆蓋率報告的 Python 工具，它基於 gcov 的輸出來生成 HTML 格式的報告。</p>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><ul>
+<li>gcov 是 GCC 的一部分，因此只需要有安裝 GCC 即可。</li>
+<li>gcovr 需要透過 Python 和 pip 執行命令 <code>pip install gcovr</code> 安裝。</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在編譯時，加上 <code>-fprofile-arcs</code> 和 <code>-ftest-coverage</code> 選項，即可生成 gcov 所需的資訊。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">g++ -fprofile-arcs -ftest-coverage add.cpp add_test.cpp -o TestResult</span><br></pre></td></tr></table></figure>
+
+<p>在編譯後，專案目錄下會多出一些副檔名為 <code>.gcno</code> 的檔案，這些檔案包含了編譯時的覆蓋率資訊。</p>
+<p>在執行單元測試後，還會多出一些副檔名為 <code>.gcda</code> 的檔案，這些檔案包含了執行時的覆蓋率資訊。</p>
+<p>最後，在專案根目錄執行以下命令，可以生成名為 <code>coverage.html</code> 的覆蓋率報告：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gcovr -r . --html --html-details -o coverage.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="搭配-Makefile-使用"><a href="#搭配-Makefile-使用" class="headerlink" title="搭配 Makefile 使用"></a>搭配 Makefile 使用</h2><p>參考 <a href="/2024/09/18/GoogleTest-RunOnWindows/" title="GoogleTest：在 Windows 上執行">GoogleTest：在 Windows 上執行</a> ，基於文中的 Makefile 我們可以修改成：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Compiler and flags</span></span><br><span class="line">CXX := g++</span><br><span class="line">CXXFLAGS := -std=c++14 -Wall -Wextra -I/mingw32/<span class="keyword">include</span> -ftest-coverage -fprofile-arcs</span><br><span class="line">LDFLAGS := -L/mingw32/lib -lgtest -lgtest_main -pthread -lgcov</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directories</span></span><br><span class="line">SRC_DIR := src</span><br><span class="line">TEST_DIR := test</span><br><span class="line">BUILD_DIR := build</span><br><span class="line">BIN_DIR := bin</span><br><span class="line">COVERAGE_DIR := coverage</span><br><span class="line"></span><br><span class="line"><span class="comment"># Target executable</span></span><br><span class="line">TARGET := <span class="variable">$(BIN_DIR)</span>/TestResult.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Source files</span></span><br><span class="line">SRCS := <span class="variable">$(<span class="built_in">wildcard</span> <span class="variable">$(SRC_DIR)</span>/*/*.cpp)</span></span><br><span class="line">SRCS += <span class="variable">$(<span class="built_in">wildcard</span> <span class="variable">$(TEST_DIR)</span>/*/*.cpp)</span></span><br><span class="line">OBJS := <span class="variable">$(<span class="built_in">patsubst</span> <span class="variable">$(SRC_DIR)</span>/%.cpp,<span class="variable">$(BUILD_DIR)</span>/%.o,<span class="variable">$(SRCS)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ensure build, bin, and coverage directories exist</span></span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span>)</span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span>)</span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Main target</span></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Linking</span></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(OBJS)</span> -o <span class="variable">$@</span> <span class="variable">$(LDFLAGS)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compilation</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/%.o: <span class="variable">$(SRC_DIR)</span>/%.cpp</span><br><span class="line">	@if not exist <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>) mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>)</span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean target</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run target</span></span><br><span class="line"><span class="section">run: <span class="variable">$(TARGET)</span></span></span><br><span class="line">	<span class="variable">$(TARGET)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Coverage target</span></span><br><span class="line"><span class="section">coverage: <span class="variable">$(TARGET)</span></span></span><br><span class="line">	<span class="variable">$(TARGET)</span></span><br><span class="line">	gcovr -r . --html --html-details -o <span class="variable">$(COVERAGE_DIR)</span>/coverage.html --exclude <span class="string">&quot;src/example/.*&quot;</span></span><br><span class="line">	@echo Coverage report generated. Opening in default browser...</span><br><span class="line">	@python -c <span class="string">&quot;import webbrowser; webbrowser.open(&#x27;file://<span class="variable">$(CURDIR)</span>/<span class="variable">$(COVERAGE_DIR)</span>/coverage.html&#x27;)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: all clean run coverage</span></span><br></pre></td></tr></table></figure>
+
+<p>在終端機執行以下命令即可生成覆蓋率報告：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">make coverage</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>GoogleTest</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>UnitTest</tag>
+        <tag>CodeCoverage</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git</title>
     <url>/2024/09/23/Git-Intro/</url>
     <content><![CDATA[<p>記錄一些常用的 Git 指令。</p>
@@ -1151,103 +1248,6 @@
       </categories>
   </entry>
   <entry>
-    <title>GoogleTest：斷言列表</title>
-    <url>/2024/09/18/GoogleTest-Assertions/</url>
-    <content><![CDATA[<p>本文列出 GoogleTest 支援的斷言。</p>
-<span id="more"></span>
-
-<p>大部分的斷言都有 <code>EXPECT_</code> 和 <code>ASSERT_</code> 兩種版本：</p>
-<ul>
-<li><code>EXPECT_</code> ：在失敗時會產生非致命失敗，允許當前測試案例繼續執行</li>
-<li><code>ASSERT_</code> ：在失敗時會產生致命失敗，中斷當前的測試案例</li>
-</ul>
-<p>另外所有斷言都支援以 <code>&lt;&lt;</code> 運算子串流自訂的失敗訊息，例如：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">EXPECT_TRUE</span>(my_condition) &lt;&lt; <span class="string">&quot;Oh, my condition is not true&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Generalized-Assertion"><a href="#Generalized-Assertion" class="headerlink" title="Generalized Assertion"></a>Generalized Assertion</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `value` matches the `matcher`.</span></span><br><span class="line"><span class="built_in">EXPECT_THAT</span>(value, matcher)</span><br><span class="line"><span class="built_in">ASSERT_THAT</span>(value, matcher)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Boolean-Conditions"><a href="#Boolean-Conditions" class="headerlink" title="Boolean Conditions"></a>Boolean Conditions</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `condition` is true.</span></span><br><span class="line"><span class="built_in">EXPECT_TRUE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_TRUE</span>(condition)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `condition` is false.</span></span><br><span class="line"><span class="built_in">EXPECT_FALSE</span>(condition)</span><br><span class="line"><span class="built_in">ASSERT_FALSE</span>(condition)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 == val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_EQ</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以比較兩個指標是否相等</li>
-<li>如果用在兩個字串，會測試它們是否在相同的記憶體位置，而不是它們是否有相同的值。使用 <code>EXPECT_STREQ</code> 比較字串的值</li>
-<li>當比較指標是否為 <code>NULL</code> 時，使用 <code>EXPECT_EQ(ptr, nullptr)</code> 代替 <code>EXPECT_EQ(ptr, NULL)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 != val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_NE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_NE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以比較兩個指標是否不相等</li>
-<li>如果用在兩個字串，會測試它們是否在不同的記憶體位置，而不是它們是否有不同的值。使用 <code>EXPECT_STRNE</code> 比較字串的值</li>
-<li>當比較指標是否不為 <code>NULL</code> 時，使用 <code>EXPECT_NE(ptr, nullptr)</code> 代替 <code>EXPECT_NE(ptr, NULL)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that `val1 &lt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &lt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_LE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_LE</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt; val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GT</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GT</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that `val1 &gt;= val2`.</span></span><br><span class="line"><span class="built_in">EXPECT_GE</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_GE</span>(val1, val2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="String-Comparison"><a href="#String-Comparison" class="headerlink" title="String Comparison"></a>String Comparison</h2><ul>
-<li>以下斷言比較兩個 <strong>C 字串</strong>。要比較兩個 <code>string</code> 對象，請使用 <code>EXPECT_EQ</code> 或 <code>EXPECT_NE</code> 代替。</li>
-<li>比較字串與 <code>NULL</code> 時，使用 <code>EXPECT_EQ(c_string, nullptr)</code> 或 <code>EXPECT_NE(c_string, nullptr)</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STREQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STREQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents.</span></span><br><span class="line"><span class="built_in">EXPECT_STRNE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRNE</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have the same contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASEEQ</span>(str1, str2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two C strings `str1` and `str2` have different contents, ignoring case.</span></span><br><span class="line"><span class="built_in">EXPECT_STRCASENE</span>(str1, str2)</span><br><span class="line"><span class="built_in">ASSERT_STRCASENE</span>(str1, str2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Floating-Point-Comparison"><a href="#Floating-Point-Comparison" class="headerlink" title="Floating-Point Comparison"></a>Floating-Point Comparison</h2><ul>
-<li>由於四捨五入的誤差，兩個浮點數完全相等的機率非常低，所以 <code>EXPECT_EQ</code> 不適合用於浮點數比較。一般來說，為了讓浮點數比較有意義，使用者需要仔細選擇 <strong>誤差範圍</strong>。</li>
-<li>GoogleTest 也提供使用 ULPs 的斷言，ULPs(Units in the Last Place) 是單位在最低有效位數的縮寫，詳細請參考 <a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers</a></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the two float values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_FLOAT_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the two double values `val1` and `val2`</span></span><br><span class="line"><span class="comment">// are approximately equal, to within 4 ULPs from each other.</span></span><br><span class="line"><span class="built_in">EXPECT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"><span class="built_in">ASSERT_DOUBLE_EQ</span>(val1, val2)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the difference between `val1` and `val2` </span></span><br><span class="line"><span class="comment">// does not exceed the absolute error bound `abs_error`.</span></span><br><span class="line"><span class="built_in">EXPECT_NEAR</span>(val1, val2, abs_error)</span><br><span class="line"><span class="built_in">ASSERT_NEAR</span>(val1, val2, abs_error)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Exception-Assertions"><a href="#Exception-Assertions" class="headerlink" title="Exception Assertions"></a>Exception Assertions</h2><ul>
-<li>以下斷言驗證某段程式碼是否拋出例外。需要啟用建置環境中的例外。</li>
-<li>程式碼區塊可以包含多個語句，例如：<code>EXPECT_NO_THROW(&#123;   int n = 5;   DoSomething(&amp;n); &#125;);</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of type `exception_type`.</span></span><br><span class="line"><span class="built_in">EXPECT_THROW</span>(statement, exception_type)</span><br><span class="line"><span class="built_in">ASSERT_THROW</span>(statement, exception_type)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` throws an exception of any type.</span></span><br><span class="line"><span class="built_in">EXPECT_ANY_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_ANY_THROW</span>(statement)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Verifies that the `statement` does not throw any exception.</span></span><br><span class="line"><span class="built_in">EXPECT_NO_THROW</span>(statement)</span><br><span class="line"><span class="built_in">ASSERT_NO_THROW</span>(statement)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>GoogleTest</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-        <tag>UnitTest</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GoogleTest：測試覆蓋率</title>
-    <url>/2024/09/21/GoogleTest-CodeCoverage/</url>
-    <content><![CDATA[<p>本文說明如何在執行單元測試後，再透過 gcov 執行單元測試覆蓋率分析。</p>
-<span id="more"></span>
-
-<h2 id="什麼是-gcov"><a href="#什麼是-gcov" class="headerlink" title="什麼是 gcov?"></a>什麼是 gcov?</h2><p>gcov 是一個與 GCC 編譯器配套的程式碼覆蓋率分析工具。它能夠幫助使用者了解執行單元測試時，待測程式中哪些部分有被執行、哪些部分未被執行，從而評估測試的完整性。</p>
-<h2 id="什麼是-gcovr"><a href="#什麼是-gcovr" class="headerlink" title="什麼是 gcovr?"></a>什麼是 gcovr?</h2><p>gcovr 是一個用於生成程式碼覆蓋率報告的 Python 工具，它基於 gcov 的輸出來生成 HTML 格式的報告。</p>
-<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><ul>
-<li>gcov 是 GCC 的一部分，因此只需要有安裝 GCC 即可。</li>
-<li>gcovr 需要透過 Python 和 pip 執行命令 <code>pip install gcovr</code> 安裝。</li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在編譯時，加上 <code>-fprofile-arcs</code> 和 <code>-ftest-coverage</code> 選項，即可生成 gcov 所需的資訊。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">g++ -fprofile-arcs -ftest-coverage add.cpp add_test.cpp -o TestResult</span><br></pre></td></tr></table></figure>
-
-<p>在編譯後，專案目錄下會多出一些副檔名為 <code>.gcno</code> 的檔案，這些檔案包含了編譯時的覆蓋率資訊。</p>
-<p>在執行單元測試後，還會多出一些副檔名為 <code>.gcda</code> 的檔案，這些檔案包含了執行時的覆蓋率資訊。</p>
-<p>最後，在專案根目錄執行以下命令，可以生成名為 <code>coverage.html</code> 的覆蓋率報告：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gcovr -r . --html --html-details -o coverage.html</span><br></pre></td></tr></table></figure>
-
-<h2 id="搭配-Makefile-使用"><a href="#搭配-Makefile-使用" class="headerlink" title="搭配 Makefile 使用"></a>搭配 Makefile 使用</h2><p>參考 <a href="/2024/09/18/GoogleTest-RunOnWindows/" title="GoogleTest：在 Windows 上執行">GoogleTest：在 Windows 上執行</a> ，基於文中的 Makefile 我們可以修改成：</p>
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Compiler and flags</span></span><br><span class="line">CXX := g++</span><br><span class="line">CXXFLAGS := -std=c++14 -Wall -Wextra -I/mingw32/<span class="keyword">include</span> -ftest-coverage -fprofile-arcs</span><br><span class="line">LDFLAGS := -L/mingw32/lib -lgtest -lgtest_main -pthread -lgcov</span><br><span class="line"></span><br><span class="line"><span class="comment"># Directories</span></span><br><span class="line">SRC_DIR := src</span><br><span class="line">TEST_DIR := test</span><br><span class="line">BUILD_DIR := build</span><br><span class="line">BIN_DIR := bin</span><br><span class="line">COVERAGE_DIR := coverage</span><br><span class="line"></span><br><span class="line"><span class="comment"># Target executable</span></span><br><span class="line">TARGET := <span class="variable">$(BIN_DIR)</span>/TestResult.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Source files</span></span><br><span class="line">SRCS := <span class="variable">$(<span class="built_in">wildcard</span> <span class="variable">$(SRC_DIR)</span>/*/*.cpp)</span></span><br><span class="line">SRCS += <span class="variable">$(<span class="built_in">wildcard</span> <span class="variable">$(TEST_DIR)</span>/*/*.cpp)</span></span><br><span class="line">OBJS := <span class="variable">$(<span class="built_in">patsubst</span> <span class="variable">$(SRC_DIR)</span>/%.cpp,<span class="variable">$(BUILD_DIR)</span>/%.o,<span class="variable">$(SRCS)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ensure build, bin, and coverage directories exist</span></span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span>)</span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span>)</span><br><span class="line"><span class="variable">$(<span class="built_in">shell</span> <span class="built_in">if</span> not exist $(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span> mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Main target</span></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGET)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Linking</span></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(OBJS)</span> -o <span class="variable">$@</span> <span class="variable">$(LDFLAGS)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compilation</span></span><br><span class="line"><span class="variable">$(BUILD_DIR)</span>/%.o: <span class="variable">$(SRC_DIR)</span>/%.cpp</span><br><span class="line">	@if not exist <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>) mkdir <span class="variable">$(<span class="built_in">subst</span> /,\,$(@D)</span>)</span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean target</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BUILD_DIR)</span>)</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(BIN_DIR)</span>)</span></span><br><span class="line">	@if exist <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span> rmdir /s /q <span class="variable">$(<span class="built_in">subst</span> /,\,<span class="variable">$(COVERAGE_DIR)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Run target</span></span><br><span class="line"><span class="section">run: <span class="variable">$(TARGET)</span></span></span><br><span class="line">	<span class="variable">$(TARGET)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Coverage target</span></span><br><span class="line"><span class="section">coverage: <span class="variable">$(TARGET)</span></span></span><br><span class="line">	<span class="variable">$(TARGET)</span></span><br><span class="line">	gcovr -r . --html --html-details -o <span class="variable">$(COVERAGE_DIR)</span>/coverage.html --exclude <span class="string">&quot;src/example/.*&quot;</span></span><br><span class="line">	@echo Coverage report generated. Opening in default browser...</span><br><span class="line">	@python -c <span class="string">&quot;import webbrowser; webbrowser.open(&#x27;file://<span class="variable">$(CURDIR)</span>/<span class="variable">$(COVERAGE_DIR)</span>/coverage.html&#x27;)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: all clean run coverage</span></span><br></pre></td></tr></table></figure>
-
-<p>在終端機執行以下命令即可生成覆蓋率報告：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">make coverage</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>GoogleTest</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C++</tag>
-        <tag>UnitTest</tag>
-        <tag>CodeCoverage</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GoogleTest：基礎概念</title>
     <url>/2024/09/18/GoogleTest-Intro/</url>
     <content><![CDATA[<p>GoogleTest 是一款由 Google 開發，用於 C&#x2F;C++ 的單元測試框架。本文將介紹 GoogleTest 的基本概念和用法。</p>
@@ -1575,21 +1575,6 @@
       </categories>
   </entry>
   <entry>
-    <title>PythonFileProcess</title>
-    <url>/2024/10/09/PythonFileProcess/</url>
-    <content><![CDATA[<p>說明如何使用 Python 操作檔案。</p>
-<span id="more"></span>
-
-
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>FileProcess</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>提示工程</title>
     <url>/2024/09/16/PromptEngineering/</url>
     <content><![CDATA[<p>這裡蒐集了一些提示範例，方便日後參考。</p>
@@ -1655,6 +1640,21 @@
       </categories>
       <tags>
         <tag>CodingStyle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PythonFileProcess</title>
+    <url>/2024/10/09/PythonFileProcess/</url>
+    <content><![CDATA[<p>說明如何使用 Python 操作檔案。</p>
+<span id="more"></span>
+
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>FileProcess</tag>
       </tags>
   </entry>
   <entry>
@@ -1984,6 +1984,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Visual Studio 擴充套件</title>
+    <url>/2024/09/17/VSPlugin/</url>
+    <content><![CDATA[<p>整理目前會用到的 Visual Studio 擴充套件。</p>
+<span id="more"></span>
+
+<h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
+<li>CodeMaid VS2022</li>
+<li>Csharpier</li>
+<li>IndentRainbow</li>
+<li>One Monokai VS Theme</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Editor</category>
+      </categories>
+      <tags>
+        <tag>VS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Visual Studio Code 擴充套件</title>
     <url>/2024/09/17/VSCodePlugin/</url>
     <content><![CDATA[<p>整理目前會用到的 Visual Studio Code 擴充套件。</p>
@@ -2012,26 +2032,6 @@
       </categories>
       <tags>
         <tag>VSCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Visual Studio 擴充套件</title>
-    <url>/2024/09/17/VSPlugin/</url>
-    <content><![CDATA[<p>整理目前會用到的 Visual Studio 擴充套件。</p>
-<span id="more"></span>
-
-<h2 id="清單"><a href="#清單" class="headerlink" title="清單"></a>清單</h2><ul>
-<li>CodeMaid VS2022</li>
-<li>Csharpier</li>
-<li>IndentRainbow</li>
-<li>One Monokai VS Theme</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Editor</category>
-      </categories>
-      <tags>
-        <tag>VS</tag>
       </tags>
   </entry>
   <entry>
