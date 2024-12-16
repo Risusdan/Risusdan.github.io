@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+          <head>
+        <meta charset="utf-8">
+            
+            <title>
+                ClangFormat 使用說明 | Daniel&#39;s Blog
+            </title>
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+            <meta name="theme-color" content="#4184f3">
+            
+            
+            <link href="/img/favicon.png" rel="icon"/>
+            
+
+            
+<link rel="stylesheet" href="/css/highlight.light.css">
+
+            
+<link rel="stylesheet" href="/css/prism-customize.css">
+
+            
+<link rel="stylesheet" href="/css/nav-icon.css">
+
+            
+<link rel="stylesheet" href="/css/waves.min.css">
+
+            
+<link rel="stylesheet" href="/css/jquery.tocify.css">
+
+            
+<link rel="stylesheet" href="/css/main.css">
+
+            
+<link rel="stylesheet" href="/css/nav-indicator.css">
+
+            
+  
+
+  
+            </meta>
+        </meta>
+    <meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <header>
+            <!-- cover image or sth. -->
+        </header>
+        <div id="main" class="m-scene">
+            
+<div class="nav-wrapper">
+
+    <div class="container">
+        <nav>
+            <div class="logo wave">
+                <a href="/" id="logo">
+                    Daniel&#39;s Blog
+                </a>
+            </div>
+            <div class="nav-toggle-icon" >
+                <div class="material-hamburger">
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                </div>
+            </div>
+            <div class="menu-wrapper">
+                <div class="nav-indicator">
+                </div>
+                <ul class="menus">
+                    
+                     
+                        <li>
+                            <a class="wave " href="/">
+                                Home
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/archives">
+                                Archive
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/about">
+                                About
+                            </a>
+                        </li>
+                     
+                    
+                   
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+            <div class="container content">
+                <div class="scene_element scene_element--fadein">
+                    <div class="row">
+    <div class="main">
+        <article>
+          
+          <header class="post-header">
+          
+          </header>
+          <h1 class="post-title">ClangFormat 使用說明</h1>
+
+          <section class="post-info">
+            <span class="post-date">2024/12/16</span>
+            
+            <span class="post-category">
+                <a class="article-category-link" href="/categories/Formatter/">Formatter</a>
+            </span>
+            
+            
+            <span class="post-tags">
+              <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
+            </span>
+            
+          </section>
+
+          <section class="post-content">
+            <p>ClangFormat 是一款程式碼自動格式化工具，可以幫助我們保持程式碼排版的一致性。</p>
+<span id="more"></span>
+
+<h2 id="什麼是-ClangFormat"><a href="#什麼是-ClangFormat" class="headerlink" title="什麼是 ClangFormat?"></a>什麼是 ClangFormat?</h2><ul>
+<li>屬於 LLVM 專案的一部分。</li>
+<li>可以格式化 C、C++、JavaScript、Java、Objective-C 等語言。</li>
+<li>可以透過名為 <code>.clang-format</code> 的配置文件，客製格式化規則。</li>
+</ul>
+<h2 id="為什麼需要-ClangFormat"><a href="#為什麼需要-ClangFormat" class="headerlink" title="為什麼需要 ClangFormat?"></a>為什麼需要 ClangFormat?</h2><ul>
+<li>強制統一專案的程式碼風格，提高程式碼的可讀性</li>
+<li>透過自動化流程節省人工調整排版的時間和精力</li>
+<li>程式碼審查時不用花費時間在討論程式碼風格上</li>
+<li>透過特定格式的檔案配置規則，這些配置檔還可以與程式碼一起進行版本控制</li>
+</ul>
+<h2 id="如何使用-ClangFormat"><a href="#如何使用-ClangFormat" class="headerlink" title="如何使用 ClangFormat?"></a>如何使用 ClangFormat?</h2><h4 id="1-安裝-ClangFormat"><a href="#1-安裝-ClangFormat" class="headerlink" title="1. 安裝 ClangFormat"></a>1. 安裝 ClangFormat</h4><ul>
+<li>在 Windows 上，可以透過 Scoop 安裝：<code>scoop install llvm</code></li>
+<li>在 Linux 上，可以透過套件管理工具安裝：<code>sudo apt-get install clang-format</code></li>
+<li>在 macOS 上，可以透過 Homebrew 安裝：<code>brew install clang-format</code></li>
+</ul>
+<h4 id="2-配置-ClangFormat"><a href="#2-配置-ClangFormat" class="headerlink" title="2. 配置 ClangFormat"></a>2. 配置 ClangFormat</h4><ul>
+<li>ClangFormat 在執行時會自動尋找專案根目錄下的 <code>.clang-format</code> 文件來進行格式化，所以第一步是建立 <code>.clang-format</code> 文件。</li>
+<li>使用者可以自行在專案根目錄下建立一個 <code>.clang-format</code> 文件，也可以使用命令 <code>clang-format -style=llvm -dump-config &gt; .clang-format</code> 將 LLVM 公版規則匯出成 <code>.clang-format</code> 文件並移到專案根目錄下。</li>
+<li>所有可用的配置選項都列在 <a target="_blank" rel="noopener" href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">ClangFormat Style Options</a> 文件中。</li>
+</ul>
+<h4 id="3-格式化程式碼"><a href="#3-格式化程式碼" class="headerlink" title="3. 格式化程式碼"></a>3. 格式化程式碼</h4><ul>
+<li>每當想要格式化單個文件時，可以使用命令 <code>clang-format -i &lt;file&gt;</code> 來格式化單個文件。</li>
+<li>在 Visual Studio Code 中，可以安裝 <code>Clang-Format</code> 擴充套件，使用 <code>Ctrl+Alt+F</code> 或是點擊右鍵選單中的 <code>Format Document</code> 來格式化文件。</li>
+</ul>
+<h2 id="使用範例"><a href="#使用範例" class="headerlink" title="使用範例"></a>使用範例</h2><p>格式化前：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="type">int</span> arr[MAX];</span><br><span class="line"><span class="type">int</span> n,i,j,temp;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>,n);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;arr[i]);&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n-i<span class="number">-1</span>;j++)&#123;</span><br><span class="line"><span class="keyword">if</span>(arr[j]&gt;arr[j<span class="number">+1</span>])&#123;</span><br><span class="line">temp=arr[j];</span><br><span class="line">arr[j]=arr[j<span class="number">+1</span>];</span><br><span class="line">arr[j<span class="number">+1</span>]=temp;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,arr[i]);&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式化後：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX];</span><br><span class="line">    <span class="type">int</span> n, i, j, temp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the number of elements: &quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter %d integers:\n&quot;</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                temp       = arr[j];</span><br><span class="line">                arr[j]     = arr[j + <span class="number">1</span>];</span><br><span class="line">                arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sorted array in ascending order:\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="clang-format-配置"><a href="#clang-format-配置" class="headerlink" title=".clang-format 配置"></a>.clang-format 配置</h2><h3 id="Jserv-的配置"><a href="#Jserv-的配置" class="headerlink" title="Jserv 的配置"></a>Jserv 的配置</h3><p>參考來源：<a target="_blank" rel="noopener" href="https://github.com/sysprog21/rv32emu/blob/master/.clang-format">https://github.com/sysprog21/rv32emu/blob/master/.clang-format</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BasedOnStyle: Chromium</span><br><span class="line">Language: Cpp</span><br><span class="line">MaxEmptyLinesToKeep: 3</span><br><span class="line">IndentCaseLabels: false</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">DerivePointerAlignment: false</span><br><span class="line">PointerAlignment: Right</span><br><span class="line">SpaceAfterCStyleCast: true</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br><span class="line">IndentWidth: 4</span><br><span class="line">BreakBeforeBraces: Linux</span><br><span class="line">AccessModifierOffset: -4</span><br><span class="line">ForEachMacros:</span><br><span class="line">  - list_for_each_entry</span><br><span class="line">  - list_for_each_entry_safe</span><br><span class="line">  - hlist_for_each_entry</span><br><span class="line">AttributeMacros:</span><br><span class="line">  - UNUSED</span><br><span class="line">  - __ALIGNED</span><br><span class="line">  - PACKED</span><br><span class="line">  - MUST_TAIL</span><br><span class="line">  - FORCE_INLINE</span><br><span class="line">StatementAttributeLikeMacros:</span><br><span class="line">  - IIF</span><br><span class="line">StatementMacros:</span><br><span class="line">  - __UNREACHABLE</span><br></pre></td></tr></table></figure>
+
+<h3 id="符合-Google-C-風格指南的配置"><a href="#符合-Google-C-風格指南的配置" class="headerlink" title="符合 Google C++ 風格指南的配置"></a>符合 Google C++ 風格指南的配置</h3><p>參考來源：<a target="_blank" rel="noopener" href="https://github.com/kehanXue/google-style-clang-format">https://github.com/kehanXue/google-style-clang-format</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Google C/C++ Code Style settings</span><br><span class="line"># https://clang.llvm.org/docs/ClangFormatStyleOptions.html</span><br><span class="line"># Author: Kehan Xue, kehan.xue (at) gmail.com</span><br><span class="line"></span><br><span class="line">Language: Cpp</span><br><span class="line">BasedOnStyle: Google</span><br><span class="line">AccessModifierOffset: -1</span><br><span class="line">AlignAfterOpenBracket: Align</span><br><span class="line">AlignConsecutiveAssignments: None</span><br><span class="line">AlignOperands: Align</span><br><span class="line">AllowAllArgumentsOnNextLine: true</span><br><span class="line">AllowAllConstructorInitializersOnNextLine: true</span><br><span class="line">AllowAllParametersOfDeclarationOnNextLine: false</span><br><span class="line">AllowShortBlocksOnASingleLine: Empty</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line">AllowShortFunctionsOnASingleLine: Inline</span><br><span class="line">AllowShortIfStatementsOnASingleLine: Never  # To avoid conflict, set this &quot;Never&quot; and each &quot;if statement&quot; should include brace when coding</span><br><span class="line">AllowShortLambdasOnASingleLine: Inline</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line">AlwaysBreakAfterReturnType: None</span><br><span class="line">AlwaysBreakTemplateDeclarations: Yes</span><br><span class="line">BinPackArguments: true</span><br><span class="line">BreakBeforeBraces: Custom</span><br><span class="line">BraceWrapping:</span><br><span class="line">  AfterCaseLabel: false</span><br><span class="line">  AfterClass: false</span><br><span class="line">  AfterStruct: false</span><br><span class="line">  AfterControlStatement: Never</span><br><span class="line">  AfterEnum: false</span><br><span class="line">  AfterFunction: false</span><br><span class="line">  AfterNamespace: false</span><br><span class="line">  AfterUnion: false</span><br><span class="line">  AfterExternBlock: false</span><br><span class="line">  BeforeCatch: false</span><br><span class="line">  BeforeElse: false</span><br><span class="line">  BeforeLambdaBody: false</span><br><span class="line">  IndentBraces: false</span><br><span class="line">  SplitEmptyFunction: false</span><br><span class="line">  SplitEmptyRecord: false</span><br><span class="line">  SplitEmptyNamespace: false</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line">BreakBeforeTernaryOperators: true</span><br><span class="line">BreakConstructorInitializers: BeforeColon</span><br><span class="line">BreakInheritanceList: BeforeColon</span><br><span class="line">ColumnLimit: 80</span><br><span class="line">CompactNamespaces: false</span><br><span class="line">ContinuationIndentWidth: 4</span><br><span class="line">Cpp11BracedListStyle: true</span><br><span class="line">DerivePointerAlignment: false  # Make sure the * or &amp; align on the left</span><br><span class="line">EmptyLineBeforeAccessModifier: LogicalBlock</span><br><span class="line">FixNamespaceComments: true</span><br><span class="line">IncludeBlocks: Preserve</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line">IndentPPDirectives: None</span><br><span class="line">IndentWidth: 2</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: true</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line">NamespaceIndentation: None</span><br><span class="line">ObjCSpaceAfterProperty: false</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line">PointerAlignment: Left</span><br><span class="line">ReflowComments: false</span><br><span class="line">SeparateDefinitionBlocks: Always   # Only support since clang-format 14</span><br><span class="line">SpaceAfterCStyleCast: false</span><br><span class="line">SpaceAfterLogicalNot: false</span><br><span class="line">SpaceAfterTemplateKeyword: true</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line">SpaceBeforeCpp11BracedList: false</span><br><span class="line">SpaceBeforeCtorInitializerColon: true</span><br><span class="line">SpaceBeforeInheritanceColon: true</span><br><span class="line">SpaceBeforeParens: ControlStatements</span><br><span class="line">SpaceBeforeRangeBasedForLoopColon: true</span><br><span class="line">SpaceBeforeSquareBrackets: false</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line">SpacesBeforeTrailingComments: 2</span><br><span class="line">SpacesInAngles: false</span><br><span class="line">SpacesInCStyleCastParentheses: false</span><br><span class="line">SpacesInContainerLiterals: false</span><br><span class="line">SpacesInParentheses: false</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line">Standard: c++11</span><br><span class="line">TabWidth: 4</span><br><span class="line">UseTab: Never</span><br></pre></td></tr></table></figure>
+
+          </section>
+        </article>
+        
+
+       
+        <div class="pager">
+          
+            <a class="post-prev pager-item" href="/2024/12/16/5-Scoop/" >
+              <strong class="article-nav-caption">Newer</strong>
+              <p class="post-nav-title">Scoop 使用說明</p>
+            </a>
+          
+          
+            <a class="post-next pager-item" href="/2024/12/16/3-PromptEngineering/">
+              <strong class="article-nav-caption">Older</strong>
+              <p class="post-nav-title">提示工程</p>
+            </a>
+          
+        </div>
+        
+
+         <!-- comments -->
+        <div class="comment-section">
+  
+    
+
+
+</div>
+
+    </div>
+    
+</div>
+
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+    <p>由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动，搭载<a target="_blank" rel="noopener" href="https://github.com/wayou/hexo-theme-gstyle">gstyle</a>主题</p>
+    <p>
+        &copy; 2024 Daniel
+    </p>
+</footer>
+
+<script src="/lib/jquery.js"></script>
+
+
+<script src="/lib/waves.js"></script>
+
+
+<script src="/lib/jquery-ui.js"></script>
+
+
+<script src="/lib/jquery.tocify.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    </body>
+</html>

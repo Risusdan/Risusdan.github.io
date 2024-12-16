@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+          <head>
+        <meta charset="utf-8">
+            
+            <title>
+                Scoop 使用說明 | Daniel&#39;s Blog
+            </title>
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+            <meta name="theme-color" content="#4184f3">
+            
+            
+            <link href="/img/favicon.png" rel="icon"/>
+            
+
+            
+<link rel="stylesheet" href="/css/highlight.light.css">
+
+            
+<link rel="stylesheet" href="/css/prism-customize.css">
+
+            
+<link rel="stylesheet" href="/css/nav-icon.css">
+
+            
+<link rel="stylesheet" href="/css/waves.min.css">
+
+            
+<link rel="stylesheet" href="/css/jquery.tocify.css">
+
+            
+<link rel="stylesheet" href="/css/main.css">
+
+            
+<link rel="stylesheet" href="/css/nav-indicator.css">
+
+            
+  
+
+  
+            </meta>
+        </meta>
+    <meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <header>
+            <!-- cover image or sth. -->
+        </header>
+        <div id="main" class="m-scene">
+            
+<div class="nav-wrapper">
+
+    <div class="container">
+        <nav>
+            <div class="logo wave">
+                <a href="/" id="logo">
+                    Daniel&#39;s Blog
+                </a>
+            </div>
+            <div class="nav-toggle-icon" >
+                <div class="material-hamburger">
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                    <span>
+                    </span>
+                </div>
+            </div>
+            <div class="menu-wrapper">
+                <div class="nav-indicator">
+                </div>
+                <ul class="menus">
+                    
+                     
+                        <li>
+                            <a class="wave " href="/">
+                                Home
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/archives">
+                                Archive
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a class="wave " href="/about">
+                                About
+                            </a>
+                        </li>
+                     
+                    
+                   
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+            <div class="container content">
+                <div class="scene_element scene_element--fadein">
+                    <div class="row">
+    <div class="main">
+        <article>
+          
+          <header class="post-header">
+          
+          </header>
+          <h1 class="post-title">Scoop 使用說明</h1>
+
+          <section class="post-info">
+            <span class="post-date">2024/12/16</span>
+            
+            <span class="post-category">
+                <a class="article-category-link" href="/categories/PackageManager/">PackageManager</a>
+            </span>
+            
+            
+          </section>
+
+          <section class="post-content">
+            <p>說明 Scoop 的安裝與使用。</p>
+<span id="more"></span>
+
+<h2 id="Windows-如何安裝-Scoop-到-D-槽"><a href="#Windows-如何安裝-Scoop-到-D-槽" class="headerlink" title="Windows 如何安裝 Scoop 到 D 槽"></a>Windows 如何安裝 Scoop 到 D 槽</h2><p>開啟 PowerShell 並輸入以下指令：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> RemoteSigned <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="variable">$env:SCOOP</span>=<span class="string">&#x27;D:\scoop&#x27;</span></span><br><span class="line">[<span class="type">environment</span>]::setEnvironmentVariable(<span class="string">&#x27;SCOOP&#x27;</span>,<span class="variable">$env:SCOOP</span>,<span class="string">&#x27;User&#x27;</span>)</span><br><span class="line"><span class="built_in">iwr</span> <span class="literal">-useb</span> get.scoop.sh | <span class="built_in">iex</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows-如何解除安裝-Scoop"><a href="#Windows-如何解除安裝-Scoop" class="headerlink" title="Windows 如何解除安裝 Scoop"></a>Windows 如何解除安裝 Scoop</h2><p>開啟 PowerShell 並輸入以下指令：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># remove Scoop and all software previously installed using Scoop</span></span><br><span class="line">scoop uninstall scoop</span><br><span class="line"><span class="comment"># completely remove all folders and files related to Scoop</span></span><br><span class="line"><span class="built_in">del</span> .\scoop <span class="literal">-Force</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用的-Scoop-指令"><a href="#常用的-Scoop-指令" class="headerlink" title="常用的 Scoop 指令"></a>常用的 Scoop 指令</h2><ol>
+<li><code>scoop install</code></li>
+</ol>
+<ul>
+<li>Description : Installs a package.</li>
+<li>Example : <code>scoop install nodejs</code></li>
+</ul>
+<ol start="2">
+<li><code>scoop update</code></li>
+</ol>
+<ul>
+<li>Description : Updates Scoop itself or installed packages.</li>
+<li>Example : <code>scoop update</code>, <code>scoop update nodejs</code>, <code>scoop update *</code></li>
+</ul>
+<ol start="3">
+<li><code>scoop search</code></li>
+</ol>
+<ul>
+<li>Description : Searches for a package by name.</li>
+<li>Example : <code>scoop search nodejs</code></li>
+</ul>
+<ol start="4">
+<li><code>scoop bucket add</code></li>
+</ol>
+<ul>
+<li>Description : Adds a new bucket (repository) to access more packages.</li>
+<li>Example : <code>scoop bucket add extras</code></li>
+</ul>
+<ol start="5">
+<li><code>scoop list</code></li>
+</ol>
+<ul>
+<li>Description : Listing installed packages</li>
+<li>Example : <code>scoop list</code></li>
+</ul>
+<ol start="6">
+<li><code>scoop uninstall</code></li>
+</ol>
+<ul>
+<li>Description : Uninstalls a package.</li>
+<li>Example : <code>scoop uninstall nodejs</code></li>
+</ul>
+<ol start="7">
+<li><code>scoop info</code></li>
+</ol>
+<ul>
+<li>Description : Displays information about a package.</li>
+<li>Example : <code>scoop info nodejs</code></li>
+</ul>
+<ol start="8">
+<li><code>scoop status</code></li>
+</ol>
+<ul>
+<li>Description : Shows the status of installed packages, including available updates.</li>
+<li>Example : <code>scoop status</code></li>
+</ul>
+<ol start="9">
+<li><code>scoop cleanup</code></li>
+</ol>
+<ul>
+<li>Description : Cleans up old versions of installed packages to free up disk space.</li>
+<li>Example : <code>scoop cleanup</code></li>
+</ul>
+<ol start="10">
+<li><code>scoop help</code></li>
+</ol>
+<ul>
+<li>Description : Show help.</li>
+<li>Example : <code>scoop help</code></li>
+</ul>
+
+          </section>
+        </article>
+        
+
+       
+        <div class="pager">
+          
+          
+            <a class="post-next pager-item" href="/2024/12/16/4-ClangFormat/">
+              <strong class="article-nav-caption">Older</strong>
+              <p class="post-nav-title">ClangFormat 使用說明</p>
+            </a>
+          
+        </div>
+        
+
+         <!-- comments -->
+        <div class="comment-section">
+  
+    
+
+
+</div>
+
+    </div>
+    
+</div>
+
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+    <p>由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动，搭载<a target="_blank" rel="noopener" href="https://github.com/wayou/hexo-theme-gstyle">gstyle</a>主题</p>
+    <p>
+        &copy; 2024 Daniel
+    </p>
+</footer>
+
+<script src="/lib/jquery.js"></script>
+
+
+<script src="/lib/waves.js"></script>
+
+
+<script src="/lib/jquery-ui.js"></script>
+
+
+<script src="/lib/jquery.tocify.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    </body>
+</html>
